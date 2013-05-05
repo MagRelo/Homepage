@@ -9,3 +9,5 @@ angular.module('myApp', ['myApp.filters', 'myApp.services', 'myApp.directives'])
     $routeProvider.otherwise({redirectTo: '/view1'});
     $locationProvider.html5Mode(true);
   }]);
+
+
