@@ -127,6 +127,6 @@ ol {
 }
 
 #twitter{
-
+    max-height: 500px;
     margin-top: 1em;
 }
