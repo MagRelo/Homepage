@@ -1,5 +1,10 @@
 /* app css stylesheet */
 
+a:hover{
+    text-decoration:none;
+}
+
+
 .menu {
   list-style: none;
   margin-left: 0px;
@@ -13,24 +18,17 @@
 .menubutton {
     color: #fff;
     padding: 1em 2em;
-
     background-color: #023A61;
     border-top-color: #023A61;
     border-left-color: #023A61;
     border-right-color: #023A61;
     border-bottom-color: #275474;
-    /*border-width: 1px;*/
-    /*border-style: solid;*/
-    text-transform: none;
+
 }
 .menubutton:hover {
-    text-transform: none;
     background-color: #0A64A4;
     color: white;
-    -webkit-box-shadow: 0 4px 8px -3px #999CA0;
-    -moz-box-shadow:    0 4px 8px -3px #999CA0;
-    box-shadow:         0 4px 8px -3px #999CA0;
-
+    text-decoration:none;
 }
 
 .active {
@@ -39,10 +37,6 @@
     -moz-box-shadow:    0 4px 8px -3px #999CA0;
     box-shadow:         0 4px 8px -3px #999CA0;
 }
-
-
-
-
 
 .hero-unit{
     color: #ffffff;
@@ -138,11 +132,6 @@ ol {
     padding: 0;
     margin: 0;
 }
-
-/*#twitter{
-    max-height: 500px;
-    margin-top: 1em;
-}*/
 
 html,
 body {
