@@ -21,27 +21,27 @@
     border-bottom-color: #275474;
     /*border-width: 1px;*/
     /*border-style: solid;*/
+    text-transform: none;
 }
 .menubutton:hover {
+    text-transform: none;
     background-color: #0A64A4;
     color: white;
-    text-transform: none;
-}
+    -webkit-box-shadow: 0 4px 8px -3px #999CA0;
+    -moz-box-shadow:    0 4px 8px -3px #999CA0;
+    box-shadow:         0 4px 8px -3px #999CA0;
 
-a:hover {
-    text-transform: none;
 }
 
 .active {
     background-color: #0A64A4;
-}
-
-
-.bottomshadow{
     -webkit-box-shadow: 0 4px 8px -3px #999CA0;
     -moz-box-shadow:    0 4px 8px -3px #999CA0;
     box-shadow:         0 4px 8px -3px #999CA0;
 }
+
+
+
 
 
 .hero-unit{
