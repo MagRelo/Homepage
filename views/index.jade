@@ -1,15 +1,28 @@
 extends layout
 
 block body
-    div(ng-controller='AppCtrl')
-        h2 Hello {{name}}
+
+    .container(ng-controller='AppCtrl')
+
+        .hero-unit
+            h1 Matt Lovan
+            p node + express + jade/less + angular + bootstrap
         ul.menu
             li
-                a(href='view1') view1
+                a.menubutton.bottomshadow(href='view1') Bio
             li
-                a(href='view2') view2
+                a.menubutton.bottomshadow(href='view2') Projects
+            li
+                a.menubutton.bottomshadow(href='view2') Blog
+            li
+                a.menubutton.bottomshadow(href='view2') Resume
+            li
+                a.menubutton.bottomshadow(href='view2') Sandbox
+        .divider
 
         div(ng-view)
+
+
 
     script(src='js/lib/jquery-1.9.1.js')
     script(src='js/lib/angular/angular.js')

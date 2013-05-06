@@ -1,15 +1,40 @@
-form(name="MainForm")
-    label First Name
-        input.inset(type="text",placeholder="Enter first Name")
+.row-fluid
 
-    label Last Name
-        input.inset(type="text", placeholder="Enter last Name")
+    .span7.offset1
+        .well
+            p
+                |This is my personal website and portfolio. I've recently resigned as a corporate consultant to persue a more creative
+                |career path. I'll hope to develop and improve this site continually over the next several months.
 
-    label Email Address
-        input.inset(type="text", placeholder="Enter Email Address")
+            p
+                |I consider myself more of a developer than a designer, and so I'll try
+                |to keep the design simple and clean. I was relieved to discover&nbsp;
+                a(href='http://twitter.github.io/bootstrap/index.html') bootstrap
+                |&nbsp;and I intend to lean on it pretty hard.
+                |A lack of design can be mistaken for good design, but adding in
+                |clutter and color will give me away.
 
-    label Address
-        input.inset(type="text", placeholder="Enter Address")
+            blockquote.pull-right
+                p Better to remain silent and be thought a fool than to speak and to remove all doubt.
+                small disputed
 
-    label Phone Number
-        input.inset(type="text", placeholder="Enter last Name")
+            p
+                |I've started with the&nbsp;
+                a(href='https://github.com/btford/angular-express-seed.git') node-angular-seed
+                |&nbsp;by Brian Ford. It's a great place to start if you, like me, have very little experience in node,
+                |express, angular, javascript, html and web development in general. This site is hosted at Heroku.
+
+
+    .span3
+        .picture.bottomshadow
+            img(src='/img/ProfilePic.jpg')
+
+    .span3
+        #twitter
+            |<a class="twitter-timeline" href="https://twitter.com/mattlovan" data-widget-id="331209679692763139">Tweets by @mattlovan</a><script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+
+
+.row-fluid
+    .span12
+        .divider
+    p.pull-right 2013
