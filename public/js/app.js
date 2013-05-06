@@ -12,7 +12,7 @@ angular.module('myApp', ['myApp.filters', 'myApp.services', 'myApp.directives'])
     $routeProvider.when('/Resume', {templateUrl: 'partials/Resume', controller: MyCtrl1});
     $routeProvider.when('/Sandbox', {templateUrl: 'partials/Sandbox', controller: MyCtrl1});
 
-    $routeProvider.otherwise({redirectTo: '/view1'});
+    $routeProvider.otherwise({redirectTo: '/Bio'});
     $locationProvider.html5Mode(true);
   }]);
 
