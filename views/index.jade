@@ -8,12 +8,22 @@ block body
             .hero-unit
                 h1 Matt Lovan
                 p web development a·fi·ci·o·na·do
+            ul.menu
+                li
+                    a.menubutton(href='Bio') Bio
+                li
+                    a.menubutton(href='Projects') Projects
+                li
+                    a.menubutton(href='Resume') Resume
+            .divider
 
             div(ng-view)
         #push
     #footer
         .container
             p(class = "muted credit")   Built by Matt Lovan
+
+
 
 
     script(src='js/lib/jquery-1.9.1.js')
