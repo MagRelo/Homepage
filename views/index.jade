@@ -5,16 +5,14 @@ block body
     #wrap
         .container(ng-controller='AppCtrl')
 
+
+
             .hero-unit
                 h1 Matt Lovan
                 p web development a·fi·ci·o·na·do
-            ul.menu
-                li
-                    a.menubutton(href='Bio') Bio
-                li
-                    a.menubutton(href='Projects') Projects
-                li
-                    a.menubutton(href='Resume') Resume
+
+            include partials/NavBarTop
+
             .divider
 
             div(ng-view)
