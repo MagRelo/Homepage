@@ -11,11 +11,23 @@ function AppCtrl($scope, $http) {
     $scope.name = 'Error!'
   });
 }
-
+/*
 function MyCtrl1() {}
-MyCtrl1.$inject = [];
+MyCtrl1.$inject = [];*/
 
 
-function MyCtrl2() {
+/*function MyCtrl2() {
 }
-MyCtrl2.$inject = [];
+MyCtrl2.$inject = [];*/
+
+
+function DocCtrl($scope) {
+    $scope.Resume = {name: "Matt Lovan",
+        email: "mattlovan@gmail.edu",
+        phone: "504.871.2928",
+        streetaddress:"834 Johnson Street, Suite 808",
+        city: "Victoria",
+        state:"BC",
+        zip:"V8W 1N3" };
+}
+

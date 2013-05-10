@@ -1,12 +1,10 @@
-
 include DocumentButtons
 
 .row
     .span12
         .document.readtext.documentshadow
-            h3 Matthew Lovan
-            h5 MattLovan@gmail.com | 208.871.2928 <br>
-                | 834 Johnson Street, Suite 808 | Victoria, BC V8W 1N3
+            h3 {{Resume.name}}
+            h5 {{Resume.email}} | {{Resume.phone}} <br> {{Resume.streetaddress}} | {{Resume.city}}, {{Resume.state}} {{Resume.zip}}
 
             h5.SectionTitle  Samples, Demos, Projects
 
@@ -17,10 +15,9 @@ include DocumentButtons
 
             h5.SectionTitle  Education
             p  University of Idaho
-            ul.inline
-                li Bachelors of Science, Business Information Systems
-                li.pull-right (Dec. 2013)
-
+                ul.inline
+                    li Bachelors of Science, Business Information Systems
+                    li.pull-right (Dec. 2013)
             h5.SectionTitle  Professional Experience
             p FAST Enterprises
             ul.SectionContent
