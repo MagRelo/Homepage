@@ -1,24 +1,127 @@
 include DocumentButtons
 
 .row
+    .span12.text-center
+        p.text-success(ng-show="editMode") Click on the icons to edit the information for that section.
+
+.row
     .span12
         .document.readtext.documentshadow
-            h3 {{Resume.name}}
-            h5 {{Resume.email}} | {{Resume.phone}} <br> {{Resume.streetaddress}} | {{Resume.city}}, {{Resume.state}} {{Resume.zip}}
 
-            h5.SectionTitle  Samples, Demos, Projects
+            ul.inline.docH3
+                li(ng-show="editMode")
+                    a.btn(ng-click="editingName = true", ng-hide="editingName")
+                        i.icon-edit
+                    .input-append(ng-show="editingName")
+                        input(type="text", id="email", ng-model="Resume.name")
+                        a.btn.btn-success(ng-click="editingName = false")
+                            i.icon-thumbs-up.icon-white
+
+                li
+                    div(ng-hide="editingName") {{Resume.name}}
 
             ul.inline
+                //Email
+                li(ng-show="editMode")
+                    a.btn(ng-click="editingEmail = true", ng-hide="editingEmail")
+                        i.icon-envelope
+                    .input-append(ng-show="editingEmail")
+                        input(type="text", id="email", ng-model="Resume.email")
+                        a.btn.btn-success(ng-click="editingEmail = false")
+                            i.icon-thumbs-up.icon-white
+                li(ng-hide="editMode")
+                    i.icon-envelope.btnmargin
+                li(ng-hide="editingEmail")
+                    strong {{Resume.email}}
 
-                li.btn
-                    a(href='https://github.com/MagRelo') GitHub
+                //Phone
+                li(ng-show="editMode")  |
+                    a.btn.btnmargin(ng-click="editingPhone = true", ng-hide="editingPhone")
+                        i.icon-volume-up
+                    .input-append(ng-show="editingPhone")
+                        input.btnmargin(type="text", id="email", ng-model="Resume.phone")
+                        a.btn.btn-success(ng-click="editingPhone = false")
+                            i.icon-thumbs-up.icon-white
+                li(ng-hide="editMode")  |
+                    i.icon-volume-up.btnmargin
+                li(ng-hide="editingPhone")
+                    strong {{Resume.phone}}
 
-            h5.SectionTitle  Education
-            p  University of Idaho
+            ul.inline
+                //Address
+                li(ng-show="editMode")
+                    a.btn(ng-click="editingstreetaddress = true", ng-hide="editingstreetaddress")
+                        i.icon-road
+                    .input-append(ng-show="editingstreetaddress")
+                        input(type="text", ng-model="Resume.streetaddress")
+                        a.btn.btn-success(ng-click="editingstreetaddress = false")
+                            i.icon-thumbs-up.icon-white
+                li(ng-hide="editMode")
+                    i.icon-road.btnmargin
+                li(ng-hide="editingstreetaddress")
+                    strong {{Resume.streetaddress}}
+
+                //Location
+                li(ng-show="editMode")  |
+                    a.btn.btnmargin(ng-click="editingLocation = true", ng-hide="editingLocation")
+                        i.icon-globe
+                    .input-append(ng-show="editingLocation")
+                        input.btnmargin(type="text",, ng-model="Resume.location")
+                        a.btn.btn-success(ng-click="editingLocation = false")
+                            i.icon-thumbs-up.icon-white
+                li(ng-hide="editMode")  |
+                    i.icon-globe.btnmargin
+                li(ng-hide="editingLocation")
+                    strong {{Resume.location}}
+
+            //SECTION 1
+            ul.inline.SectionTitle
+                li(ng-show="editMode")
+                    a.btn(ng-click="editingSection = true", ng-hide="editingSection")
+                        i.icon-edit
+                    .input-append(ng-show="editingSection")
+                        input(type="text", ng-model="Resume.Section1Title")
+                        a.btn.btn-success(ng-click="editingSection = false")
+                            i.icon-thumbs-up.icon-white
+                li(ng-hide="editingSection")
+                    strong {{Resume.Section1Title}}
+
+            .SectionContent
+                strong  MattLovan.com
+                p You're looking at it
+
+            //SECTION 2
+            ul.inline.SectionTitle
+                li(ng-show="editMode")
+                    a.btn(ng-click="editingSection2 = true", ng-hide="editingSection2")
+                        i.icon-edit
+                    .input-append(ng-show="editingSection2")
+                        input(type="text", ng-model="Resume.Section2Title")
+                        a.btn.btn-success(ng-click="editingSection2 = false")
+                            i.icon-thumbs-up.icon-white
+                li(ng-hide="editingSection2")
+                    strong(ng-hide="editingSection2") {{Resume.Section2Title}}
+
+            .SectionContent
+                strong  University of Idaho
                 ul.inline
                     li Bachelors of Science, Business Information Systems
                     li.pull-right (Dec. 2013)
-            h5.SectionTitle  Professional Experience
-            p FAST Enterprises
-            ul.SectionContent
-                li Fast Enterprises develops web-based revenue management software for government agencies. Their product is a multi-tier application utilizing SQL Server, VB.NET, and jQuery to provide a platform for AGILE development. Consultants at FAST Enterprises are responsible for all phases of the SDLC, including gathering requirements, development, testing and documentation.
+
+            //SECTION 3
+            ul.inline.SectionTitle
+                li(ng-show="editMode")
+                    a.btn(ng-click="editingSection3 = true", ng-hide="editingSection3")
+                        i.icon-edit
+                    .input-append(ng-show="editingSection3")
+                        input(type="text", ng-model="Resume.Section3Title")
+                        a.btn.btn-success(ng-click="editingSection3 = false")
+                            i.icon-thumbs-up.icon-white
+                li(ng-hide="editingSection3")
+                    strong(ng-hide="editingSection3") {{Resume.Section3Title}}
+
+            .SectionContent
+                strong FAST Enterprises
+                p Fast Enterprises develops web-based revenue management software for government agencies. Their product is a multi-tier application utilizing SQL Server, VB.NET, and jQuery to provide a platform for AGILE development. Consultants at FAST Enterprises are responsible for all phases of the SDLC, including gathering requirements, development, testing and documentation.
+
+include DocumentButtons

@@ -2,32 +2,62 @@
 
 /* Controllers */
 
-function AppCtrl($scope, $http) {
-  $http({method: 'GET', url: '/api/name'}).
-  success(function(data, status, headers, config) {
-    $scope.name = data.name;
-  }).
-  error(function(data, status, headers, config) {
-    $scope.name = 'Error!'
-  });
-}
-/*
-function MyCtrl1() {}
-MyCtrl1.$inject = [];*/
+function ResumeCtrl($scope) {
 
-
-/*function MyCtrl2() {
-}
-MyCtrl2.$inject = [];*/
-
-
-function DocCtrl($scope) {
+    //Initial Data Setup
     $scope.Resume = {name: "Matt Lovan",
-        email: "mattlovan@gmail.edu",
-        phone: "504.871.2928",
+        email: "mattlovan@gmail.com",
+        phone: "208.871.2928",
         streetaddress:"834 Johnson Street, Suite 808",
-        city: "Victoria",
-        state:"BC",
-        zip:"V8W 1N3" };
+        location: "Victoria, BC 1N4 V8W",
+        Section1Title: "Projects",
+        Section2Title: "Education",
+        Section3Title: "Professional Experience"
+    };
+
+
+//
+//    $scope.newResume = function(){
+//        $scope.Resume.push({name:$scope.resumename, email:$scope.resumeemail, phone:$scope.resumephone})
+//        $scope.resumename = ''
+//        $scope.resumeemail = ''
+//        $scope.resumephone = ''
+//    }
+//
+
+
+    $scope.resetResume = function(){
+
+        $scope.Resume = {name: "Matt Lovan",
+            email: "mattlovan@gmail.com",
+            phone: "208.871.2928",
+            streetaddress:"834 Johnson Street, Suite 808",
+            location: "Victoria, BC 1N4 V8W",
+            Section1Title: "Projects",
+            Section2Title: "Education",
+            Section3Title: "Professional Experience"
+        };
+
+        $scope.resetEdits()
+    }
+
+    $scope.resetEdits = function(){
+
+        $scope.editingName = false;
+        $scope.editingEmail = false;
+        $scope.editingPhone = false;
+        $scope.editingstreetaddress = false;
+        $scope.editingLocation = false;
+        $scope.editingSection = false;
+        $scope.editingSection2 = false;
+        $scope.editingSection3 = false;
+        $scope.editMode = false;
+    }
+
+    $scope.saveResume = function(){
+
+        $scope.resetEdits()
+    }
+
 }
 

@@ -6,11 +6,22 @@
 .row
     .span12
         .readtext
-            .pull-right
-                ul.inline
-                    li
-                        button.btn.btn-primary(href='#edit', data-toggle="button") Edit
-                    li
-                        a.btn.bottomshadow(href='javascript:window.print()') Print
-                    //li
-                    //    a.btn.bottomshadow(href='#Save') Save as PDF
+            ul.inline.pull-right.docButtons
+                li(ng-show="editMode")
+                    a.btn.btn-primary(ng-click="saveResume()")
+                        i.icon-ok-circle.icon-white
+                        |  Save
+                li(ng-show="editMode")
+                    button.btn.btn-primary(ng-click="resetResume()")
+                        i.icon-trash.icon-white
+                        |  Cancel
+                li(ng-hide="editMode")
+                    button.btn.btn-primary(ng-click="editMode = true")
+                        i.icon-wrench.icon-white
+                        |  Edit
+                li(ng-hide="editMode")
+                    a.btn.btn-primary(href='javascript:window.print()')
+                        i.icon-print.icon-white
+                        |  Print
+                //li
+                //    a.btn.bottomshadow(href='#Save') Save as PDF
