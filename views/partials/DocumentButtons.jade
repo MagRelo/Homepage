@@ -12,11 +12,11 @@
                         i.icon-ok-circle.icon-white
                         |  Save
                 li(ng-show="editMode")
-                    button.btn.btn-primary(ng-click="resetResume()")
+                    button.btn.btn-primary(ng-click="InitialSetup()")
                         i.icon-trash.icon-white
                         |  Cancel
                 li(ng-hide="editMode")
-                    button.btn.btn-primary(ng-click="editMode = true")
+                    button.btn.btn-primary(ng-click="editMode= true")
                         i.icon-wrench.icon-white
                         |  Edit
                 li(ng-hide="editMode")

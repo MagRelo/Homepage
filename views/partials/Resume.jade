@@ -1,127 +1,161 @@
 include DocumentButtons
 
-.row
-    .span12.text-center
-        p.text-success(ng-show="editMode") Click on the icons to edit the information for that section.
+//.row
+//    .span12.text-center
+//        p.text-success(ng-show="editMode") Click on the icons to edit the information for that section.
 
 .row
     .span12
         .document.readtext.documentshadow
 
-            ul.inline.docH3
-                li(ng-show="editMode")
-                    a.btn(ng-click="editingName = true", ng-hide="editingName")
-                        i.icon-edit
-                    .input-append(ng-show="editingName")
-                        input(type="text", id="email", ng-model="Resume.name")
-                        a.btn.btn-success(ng-click="editingName = false")
-                            i.icon-thumbs-up.icon-white
+            .docH3(ng-switch on="editMode")
+                div(ng-switch-when="true")
+                    input.input-block-level(type="text", id="name", ng-model="Resume.name")
+                div(ng-switch-default)
+                    div {{Resume.name}}
 
-                li
-                    div(ng-hide="editingName") {{Resume.name}}
 
-            ul.inline
-                //Email
-                li(ng-show="editMode")
-                    a.btn(ng-click="editingEmail = true", ng-hide="editingEmail")
+            span(ng-switch on="editMode")
+                ul.inline(ng-switch-when="true")
+                    li
                         i.icon-envelope
-                    .input-append(ng-show="editingEmail")
-                        input(type="text", id="email", ng-model="Resume.email")
-                        a.btn.btn-success(ng-click="editingEmail = false")
-                            i.icon-thumbs-up.icon-white
-                li(ng-hide="editMode")
-                    i.icon-envelope.btnmargin
-                li(ng-hide="editingEmail")
-                    strong {{Resume.email}}
+                    li
+                        //Email
+                        input.input-block-level(type="email", id="email", ng-model="Resume.email")
+                    li  |
+                        i.icon-volume-up.btnmargin
+                    li
+                        //Phone
+                        input.input-block-level.btnmargin(type="tel", id="email", ng-model="Resume.phone")
 
-                //Phone
-                li(ng-show="editMode")  |
-                    a.btn.btnmargin(ng-click="editingPhone = true", ng-hide="editingPhone")
-                        i.icon-volume-up
-                    .input-append(ng-show="editingPhone")
-                        input.btnmargin(type="text", id="email", ng-model="Resume.phone")
-                        a.btn.btn-success(ng-click="editingPhone = false")
-                            i.icon-thumbs-up.icon-white
-                li(ng-hide="editMode")  |
-                    i.icon-volume-up.btnmargin
-                li(ng-hide="editingPhone")
-                    strong {{Resume.phone}}
+                ul.inline(ng-switch-default)
+                    li
+                        i.icon-envelope
+                    li
+                        div {{Resume.email}}
+                    li  |
+                        i.icon-volume-up.btnmargin
+                    li
+                        div {{Resume.phone}}
 
-            ul.inline
-                //Address
-                li(ng-show="editMode")
-                    a.btn(ng-click="editingstreetaddress = true", ng-hide="editingstreetaddress")
+            span(ng-switch on="editMode")
+                ul.inline(ng-switch-when="true")
+                    li
                         i.icon-road
-                    .input-append(ng-show="editingstreetaddress")
-                        input(type="text", ng-model="Resume.streetaddress")
-                        a.btn.btn-success(ng-click="editingstreetaddress = false")
-                            i.icon-thumbs-up.icon-white
-                li(ng-hide="editMode")
-                    i.icon-road.btnmargin
-                li(ng-hide="editingstreetaddress")
-                    strong {{Resume.streetaddress}}
+                    li
+                        //Address
+                        input.input-large(type="text", ng-model="Resume.address")
+                    li  |
+                        i.icon-globe.btnmargin
+                    li
+                        //Location
+                        input.input-large.btnmargin(type="tel", id="email", ng-model="Resume.location")
 
-                //Location
-                li(ng-show="editMode")  |
-                    a.btn.btnmargin(ng-click="editingLocation = true", ng-hide="editingLocation")
-                        i.icon-globe
-                    .input-append(ng-show="editingLocation")
-                        input.btnmargin(type="text",, ng-model="Resume.location")
-                        a.btn.btn-success(ng-click="editingLocation = false")
-                            i.icon-thumbs-up.icon-white
-                li(ng-hide="editMode")  |
-                    i.icon-globe.btnmargin
-                li(ng-hide="editingLocation")
-                    strong {{Resume.location}}
+                ul.inline(ng-switch-default)
+                    li
+                        i.icon-road
+                    li
+                        div {{Resume.address}}
+                    li  |
+                        i.icon-globe.btnmargin
+                    li
+                        div {{Resume.location}}
 
-            //SECTION 1
-            ul.inline.SectionTitle
-                li(ng-show="editMode")
-                    a.btn(ng-click="editingSection = true", ng-hide="editingSection")
-                        i.icon-edit
-                    .input-append(ng-show="editingSection")
-                        input(type="text", ng-model="Resume.Section1Title")
-                        a.btn.btn-success(ng-click="editingSection = false")
-                            i.icon-thumbs-up.icon-white
-                li(ng-hide="editingSection")
-                    strong {{Resume.Section1Title}}
 
-            .SectionContent
-                strong  MattLovan.com
-                p You're looking at it
+            //SECTION 1 Header
+            span(ng-switch on="editMode")
+                ul.inline.SectionTitle(ng-switch-when="true")
+                    li
+                        input.input-xlarge(type="text", ng-model="Resume.Section1Title")
 
-            //SECTION 2
-            ul.inline.SectionTitle
-                li(ng-show="editMode")
-                    a.btn(ng-click="editingSection2 = true", ng-hide="editingSection2")
-                        i.icon-edit
-                    .input-append(ng-show="editingSection2")
-                        input(type="text", ng-model="Resume.Section2Title")
-                        a.btn.btn-success(ng-click="editingSection2 = false")
-                            i.icon-thumbs-up.icon-white
-                li(ng-hide="editingSection2")
-                    strong(ng-hide="editingSection2") {{Resume.Section2Title}}
+                ul.inline.SectionTitle(ng-switch-default)
+                    li
+                        div {{Resume.Section1Title}}
 
-            .SectionContent
-                strong  University of Idaho
-                ul.inline
-                    li Bachelors of Science, Business Information Systems
-                    li.pull-right (Dec. 2013)
+            //SECTION 1 Content
+            span(ng-switch on="editMode")
+                .SectionContent(ng-switch-when="true")
+                    span(ng-repeat="items in Resume.Section1Items")
+                        input.input-xlarge(type="text", ng-model="items.title")
+                        a.docbutton.btn.pull-right(ng-click="DeleteProject($index)")
+                            i.icon-minus-sign
 
-            //SECTION 3
-            ul.inline.SectionTitle
-                li(ng-show="editMode")
-                    a.btn(ng-click="editingSection3 = true", ng-hide="editingSection3")
-                        i.icon-edit
-                    .input-append(ng-show="editingSection3")
-                        input(type="text", ng-model="Resume.Section3Title")
-                        a.btn.btn-success(ng-click="editingSection3 = false")
-                            i.icon-thumbs-up.icon-white
-                li(ng-hide="editingSection3")
-                    strong(ng-hide="editingSection3") {{Resume.Section3Title}}
+                        br
+                        textarea.input-block-level(rows="2", ng-model="items.description")
 
-            .SectionContent
-                strong FAST Enterprises
-                p Fast Enterprises develops web-based revenue management software for government agencies. Their product is a multi-tier application utilizing SQL Server, VB.NET, and jQuery to provide a platform for AGILE development. Consultants at FAST Enterprises are responsible for all phases of the SDLC, including gathering requirements, development, testing and documentation.
+                    span
+                        a.btn(ng-click="AddProject()")
+                            i.icon-plus-sign
+                            |  Add
+                .SectionContent(ng-switch-default)
+                    span(ng-repeat="items in Resume.Section1Items")
+                        strong  {{items.title}}
+                        p {{items.description}}
+
+            //SECTION 2 Header
+            span(ng-switch on="editMode")
+                ul.inline.SectionTitle(ng-switch-when="true")
+                    li
+                        input.input-xlarge(type="text", ng-model="Resume.Section2Title")
+                ul.inline.SectionTitle(ng-switch-default)
+                    li
+                        div {{Resume.Section2Title}}
+
+            //SECTION 2 Content
+            span(ng-switch on="editMode")
+                .SectionContent(ng-switch-when="true")
+                    span(ng-repeat="items in Resume.Section2Items")
+                        input.input-xlarge(type="text", ng-model="items.title")
+                        a.docbutton.btn.pull-right(ng-click="DeleteAward($index)")
+                            i.icon-minus-sign
+                        br
+                        ul.inline
+                            li
+                                input.span5(type="text", ng-model="items.award")
+                            li
+                                input.input-small(type="text", ng-model="items.date")
+                        br
+
+                    span
+                        br
+                        a.btn(ng-click="AddAward()")
+                            i.icon-plus-sign
+                            |  Add
+
+                .SectionContent(ng-switch-default)
+                    span(ng-repeat="items in Resume.Section2Items")
+                        strong {{items.title}}
+                        ul.inline
+                            li {{items.award}}
+                            li.pull-right {{items.date}}
+                        br
+
+            //SECTION 3 Header
+            span(ng-switch on="editMode")
+                ul.inline.SectionTitle(ng-switch-when="true")
+                    li
+                        input.input-xlarge(type="text", ng-model="Resume.Section3Title")
+                ul.inline.SectionTitle(ng-switch-default)
+                    li
+                        div {{Resume.Section3Title}}
+
+            //SECTION 3 Content
+            span(ng-switch on="editMode")
+                .SectionContent(ng-switch-when="true")
+                    span(ng-repeat="items in Resume.Section3Items")
+                        input.input-xlarge(type="text", ng-model="items.title")
+                        a.docbutton.btn.pull-right(ng-click="DeleteExperience($index)")
+                            i.icon-minus-sign
+                        br
+                        textarea.input-block-level(rows="2", ng-model="items.description")
+                    span
+                        a.btn(ng-click="AddExperience()")
+                            i.icon-plus-sign
+                            |  Add
+                .SectionContent(ng-switch-default)
+                    span(ng-repeat="items in Resume.Section3Items")
+                        strong  {{items.title}}
+                        p {{items.description}}
+
 
 include DocumentButtons

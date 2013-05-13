@@ -81,6 +81,8 @@ a:hover{
     text-transform:uppercase;
     margin-bottom: .5em;
     margin-top: 2em;
+    font-weight: bold;
+    padding: 2px 1px;
 }
 
 .SectionContent{
@@ -186,7 +188,9 @@ body {
 
 }
 
-
+.docbutton{
+    margin-bottom: 3px;
+}
 .docH3{
     font-size: 24.5px;
     line-height: 40px;
@@ -195,4 +199,18 @@ body {
     font-weight: bold;
     color: inherit;
     text-rendering: optimizelegibility;
+}
+
+input[type="text"], input[type="email"] , input[type="tel"] {
+    font-family : inherit;
+    font-size   : 100%;
+    font-weight: inherit;
+    line-height: inherit;
+    border: inherit;
+    border-bottom: 1px dashed #58A9E3;
+    height: inherit;
+    padding: inherit;
+    margin: inherit;
+    color: inherit;
+    text-transform: inherit;
 }
