@@ -56,7 +56,7 @@ function ResumeCtrl($scope) {
 
     //PROJECTS
     $scope.AddProject = function () {
-       $scope.Resume.Section1Items.push({title: "(Title)", description: "(description)"})
+       $scope.Resume.Section1Items.push({title: "", description: ""})
     };
 
     $scope.DeleteProject = function (index, section) {
@@ -65,7 +65,7 @@ function ResumeCtrl($scope) {
 
     //EDUCATION
     $scope.AddAward = function () {
-       $scope.Resume.Section2Items.push({title: "(Name)", award: "(Award)", date: "(Date)"})
+       $scope.Resume.Section2Items.push({title: "", award: "", date: ""})
     };
 
     $scope.DeleteAward = function (index) {
@@ -74,7 +74,7 @@ function ResumeCtrl($scope) {
 
     //EXPERIENCE
     $scope.AddExperience = function () {
-        $scope.Resume.Section3Items.push({title: "(Title)", description: "(description)"})
+        $scope.Resume.Section3Items.push({title: "", description: ""})
     };
 
     $scope.DeleteExperience = function (index) {

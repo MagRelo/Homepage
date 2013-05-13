@@ -21,12 +21,12 @@ include DocumentButtons
                         i.icon-envelope
                     li
                         //Email
-                        input.input-block-level(type="email", id="email", ng-model="Resume.email", select-on-click)
+                        input.input-large(type="email", placeholder="email", ng-model="Resume.email", select-on-click)
                     li  |
                         i.icon-volume-up.btnmargin
                     li
                         //Phone
-                        input.input-block-level.btnmargin(type="tel", id="email", ng-model="Resume.phone", select-on-click)
+                        input.input-medium.btnmargin(type="tel", placeholder="phone", ng-model="Resume.phone", select-on-click)
 
                 ul.inline(ng-switch-default)
                     li
@@ -44,12 +44,12 @@ include DocumentButtons
                         i.icon-road
                     li
                         //Address
-                        input.input-large(type="text", ng-model="Resume.address", select-on-click)
+                        input.input-xlarge(type="text", ng-model="Resume.address", select-on-click)
                     li  |
                         i.icon-globe.btnmargin
                     li
                         //Location
-                        input.input-large.btnmargin(type="tel", id="email", ng-model="Resume.location", select-on-click)
+                        input.input-xlarge.btnmargin(type="text", id="location", ng-model="Resume.location", select-on-click)
 
                 ul.inline(ng-switch-default)
                     li
@@ -76,12 +76,14 @@ include DocumentButtons
             span(ng-switch on="editMode")
                 .SectionContent(ng-switch-when="true")
                     span(ng-repeat="items in Resume.Section1Items")
-                        input.input-xlarge(type="text", ng-model="items.title", select-on-click)
+                        strong
+                            input.input-xlarge(type="text", ng-model="items.title", placeholder="Project", select-on-click)
                         a.docbutton.btn.pull-right(ng-click="DeleteProject($index)")
                             i.icon-minus-sign
+                            |  Delete
 
                         br
-                        textarea.input-block-level(rows="2", ng-model="items.description", select-on-click)
+                        textarea.input-block-level(rows="2", ng-model="items.description", placeholder="description...", select-on-click)
                     span
                         a.btn(ng-click="AddProject()")
                             i.icon-plus-sign
@@ -105,15 +107,16 @@ include DocumentButtons
             span(ng-switch on="editMode")
                 .SectionContent(ng-switch-when="true")
                     span(ng-repeat="items in Resume.Section2Items")
-                        input.input-xlarge(type="text", ng-model="items.title", select-on-click)
+                        strong
+                            input.input-xlarge(type="text", ng-model="items.title",placeholder="Institution", select-on-click)
                         a.docbutton.btn.pull-right(ng-click="DeleteAward($index)")
                             i.icon-minus-sign
                         br
                         ul.inline
                             li
-                                input.span5(type="text", ng-model="items.award", select-on-click)
+                                input.span5(type="text", ng-model="items.award", placeholder="award or certificate...", select-on-click)
                             li
-                                input.input-small(type="text", ng-model="items.date", select-on-click)
+                                input.input-small(type="text", ng-model="items.date", placeholder="date",select-on-click)
                         br
 
                     span
@@ -143,11 +146,12 @@ include DocumentButtons
             span(ng-switch on="editMode")
                 .SectionContent(ng-switch-when="true")
                     span(ng-repeat="items in Resume.Section3Items")
-                        input.input-xlarge(type="text", ng-model="items.title", select-on-click)
+                        strong
+                            input.input-xlarge(type="text", ng-model="items.title", placeholder="Project" ,select-on-click)
                         a.docbutton.btn.pull-right(ng-click="DeleteExperience($index)")
                             i.icon-minus-sign
                         br
-                        textarea.input-block-level(rows="2", ng-model="items.description", select-on-click)
+                        textarea.input-block-level(rows="2", ng-model="items.description",placeholder="description...", select-on-click)
                     span
                         a.btn(ng-click="AddExperience()")
                             i.icon-plus-sign

@@ -213,4 +213,10 @@ input[type="text"], input[type="email"] , input[type="tel"] {
     margin: inherit;
     color: inherit;
     text-transform: inherit;
+    background: #ddedf9;
+}
+
+textarea{
+    background: #ddedf9;
+    color: inherit;
 }
