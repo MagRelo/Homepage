@@ -8,4 +8,16 @@ angular.module('myApp.directives', []).
     return function(scope, elm, attrs) {
       elm.text(version);
     };
-  }]);
+
+    }]);
+
+angular.module('myApp.directives', []).
+  directive('selectOnClick', function () {
+    // Linker function
+    return function (scope, element, attrs) {
+        element.click(function () {
+            element.select();
+        });
+    };
+});
+

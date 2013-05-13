@@ -10,7 +10,7 @@ include DocumentButtons
 
             .docH3(ng-switch on="editMode")
                 div(ng-switch-when="true")
-                    input.input-block-level(type="text", id="name", ng-model="Resume.name")
+                    input.input-block-level(type="text", id="name", ng-model="Resume.name", select-on-click )
                 div(ng-switch-default)
                     div {{Resume.name}}
 
@@ -21,12 +21,12 @@ include DocumentButtons
                         i.icon-envelope
                     li
                         //Email
-                        input.input-block-level(type="email", id="email", ng-model="Resume.email")
+                        input.input-block-level(type="email", id="email", ng-model="Resume.email", select-on-click)
                     li  |
                         i.icon-volume-up.btnmargin
                     li
                         //Phone
-                        input.input-block-level.btnmargin(type="tel", id="email", ng-model="Resume.phone")
+                        input.input-block-level.btnmargin(type="tel", id="email", ng-model="Resume.phone", select-on-click)
 
                 ul.inline(ng-switch-default)
                     li
@@ -44,12 +44,12 @@ include DocumentButtons
                         i.icon-road
                     li
                         //Address
-                        input.input-large(type="text", ng-model="Resume.address")
+                        input.input-large(type="text", ng-model="Resume.address", select-on-click)
                     li  |
                         i.icon-globe.btnmargin
                     li
                         //Location
-                        input.input-large.btnmargin(type="tel", id="email", ng-model="Resume.location")
+                        input.input-large.btnmargin(type="tel", id="email", ng-model="Resume.location", select-on-click)
 
                 ul.inline(ng-switch-default)
                     li
@@ -66,7 +66,7 @@ include DocumentButtons
             span(ng-switch on="editMode")
                 ul.inline.SectionTitle(ng-switch-when="true")
                     li
-                        input.input-xlarge(type="text", ng-model="Resume.Section1Title")
+                        input.input-xlarge(type="text", ng-model="Resume.Section1Title", select-on-click)
 
                 ul.inline.SectionTitle(ng-switch-default)
                     li
@@ -76,17 +76,17 @@ include DocumentButtons
             span(ng-switch on="editMode")
                 .SectionContent(ng-switch-when="true")
                     span(ng-repeat="items in Resume.Section1Items")
-                        input.input-xlarge(type="text", ng-model="items.title")
+                        input.input-xlarge(type="text", ng-model="items.title", select-on-click)
                         a.docbutton.btn.pull-right(ng-click="DeleteProject($index)")
                             i.icon-minus-sign
 
                         br
-                        textarea.input-block-level(rows="2", ng-model="items.description")
-
+                        textarea.input-block-level(rows="2", ng-model="items.description", select-on-click)
                     span
                         a.btn(ng-click="AddProject()")
                             i.icon-plus-sign
                             |  Add
+
                 .SectionContent(ng-switch-default)
                     span(ng-repeat="items in Resume.Section1Items")
                         strong  {{items.title}}
@@ -96,7 +96,7 @@ include DocumentButtons
             span(ng-switch on="editMode")
                 ul.inline.SectionTitle(ng-switch-when="true")
                     li
-                        input.input-xlarge(type="text", ng-model="Resume.Section2Title")
+                        input.input-xlarge(type="text", ng-model="Resume.Section2Title", select-on-click)
                 ul.inline.SectionTitle(ng-switch-default)
                     li
                         div {{Resume.Section2Title}}
@@ -105,15 +105,15 @@ include DocumentButtons
             span(ng-switch on="editMode")
                 .SectionContent(ng-switch-when="true")
                     span(ng-repeat="items in Resume.Section2Items")
-                        input.input-xlarge(type="text", ng-model="items.title")
+                        input.input-xlarge(type="text", ng-model="items.title", select-on-click)
                         a.docbutton.btn.pull-right(ng-click="DeleteAward($index)")
                             i.icon-minus-sign
                         br
                         ul.inline
                             li
-                                input.span5(type="text", ng-model="items.award")
+                                input.span5(type="text", ng-model="items.award", select-on-click)
                             li
-                                input.input-small(type="text", ng-model="items.date")
+                                input.input-small(type="text", ng-model="items.date", select-on-click)
                         br
 
                     span
@@ -134,7 +134,7 @@ include DocumentButtons
             span(ng-switch on="editMode")
                 ul.inline.SectionTitle(ng-switch-when="true")
                     li
-                        input.input-xlarge(type="text", ng-model="Resume.Section3Title")
+                        input.input-xlarge(type="text", ng-model="Resume.Section3Title", select-on-click)
                 ul.inline.SectionTitle(ng-switch-default)
                     li
                         div {{Resume.Section3Title}}
@@ -143,11 +143,11 @@ include DocumentButtons
             span(ng-switch on="editMode")
                 .SectionContent(ng-switch-when="true")
                     span(ng-repeat="items in Resume.Section3Items")
-                        input.input-xlarge(type="text", ng-model="items.title")
+                        input.input-xlarge(type="text", ng-model="items.title", select-on-click)
                         a.docbutton.btn.pull-right(ng-click="DeleteExperience($index)")
                             i.icon-minus-sign
                         br
-                        textarea.input-block-level(rows="2", ng-model="items.description")
+                        textarea.input-block-level(rows="2", ng-model="items.description", select-on-click)
                     span
                         a.btn(ng-click="AddExperience()")
                             i.icon-plus-sign
