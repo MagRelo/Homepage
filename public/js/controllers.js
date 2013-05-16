@@ -2,6 +2,15 @@
 
 /* Controllers */
 
+function navigationCtrl($scope, $location) {
+     //required to high light the active navigational point
+    $scope.location = $location;
+
+}
+
+
+
+
 function ResumeCtrl($scope) {
 
     //Initial Data Setup

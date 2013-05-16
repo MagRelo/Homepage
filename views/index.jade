@@ -2,22 +2,15 @@ extends layout
 
 block body
 
-    #wrap
-        .container
-            .hero-unit
-                h1 Matt Lovan
-                p web development a·fi·ci·o·na·do
+    include partials/NavBarTop
 
-            include partials/NavBarTop
+    include partials/Header
 
-            .divider
 
-            div(ng-view)
-        #push
+    .container
+        div(ng-view)
 
-    #footer
-        .container
-            p(class = "muted credit")   Built by Matt Lovan
+    include partials/NavBarBottom
 
 
     script(src='js/lib/jquery-1.9.1.js')
