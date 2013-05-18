@@ -8,11 +8,11 @@
         .readtext
             ul.inline.pull-right.docButtons
                 li(ng-show="editMode")
-                    a.btn.btn-primary(ng-click="saveResume()")
+                    a.btn.btn-primary(ng-click="saveDocument()")
                         i.icon-ok-circle.icon-white
                         |  Save
                 li(ng-show="editMode")
-                    button.btn.btn-primary(ng-click="InitialSetup()")
+                    button.btn.btn-primary(ng-click="cancelDocument()")
                         i.icon-trash.icon-white
                         |  Cancel
                 li(ng-hide="editMode")

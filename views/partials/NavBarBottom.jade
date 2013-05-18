@@ -6,9 +6,14 @@
 .navbar.navbar-fixed-bottom(ng-controller="navigationCtrl")
     .navbar-inner
         .container
+            ul.nav
+                li
+                    a built with: node, express, jade, angular, bootstrap.
+
+
             ul.nav.pull-right
-                li(ng-class="{active: location.path() == '/bio'}")
-                    a(href='bio') Bio
+                li(ng-class="{active: location.path() == '/about'}")
+                    a(href='about') About
                 li(ng-class="{active: location.path() == '/projects'}")
                     a(href='projects') Projects
                 li(ng-class="{active: location.path() == '/resume'}")

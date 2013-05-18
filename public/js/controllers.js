@@ -1,92 +1,68 @@
 'use strict';
 
 /* Controllers */
-
 function navigationCtrl($scope, $location) {
      //required to high light the active navigational point
     $scope.location = $location;
 
 }
 
-
-
-
 function ResumeCtrl($scope) {
 
     //Initial Data Setup
-    $scope.Resume = {name: "Matt Lovan",
+    $scope.Resume = {
+
+        name: "Matt Lovan",
         email: "mattlovan@gmail.com",
         phone: "208.871.2928",
         address: "834 Johnson Street, Suite 808",
         location: "Victoria, BC 1N4 V8W",
-        Section1Title: "Projects",
-        Section1Items: [
-            {title: "mattlovan.com", description: "demos, projects, etc."},
-            {title: "comparetreatment.herokuapp.com", description: "Tool for patients to compare their current treatments to public Medicare data"}
-        ],
-        Section2Title: "Education",
-        Section2Items: [
-            {title: "University of Idaho", award: "Bachelors of Science, Business Information Systems", date: "(Dec. 2013)"}
-        ],
-        Section3Title: "Professional Experience",
-        Section3Items: [
-            {title: "FAST Enterprises", description: "Fast Enterprises develops web-based revenue management software for government agencies. Their product is a multi-tier application utilizing SQL Server, VB.NET, and jQuery to provide a platform for AGILE development. Consultants at FAST Enterprises are responsible for all phases of the SDLC, including gathering requirements, development, testing and documentation."}
+
+        Sections: [
+            {SectionTitle: "Projects",
+             SectionItems: [
+                    {title: "mattlovan.com", description: "demos, projects, etc."},
+                    {title: "comparetreatment.herokuapp.com", description: "Tool for patients to compare their current treatments to public Medicare data"}
+                ]},
+            {SectionTitle: "Education",
+             SectionItems: [
+                    {title: "University of Idaho", description: "Bachelors of Science, Business Information Systems"}
+                ]},
+            {SectionTitle: "Professional Experience",
+             SectionItems: [
+                    {title: "FAST Enterprises", description: "Fast Enterprises develops web-based revenue management software for government agencies. Their product is a multi-tier application utilizing SQL Server, VB.NET, and jQuery to provide a platform for AGILE development. Consultants at FAST Enterprises are responsible for all phases of the SDLC, including gathering requirements, development, testing and documentation."}
+                ]}
         ]
     };
 
-    $scope.InitialSetup = function () {
+    //SECTION buttons
+    $scope.addSection = function () {
+       $scope.Resume.Sections.push({SectionTitle: "", SectionItems: [{title: "", description: ""}]})
+    };
 
-        $scope.Resume = {name: "Matt Lovan",
-            email: "mattlovan@gmail.com",
-            phone: "208.871.2928",
-            address: "834 Johnson Street, Suite 808",
-            location: "Victoria, BC 1N4 V8W",
-            Section1Title: "Projects",
-            Section1Items: [
-                {title: "mattlovan.com", description: "demos, projects, etc."},
-                {title: "comparetreatment.herokuapp.com", description: "Tool for patients to compare their current treatments to public Medicare data"}
-            ],
-            Section2Title: "Education",
-            Section2Items: [
-                {title: "University of Idaho", award: "Bachelors of Science, Business Information Systems", date: "(Dec. 2013)"}
-            ],
-            Section3Title: "Professional Experience",
-            Section3Items: [
-                {title: "FAST Enterprises", description: "Fast Enterprises develops web-based revenue management software for government agencies. Their product is a multi-tier application utilizing SQL Server, VB.NET, and jQuery to provide a platform for AGILE development. Consultants at FAST Enterprises are responsible for all phases of the SDLC, including gathering requirements, development, testing and documentation."}
-            ]
-        };
+    $scope.deleteSection = function (index) {
+        $scope.Resume.Sections.splice(index, 1)
+    };
+
+    //SECTION ITEM buttons
+    $scope.addSectionItem = function (parentindex) {
+       $scope.Resume.Sections[parentindex].SectionItems.push({title: "", award: ""})
+    };
+
+    $scope.deleteSectionItem = function (parentindex, index) {
+        $scope.Resume.Sections[parentindex].SectionItems.splice(index, 1)
+    };
+
+
+    //Save()
+    $scope.saveDocument = function () {
+        $scope.editMode = false;
+    };
+
+    //Cancel()
+    $scope.cancelDocument = function () {
 
         $scope.editMode = false;
     };
 
-    $scope.saveResume = function () {
-        $scope.editMode = false;
-    };
-
-    //PROJECTS
-    $scope.AddProject = function () {
-       $scope.Resume.Section1Items.push({title: "", description: ""})
-    };
-
-    $scope.DeleteProject = function (index, section) {
-        $scope.Resume.Section1Items.splice(index, 1)
-    };
-
-    //EDUCATION
-    $scope.AddAward = function () {
-       $scope.Resume.Section2Items.push({title: "", award: "", date: ""})
-    };
-
-    $scope.DeleteAward = function (index) {
-        $scope.Resume.Section2Items.splice(index, 1)
-    };
-
-    //EXPERIENCE
-    $scope.AddExperience = function () {
-        $scope.Resume.Section3Items.push({title: "", description: ""})
-    };
-
-    $scope.DeleteExperience = function (index) {
-        $scope.Resume.Section3Items.splice(index, 1)
-    };
 }

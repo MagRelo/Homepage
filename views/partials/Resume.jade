@@ -1,163 +1,82 @@
 include DocumentButtons
 
-//.row
-//    .span12.text-center
-//        p.text-success(ng-show="editMode") Click on the icons to edit the information for that section.
-
 .row
-    .span12
-        .document.documentshadow
+    .span12(ng-switch on="editMode")
 
-            .docH3(ng-switch on="editMode")
-                div(ng-switch-when="true")
-                    input.input-block-level(type="text", id="name", ng-model="Resume.name", select-on-click )
-                div(ng-switch-default)
-                    div {{Resume.name}}
+        //Edit Mode: editMode = true
+        .document.documentshadow(ng-switch-when="true")
 
+            div.docH3
+                input.input-block-level(type="text", id="name", ng-model="Resume.name", select-on-click )
 
-            span(ng-switch on="editMode")
-                ul.inline(ng-switch-when="true")
-                    li
-                        i.icon-envelope
-                    li
-                        //Email
-                        input.input-large(type="email", placeholder="email", ng-model="Resume.email", select-on-click)
-                    li  |
-                        i.icon-volume-up.btnmargin
-                    li
-                        //Phone
-                        input.input-medium.btnmargin(type="tel", placeholder="phone", ng-model="Resume.phone", select-on-click)
+            ul.inline
+                li: i.icon-envelope
+                li: input.input-large(type="email", placeholder="email", ng-model="Resume.email", select-on-click)
+                li  |
+                    i.icon-volume-up.btnmargin
+                li: input.input-medium.btnmargin(type="tel", placeholder="phone", ng-model="Resume.phone", select-on-click)
 
-                ul.inline(ng-switch-default)
-                    li
-                        i.icon-envelope
-                    li
-                        div {{Resume.email}}
-                    li  |
-                        i.icon-volume-up.btnmargin
-                    li
-                        div {{Resume.phone}}
+            ul.inline
+                li: i.icon-road
+                li: input.input-xlarge(type="text", ng-model="Resume.address", select-on-click)
+                li  |
+                    i.icon-globe.btnmargin
+                li: input.input-xlarge.btnmargin(type="text", id="location", ng-model="Resume.location", select-on-click)
 
-            span(ng-switch on="editMode")
-                ul.inline(ng-switch-when="true")
-                    li
-                        i.icon-road
-                    li
-                        //Address
-                        input.input-xlarge(type="text", ng-model="Resume.address", select-on-click)
-                    li  |
-                        i.icon-globe.btnmargin
-                    li
-                        //Location
-                        input.input-xlarge.btnmargin(type="text", id="location", ng-model="Resume.location", select-on-click)
+            div(ng-repeat="Section in Resume.Sections")
 
-                ul.inline(ng-switch-default)
-                    li
-                        i.icon-road
-                    li
-                        div {{Resume.address}}
-                    li  |
-                        i.icon-globe.btnmargin
-                    li
-                        div {{Resume.location}}
+                //SECTION Header
 
-
-            //SECTION 1 Header
-            span(ng-switch on="editMode")
-                ul.inline.SectionTitle(ng-switch-when="true")
+                ul.inline.SectionHeader
                     li
-                        input.input-xlarge(type="text", ng-model="Resume.Section1Title", select-on-click)
-
-                ul.inline.SectionTitle(ng-switch-default)
+                        span.SectionTitle
+                            input.input-xlarge(type="text", ng-model="Section.SectionTitle", placeholder="Section", select-on-click)
                     li
-                        div {{Resume.Section1Title}}
-
-            //SECTION 1 Content
-            span(ng-switch on="editMode")
-                .SectionContent(ng-switch-when="true")
-                    span(ng-repeat="items in Resume.Section1Items")
-                        strong
-                            input.input-xlarge(type="text", ng-model="items.title", placeholder="Project", select-on-click)
-                        a.docbutton.btn.pull-right(ng-click="DeleteProject($index)")
-                            i.icon-minus-sign
-                            |  Delete
-
-                        br
-                        textarea.input-block-level(rows="2", ng-model="items.description", placeholder="description...", select-on-click)
-                    span
-                        a.btn(ng-click="AddProject()")
+                        a.btn(ng-click="deleteSection($index)")
                             i.icon-plus-sign
-                            |  Add
+                            |  Delete Section
 
-                .SectionContent(ng-switch-default)
-                    span(ng-repeat="items in Resume.Section1Items")
-                        strong  {{items.title}}
-                        p {{items.description}}
+                //SECTION Content
+                .SectionContent(ng-repeat="items in Section.SectionItems")
+                    strong
+                        input.input-xlarge(type="text", ng-model="items.title", placeholder="Project", select-on-click)
 
-            //SECTION 2 Header
-            span(ng-switch on="editMode")
-                ul.inline.SectionTitle(ng-switch-when="true")
-                    li
-                        input.input-xlarge(type="text", ng-model="Resume.Section2Title", select-on-click)
-                ul.inline.SectionTitle(ng-switch-default)
-                    li
-                        div {{Resume.Section2Title}}
+                    a.docbutton.btn.pull-right(ng-click="deleteSectionItem($parent.$index, $index)")
+                        i.icon-minus-sign
+                        |  Delete
 
-            //SECTION 2 Content
-            span(ng-switch on="editMode")
-                .SectionContent(ng-switch-when="true")
-                    span(ng-repeat="items in Resume.Section2Items")
-                        strong
-                            input.input-xlarge(type="text", ng-model="items.title",placeholder="Institution", select-on-click)
-                        a.docbutton.btn.pull-right(ng-click="DeleteAward($index)")
-                            i.icon-minus-sign
-                        br
-                        ul.inline
-                            li
-                                input.span5(type="text", ng-model="items.award", placeholder="award or certificate...", select-on-click)
-                            li
-                                input.input-small(type="text", ng-model="items.date", placeholder="date",select-on-click)
-                        br
+                    textarea.input-block-level(rows="2", ng-model="items.description", placeholder="description...", select-on-click)
 
-                    span
-                        br
-                        a.btn(ng-click="AddAward()")
-                            i.icon-plus-sign
-                            |  Add
+                a.btn.SectionContent(ng-click="addSectionItem($index)")
+                    i.icon-plus-sign
+                    |  Add Section Item
 
-                .SectionContent(ng-switch-default)
-                    span(ng-repeat="items in Resume.Section2Items")
-                        strong {{items.title}}
-                        ul.inline
-                            li {{items.award}}
-                            li.pull-right {{items.date}}
-                        br
+            a.btn(ng-click="addSection()")
+                i.icon-plus-sign
+                |  Add New Section
 
-            //SECTION 3 Header
-            span(ng-switch on="editMode")
-                ul.inline.SectionTitle(ng-switch-when="true")
-                    li
-                        input.input-xlarge(type="text", ng-model="Resume.Section3Title", select-on-click)
-                ul.inline.SectionTitle(ng-switch-default)
-                    li
-                        div {{Resume.Section3Title}}
 
-            //SECTION 3 Content
-            span(ng-switch on="editMode")
-                .SectionContent(ng-switch-when="true")
-                    span(ng-repeat="items in Resume.Section3Items")
-                        strong
-                            input.input-xlarge(type="text", ng-model="items.title", placeholder="Project" ,select-on-click)
-                        a.docbutton.btn.pull-right(ng-click="DeleteExperience($index)")
-                            i.icon-minus-sign
-                        br
-                        textarea.input-block-level(rows="2", ng-model="items.description",placeholder="description...", select-on-click)
-                    span
-                        a.btn(ng-click="AddExperience()")
-                            i.icon-plus-sign
-                            |  Add
-                .SectionContent(ng-switch-default)
-                    span(ng-repeat="items in Resume.Section3Items")
+        //Display Mode: editMode = false
+        .document.documentshadow(ng-switch-default)
+            div.docH3 {{Resume.name}}
+            ul.inline
+                li: i.icon-envelope
+                li: span {{Resume.email}}
+                li  |
+                    i.icon-volume-up.btnmargin
+                li: span {{Resume.phone}}
+            ul.inline
+                li: i.icon-road
+                li: span {{Resume.address}}
+                li  |
+                    i.icon-globe.btnmargin
+                li: span {{Resume.location}}
+            div(ng-repeat="Section in Resume.Sections")
+                ul.inline.SectionHeader
+                    li.SectionTitle
+                        span {{Section.SectionTitle}}
+                .SectionContent
+                    div(ng-repeat="items in Section.SectionItems")
                         strong  {{items.title}}
                         p {{items.description}}
 

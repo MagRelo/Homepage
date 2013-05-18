@@ -31,20 +31,26 @@ body{
     border-style: solid;
 }
 
-.SectionTitle{
+.SectionHeader{
     border-top: solid 1px black;
     border-bottom: solid 1px black;
-    text-transform:uppercase;
+
     margin-bottom: .5em;
     margin-top: 2em;
-    font-weight: bold;
+
     padding: 2px 1px;
+}
+
+.SectionTitle{
+    text-transform:uppercase;
+    font-weight: bold;
 }
 
 .SectionContent{
     max-width: 40em;
     margin-left: 3em;
     margin-top: 1em;
+    margin-bottom: 1em;
 }
 
 .document {
@@ -63,24 +69,6 @@ body{
     -webkit-box-shadow: 2px 2px 10px 0px #999CA0;
     box-shadow:         2px 2px 10px 0px #999CA0;
 }
-
-.well > p:first-child:first-letter {
-    float: left;
-    color: #2C4864;
-    font-size: 3.75em;
-    line-height: 1em;
-    padding-right: .2em;
-    padding-left: 3px;
-    font-family: Georgia;
-}
-
-blockquote{margin-top: 1em;}
-
-.divider{
-    border-bottom: 0.1em solid #77818B;
-    margin-bottom: 1.5em;
-}
-
 
 .btnmargin{
     margin-left: .5em;
@@ -131,4 +119,3 @@ textarea{
     background: #ddedf9;
     color: inherit;
 }
-
