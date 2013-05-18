@@ -2,81 +2,81 @@ include DocumentButtons
 
 .row
     .span12(ng-switch on="editMode")
+        .documentArea(ng-switch-when="true")
+            //Edit Mode: editMode = true
+            .document
 
-        //Edit Mode: editMode = true
-        .document.documentshadow(ng-switch-when="true")
+                div.docTitle
+                    input.input-block-level(type="text", id="name", ng-model="Resume.name", select-on-click )
 
-            div.docH3
-                input.input-block-level(type="text", id="name", ng-model="Resume.name", select-on-click )
+                ul.inline
+                    li: i.icon-envelope
+                    li: input.input-large(type="email", placeholder="email", ng-model="Resume.email", select-on-click)
+                    li  |
+                    li: i.icon-volume-up
+                    li: input.input-medium(type="tel", placeholder="phone", ng-model="Resume.phone", select-on-click)
 
-            ul.inline
-                li: i.icon-envelope
-                li: input.input-large(type="email", placeholder="email", ng-model="Resume.email", select-on-click)
-                li  |
-                    i.icon-volume-up.btnmargin
-                li: input.input-medium.btnmargin(type="tel", placeholder="phone", ng-model="Resume.phone", select-on-click)
+                ul.inline
+                    li: i.icon-road
+                    li: input.input-xlarge(type="text", ng-model="Resume.address", select-on-click)
+                    li  |
+                    li: i.icon-globe
+                    li: input.input-xlarge(type="text", id="location", ng-model="Resume.location", select-on-click)
 
-            ul.inline
-                li: i.icon-road
-                li: input.input-xlarge(type="text", ng-model="Resume.address", select-on-click)
-                li  |
-                    i.icon-globe.btnmargin
-                li: input.input-xlarge.btnmargin(type="text", id="location", ng-model="Resume.location", select-on-click)
-
-            div(ng-repeat="Section in Resume.Sections")
-
-                //SECTION Header
-
-                ul.inline.SectionHeader
-                    li
+                div.Section(ng-repeat="Section in Resume.Sections")
+                    div.SectionHeader
                         span.SectionTitle
                             input.input-xlarge(type="text", ng-model="Section.SectionTitle", placeholder="Section", select-on-click)
-                    li
-                        a.btn(ng-click="deleteSection($index)")
+                        span.pull-right
+                            a.btn(ng-click="deleteSection($index)")
+                                i.icon-minus-sign
+                                |  Delete
+
+                    div.SectionItem_Edit(ng-repeat="items in Section.SectionItems")
+                        strong
+                            input.input-xlarge(type="text", ng-model="items.title", placeholder="Project", select-on-click)
+
+                        a.btn.pull-right.SectionItem_button(ng-click="deleteSectionItem($parent.$index, $index)")
+                            i.icon-minus-sign
+                            |  Delete
+
+                        textarea.input-block-level(rows="2", ng-model="items.description", placeholder="description...", select-on-click)
+
+                    div.SectionItem
+                        a.btn(ng-click="addSectionItem($index)")
                             i.icon-plus-sign
-                            |  Delete Section
+                            |  New Item
 
-                //SECTION Content
-                .SectionContent(ng-repeat="items in Section.SectionItems")
-                    strong
-                        input.input-xlarge(type="text", ng-model="items.title", placeholder="Project", select-on-click)
-
-                    a.docbutton.btn.pull-right(ng-click="deleteSectionItem($parent.$index, $index)")
-                        i.icon-minus-sign
-                        |  Delete
-
-                    textarea.input-block-level(rows="2", ng-model="items.description", placeholder="description...", select-on-click)
-
-                a.btn.SectionContent(ng-click="addSectionItem($index)")
-                    i.icon-plus-sign
-                    |  Add Section Item
-
-            a.btn(ng-click="addSection()")
-                i.icon-plus-sign
-                |  Add New Section
+                div.Section
+                    a.btn(ng-click="addSection()")
+                        i.icon-plus-sign
+                        |  New Section
 
 
         //Display Mode: editMode = false
-        .document.documentshadow(ng-switch-default)
-            div.docH3 {{Resume.name}}
-            ul.inline
-                li: i.icon-envelope
-                li: span {{Resume.email}}
-                li  |
-                    i.icon-volume-up.btnmargin
-                li: span {{Resume.phone}}
-            ul.inline
-                li: i.icon-road
-                li: span {{Resume.address}}
-                li  |
-                    i.icon-globe.btnmargin
-                li: span {{Resume.location}}
-            div(ng-repeat="Section in Resume.Sections")
-                ul.inline.SectionHeader
-                    li.SectionTitle
-                        span {{Section.SectionTitle}}
-                .SectionContent
-                    div(ng-repeat="items in Section.SectionItems")
+
+        .documentArea(ng-switch-default)
+            .document
+                div.docTitle {{Resume.name}}
+
+                ul.inline
+                    li: i.icon-envelope
+                    li: span {{Resume.email}}
+                    li  |
+                    li: i.icon-volume-up
+                    li: span {{Resume.phone}}
+                ul.inline
+                    li: i.icon-road
+                    li: span {{Resume.address}}
+                    li  |
+                    li: i.icon-globe
+                    li: span {{Resume.location}}
+
+                div.Section(ng-repeat="Section in Resume.Sections")
+                    div.SectionHeader
+                        span.SectionTitle {{Section.SectionTitle}}
+
+                    div.SectionItem(ng-repeat="items in Section.SectionItems")
                         strong  {{items.title}}
                         p {{items.description}}
 
