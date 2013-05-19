@@ -1,4 +1,19 @@
-include DocumentButtons
+.row
+    .span12
+        .docButtons
+            ul.inline.pull-right
+                li(ng-show="editMode")
+                    button.btn.btn-primary(ng-click="saveDocument()")
+                        i.icon-ok-circle.icon-white
+                        |  Save
+                li(ng-show="editMode")
+                    button.btn.btn-primary(ng-click="cancelDocument()")
+                        i.icon-trash.icon-white
+                        |  Cancel
+                li(ng-hide="editMode")
+                    button.btn.btn-primary(ng-click="editMode= true")
+                        i.icon-wrench.icon-white
+                        |  Edit
 
 .row
     .span12(ng-switch on="editMode")
@@ -27,10 +42,11 @@ include DocumentButtons
                     div.SectionHeader
                         span.SectionTitle
                             input.input-xlarge(type="text", ng-model="Section.SectionTitle", placeholder="Section", select-on-click)
+
                         span.pull-right
                             a.btn(ng-click="deleteSection($index)")
                                 i.icon-minus-sign
-                                |  Delete
+                                |  Section
 
                     div.SectionItem_Edit(ng-repeat="items in Section.SectionItems")
                         strong
@@ -38,23 +54,23 @@ include DocumentButtons
 
                         a.btn.pull-right.SectionItem_button(ng-click="deleteSectionItem($parent.$index, $index)")
                             i.icon-minus-sign
-                            |  Delete
+                            |  Item
+
 
                         textarea.input-block-level(rows="2", ng-model="items.description", placeholder="description...", select-on-click)
 
                     div.SectionItem
                         a.btn(ng-click="addSectionItem($index)")
                             i.icon-plus-sign
-                            |  New Item
+                            |  Item
 
                 div.Section
                     a.btn(ng-click="addSection()")
                         i.icon-plus-sign
-                        |  New Section
+                        |  Section
 
 
         //Display Mode: editMode = false
-
         .documentArea(ng-switch-default)
             .document
                 div.docTitle {{Resume.name}}
@@ -79,6 +95,3 @@ include DocumentButtons
                     div.SectionItem(ng-repeat="items in Section.SectionItems")
                         strong  {{items.title}}
                         p {{items.description}}
-
-
-include DocumentButtons

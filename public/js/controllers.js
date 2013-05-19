@@ -7,6 +7,14 @@ function navigationCtrl($scope, $location) {
 
 }
 
+function AboutCtrl($scope) {
+
+    $scope.slide = 'one'
+
+}
+
+
+
 function ResumeCtrl($scope) {
 
     //Initial Data Setup
