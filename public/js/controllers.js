@@ -7,11 +7,7 @@ function navigationCtrl($scope, $location) {
 
 }
 
-function AboutCtrl($scope) {
 
-    $scope.slide = 'one'
-
-}
 
 
 
@@ -72,3 +68,42 @@ function ResumeCtrl($scope) {
     };
 
 }
+
+function AboutCtrl($scope) {
+
+    $scope.slide = 'one'
+
+}
+
+
+function GithubCtrl($scope, $http, $templateCache) {
+    $scope.listApps = function() {
+        $http({method: 'GET', url: 'https://api.github.com/users/magrelo/events', cache: $templateCache}).
+            success(function(data, status, headers, config) {
+                $scope.commits = data;                  //set view model
+                //$scope.view = './Partials/Github.html'; //set to list view
+            }).
+            error(function(data, status, headers, config) {
+                $scope.commits = data || "Request failed";
+                $scope.status = status;
+                //$scope.view = './Partials/Github.html';
+            });
+    }
+
+//    $scope.showApp = function(id) {
+//        $http({method: 'GET', url: './api.php?action=get_app&id=' + id, cache: $templateCache}).
+//            success(function(data, status, headers, config) {
+//                $scope.appDetail = data;               //set view model
+//                $scope.view = './Partials/detail.html'; //set to detail view
+//            }).
+//            error(function(data, status, headers, config) {
+//                $scope.appDetail = data || "Request failed";
+//                $scope.status = status;
+//                $scope.view = './Partials/detail.html';
+//            });
+//    }
+
+    //$scope.view = './Partials/Github.html'; //set default view
+    $scope.listApps();
+}
+GithubCtrl.$inject = ['$scope', '$http', '$templateCache'];

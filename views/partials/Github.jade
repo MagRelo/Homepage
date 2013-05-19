@@ -1,0 +1,17 @@
+//
+   Created by MLovan
+   Date: 5/19/13
+   Time: 12:52 PM
+
+div(ng-controller="GithubCtrl")
+    table.table
+        thead
+            th Time
+            th Message
+            th Commit ID
+
+        tbody
+            tr(ng-repeat="commit in commits")
+                td {{commit.created_at | date:'short' }}
+                td {{commit.payload.commits[0].message}}
+                td {{commit.id}}
