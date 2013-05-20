@@ -3,15 +3,21 @@
    Date: 5/19/13
    Time: 12:52 PM
 
+
+
 div(ng-controller="GithubCtrl")
+    .label.pull-right Updated: {{time | date:'medium'}}
+
     table.table
         thead
             th Time
-            th Message
-            th Commit ID
+            th Commit Message
+            th View Changes
 
         tbody
-            tr(ng-repeat="commit in commits")
-                td {{commit.created_at | date:'short' }}
-                td {{commit.payload.commits[0].message}}
-                td {{commit.id}}
+            tr(ng-repeat="item in commits")
+                td {{item.commit.committer.date | date:'short' }}
+                td {{item.commit.message}}
+                td
+                    a(href="{{item.html_url}}", target="_blank")
+                        button.btn Compare
