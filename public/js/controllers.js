@@ -76,17 +76,15 @@ function AboutCtrl($scope) {
 }
 
 
-function GithubCtrl($scope, $http, $templateCache) {
+function GithubCtrl($scope, $http) {
     $scope.listApps = function() {
-        $http({method: 'GET', url: 'https://api.github.com/users/magrelo/events', cache: $templateCache}).
+        $http({method: 'GET', url: 'https://api.github.com/repos/magrelo/Homepage/commits'}).
             success(function(data, status, headers, config) {
                 $scope.commits = data;                  //set view model
-                //$scope.view = './Partials/Github.html'; //set to list view
             }).
             error(function(data, status, headers, config) {
                 $scope.commits = data || "Request failed";
                 $scope.status = status;
-                //$scope.view = './Partials/Github.html';
             });
     }
 
@@ -105,5 +103,8 @@ function GithubCtrl($scope, $http, $templateCache) {
 
     //$scope.view = './Partials/Github.html'; //set default view
     $scope.listApps();
+
+    var date  = new Date()
+    $scope.time = date.getTime()
 }
 GithubCtrl.$inject = ['$scope', '$http', '$templateCache'];

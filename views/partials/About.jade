@@ -4,7 +4,9 @@
    Time: 11:25 AM
 
 
-h3 Architecture
+div.page-header
+    h1 Architecture
+
 .btn-group
     button.btn.btn-primary(data-ng-click='slide=\'one\'', ng-class='{active: slide==\'one\'}') Client-side
     button.btn.btn-primary(data-ng-click='slide=\'two\'', ng-class='{active: slide==\'two\'}') Web server
@@ -34,6 +36,9 @@ h3 Architecture
 
 
 
-h3 Github Repository History
-.well
+div.page-header
+    h1 Versions
+        small  data provided by GitHub API
+
+div.well
     include Github
