@@ -7,10 +7,6 @@ function navigationCtrl($scope, $location) {
 
 }
 
-
-
-
-
 function ResumeCtrl($scope) {
 
     //Initial Data Setup
@@ -77,6 +73,9 @@ function AboutCtrl($scope) {
 
 
 function GithubCtrl($scope, $http) {
+
+    var date = new Date()
+
     $scope.listApps = function() {
         $http({method: 'GET', url: 'https://api.github.com/repos/magrelo/Homepage/commits'}).
             success(function(data, status, headers, config) {
@@ -86,25 +85,11 @@ function GithubCtrl($scope, $http) {
                 $scope.commits = data || "Request failed";
                 $scope.status = status;
             });
+
+        $scope.time = date.getTime()
+
     }
 
-//    $scope.showApp = function(id) {
-//        $http({method: 'GET', url: './api.php?action=get_app&id=' + id, cache: $templateCache}).
-//            success(function(data, status, headers, config) {
-//                $scope.appDetail = data;               //set view model
-//                $scope.view = './Partials/detail.html'; //set to detail view
-//            }).
-//            error(function(data, status, headers, config) {
-//                $scope.appDetail = data || "Request failed";
-//                $scope.status = status;
-//                $scope.view = './Partials/detail.html';
-//            });
-//    }
-
-    //$scope.view = './Partials/Github.html'; //set default view
     $scope.listApps();
 
-    var date  = new Date()
-    $scope.time = date.getTime()
 }
-GithubCtrl.$inject = ['$scope', '$http', '$templateCache'];
