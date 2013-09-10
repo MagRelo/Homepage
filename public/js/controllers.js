@@ -9,7 +9,9 @@ function navigationCtrl($scope, $location) {
 
 function ResumeCtrl($scope) {
 
-    //Initial Data Setup
+    //Note: add pop-up to encourage editing
+
+    //Initial resume data setup
     $scope.Resume = {
         name: "Matt Lovan",
         email: "mattlovan@gmail.com",
@@ -38,7 +40,6 @@ function ResumeCtrl($scope) {
     $scope.addSection = function () {
        $scope.Resume.Sections.push({SectionTitle: "", SectionItems: [{title: "", description: ""}]})
     };
-
     $scope.deleteSection = function (index) {
         $scope.Resume.Sections.splice(index, 1)
     };
@@ -47,7 +48,6 @@ function ResumeCtrl($scope) {
     $scope.addSectionItem = function (parentindex) {
        $scope.Resume.Sections[parentindex].SectionItems.push({title: "", award: ""})
     };
-
     $scope.deleteSectionItem = function (parentindex, index) {
         $scope.Resume.Sections[parentindex].SectionItems.splice(index, 1)
     };
@@ -57,7 +57,6 @@ function ResumeCtrl($scope) {
     $scope.saveDocument = function () {
         $scope.editMode = false;
     };
-
     $scope.cancelDocument = function () {
 
         $scope.editMode = false;
@@ -71,25 +70,60 @@ function AboutCtrl($scope) {
 
 }
 
-
 function GithubCtrl($scope, $http) {
 
-    var date = new Date()
+    var now = new Date()
 
-    $scope.listApps = function() {
-        $http({method: 'GET', url: 'https://api.github.com/repos/magrelo/Homepage/commits'}).
-            success(function(data, status, headers, config) {
-                $scope.commits = data;                  //set view model
-            }).
-            error(function(data, status, headers, config) {
-                $scope.commits = data || "Request failed";
+    $scope.refreshGitData = function() {
+         $http({method: 'GET', url: 'https://api.github.com/repos/magrelo/Homepage/commits', headers : {'If-Modified-Since': $scope.modified}})
+
+             .success(function(data, status, headers, config) {
+
+                $scope.commits = data;
                 $scope.status = status;
+                $scope.time = now.getTime();
+                console.log('http success');
+
+            })
+
+             .error(function(data, status) {
+
+                $scope.commits = data || $scope.commits;
+                $scope.status = status;
+                $scope.time = now.getTime();
+                console.log('http error');
+
+
             });
+    };
 
-        $scope.time = date.getTime()
+    $scope.refresh = function () {
 
+        console.log('start refresh logic');
+
+        if($scope.commits){
+
+            console.log(' commits!');
+            $scope.modified = now.toUTCString()
+
+        }
+        else{
+
+            console.log(' no commits');
+            var basedate = new Date('1984-08-10')
+            $scope.modified = basedate.toUTCString()
+        }
+
+        console.log('end refresh logic');
+        console.log('time:');
+        console.log($scope.modified);
+
+        $scope.refreshGitData();
     }
 
-    $scope.listApps();
+
+    if(!$scope.commits){
+        $scope.refresh()
+    }
 
 }

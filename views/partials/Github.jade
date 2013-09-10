@@ -6,7 +6,10 @@
 
 
 div(ng-controller="GithubCtrl")
-    .muted.pull-right Updated: {{time | date:'medium'}}
+
+    ul.inline.pull-right
+        li
+            span.muted Last Updated : {{time | date:'medium'}}
 
     table.table
         thead
@@ -15,9 +18,10 @@ div(ng-controller="GithubCtrl")
             th(style="width: 15%") View Changes
 
         tbody
-            tr(ng-repeat="item in commits")
+            tr(ng-repeat="item in commits | limitTo: 7")
                 td {{item.commit.committer.date | date:'short' }}
                 td {{item.commit.message}}
                 td
                     a(href="{{item.html_url}}", target="_blank")
                         button.btn Compare
+

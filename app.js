@@ -5,7 +5,8 @@
 
 var express = require('express'),
   routes = require('./routes'),
-  api = require('./routes/api');
+  api = require('./routes/api'),
+    https = require('https');
 
 var app = module.exports = express();
 
@@ -34,14 +35,15 @@ app.get('/', routes.index);
 app.get('/partials/:name', routes.partials);
 
 // JSON API
-app.get('/api/name', api.name);
+app.get('/api/commitLog', api.commitLog);
+app.get('/api/posts', api.posts);
 
 // redirect all others to the index (HTML5 history)
 app.get('*', routes.index);
 
 
 // Start server
-var port = process.env.PORT || 3000;
+var port = process.env.PORT || 3001;
 app.listen(port, function(){
   console.log("Express server listening on port %d in %s mode", this.address().port, app.settings.env);
 });
