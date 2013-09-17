@@ -1,0 +1,72 @@
+//
+   Created by MLovan
+   Date: 9/13/13
+   Time: 10:21 PM
+
+
+.panel
+    h2 grid
+    .strategyPanel
+
+        form(name="termForm", novalidate).form-inline.text-center.strategyTableWrap
+            .form-group
+                .symbol dimensions:
+
+            .form-group(ng-class=" {'has-error': termForm.columnCount.$invalid} ")
+                label.sr-only(for="columnCount") 1st term
+                input.form-control.term(name="columnCount", type="number", placeholder="y", ng-model="columncount", required, min="1", max="20")
+
+            .form-group
+                .symbol &times;
+
+            .form-group(ng-class=" {'has-error': termForm.rowcount.$invalid} ")
+                label.sr-only(for="rowcount") 2nd term
+                input.form-control.term(name="rowcount", type="number", placeholder="x", ng-model="rowcount", required, min="1", max="20")
+            .form-group
+                button.btn.btn-success(ng-click="buildGrid()", ng-disabled="termForm.$invalid") draw grid
+
+        .text-center(ng-show="termForm.$invalid")
+            p.text-danger Invalid dimensions. Select number 1 - 20
+
+
+        div.gridbox(ng-style="gridBoxSize")
+            .gridpanel(ng-style="gridPanelSize")
+                .gridCell(ng-repeat="cell in grid", ng-style="grid[$index].style")
+
+
+
+
+    h2 strategy
+    .strategyPanel
+        .strategyTableWrap
+            form(name="factorForm", novalidate).form-inline.text-center
+                .form-group(ng-class=" {'has-error': factorForm.termOneInput.$invalid} ")
+                    label.sr-only(for="termOneInput") first term
+                    input.form-control.term(name="termOneInput", type="number", placeholder="first term", ng-model="factorForm.termOneInput", required, min="0", max="20")
+                .form-group
+                    .symbol &times;
+                .form-group(ng-class=" {'has-error': factorForm.termTwoInput.$invalid} ")
+                    label.sr-only(for="termTwoInput") second term
+                    input.form-control.term(name="termTwoInput", type="number", placeholder="second term", ng-model="factorForm.termTwoInput", required, min="0", max="20")
+                .form-group
+                    .symbol =
+                .form-group(ng-class=" {'has-error': factorForm.productInput.$invalid} ")
+                    label.sr-only(for="productInput") product
+                    input.form-control.term(name="productInput", type="number", placeholder="product", ng-model="factorForm.productInput", required, min="0", max="400")
+                .form-group
+                    button.btn.btn-success(ng-click="addFactor()", ng-disabled="factorForm.$invalid") Save
+                .form-group
+                    button.btn.btn-danger(ng-click="clearForm()") Clear
+
+        .strategyTableWrap
+            table.table.table-responsive
+                thead
+                    th Strategies
+                tbody.text-center
+                    tr
+                        td(ng-bind-html-unsafe="factorialString")
+
+
+
+
+

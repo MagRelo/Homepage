@@ -5,8 +5,7 @@ html(ng-app="myApp")
         base(href='/')
         title Matt Lovan
         link(rel='stylesheet', href='/css/bootstrap.css')
-        link(rel='stylesheet', href='/css/app.css')
-        link(rel="stylesheet", href="http://fonts.googleapis.com/css?family=Ubuntu:regular,italic,bold,bolditalic",  type="text/css")
+        link(rel='stylesheet', href='/css/app2.css')
         script
             (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
             (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
@@ -19,8 +18,8 @@ html(ng-app="myApp")
 
         include partials/page/Header
 
-        .container.thumbContainer
-            div(ng-view class="slide")
+        .container.appContainer
+            div(ng-view, class="animate", ng-animate=" 'animate' ")
 
         script(src='https://ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js')
         script(src='https://ajax.googleapis.com/ajax/libs/angularjs/1.1.4/angular.min.js')
