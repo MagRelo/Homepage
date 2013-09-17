@@ -39,12 +39,12 @@ h2 Multiply thing
             form(name="factorForm", novalidate).form-inline.text-center
                 .form-group(ng-class=" {'has-error': factorForm.termOneInput.$invalid} ")
                     label.sr-only(for="termOneInput") first term
-                    input.form-control.term(name="termOneInput", type="number", placeholder="first term", ng-model="factorForm.termOneInput", required, min="0", max="20")
+                    input.form-control.term(name="termOneInput", type="number", placeholder="first term", ng-model="factorForm.termOneInput", required, min="0", max="400")
                 .form-group
                     .symbol &times;
                 .form-group(ng-class=" {'has-error': factorForm.termTwoInput.$invalid} ")
                     label.sr-only(for="termTwoInput") second term
-                    input.form-control.term(name="termTwoInput", type="number", placeholder="second term", ng-model="factorForm.termTwoInput", required, min="0", max="20")
+                    input.form-control.term(name="termTwoInput", type="number", placeholder="second term", ng-model="factorForm.termTwoInput", required, min="0", max="400")
                 .form-group
                     .symbol =
                 .form-group(ng-class=" {'has-error': factorForm.productInput.$invalid} ")
