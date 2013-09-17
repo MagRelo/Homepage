@@ -8,7 +8,7 @@ angular.module('myApp', ['myApp.directives']).
     $routeProvider.when('/bio', {templateUrl: 'partials/Bio', controller: AboutCtrl});
     $routeProvider.when('/resume', {templateUrl: 'partials/Resume', controller: ResumeCtrl});
     $routeProvider.when('/main', {templateUrl: 'partials/Thumbs', controller: ResumeCtrl});
-    $routeProvider.when('/grid', {templateUrl: 'partials/grid', controller: GridCtrl});
+    $routeProvider.when('/grid', {templateUrl: 'partials/Grid', controller: GridCtrl});
     $routeProvider.otherwise({redirectTo: '/main'});
     $locationProvider.html5Mode(true);
   }]);

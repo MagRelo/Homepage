@@ -3,9 +3,9 @@
    Date: 9/13/13
    Time: 10:21 PM
 
-
+h2 Multiply thing
 .panel
-    h2 grid
+    h3 grid
     .strategyPanel
 
         form(name="termForm", novalidate).form-inline.text-center.strategyTableWrap
@@ -28,15 +28,12 @@
         .text-center(ng-show="termForm.$invalid")
             p.text-danger Invalid dimensions. Select number 1 - 20
 
-
         div.gridbox(ng-style="gridBoxSize")
             .gridpanel(ng-style="gridPanelSize")
                 .gridCell(ng-repeat="cell in grid", ng-style="grid[$index].style")
 
 
-
-
-    h2 strategy
+    h3 strategy
     .strategyPanel
         .strategyTableWrap
             form(name="factorForm", novalidate).form-inline.text-center
