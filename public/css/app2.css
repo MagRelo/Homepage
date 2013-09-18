@@ -83,7 +83,6 @@ h2, h3{
     width: 270px;
     text-align: center;
     border: solid 1px #00c0dd;
-    border-radius: 4px;
     background: rgba(0, 0, 0, 0.25);
     box-shadow: 2px 2px 4px rgba(54, 63, 62, 0.5);
 }
