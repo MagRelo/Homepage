@@ -8,64 +8,62 @@ body{
     font-family: Ubuntu, sans-serif;
 }
 
-a:hover{
+a {
+    color: #e7f3f4;
+    border-bottom: solid 1px #e7f3f4;
+    padding-bottom: 1px;
+}
+
+a:hover,
+a:focus {
+    color: #00C0DD;
     text-decoration: none;
-    border-bottom: solid 1px white;
 }
 
-h1,h2,h3,h4,h5{
-    color: #EBF7F8;
+h1 {
     font-family: 'nevis', sans-serif;
-    padding: 2px;
-}
-
-h1, .h1 {
+    color: #e7f3f4;
     font-size: 70px;
     text-shadow: 2px 2px 8px rgb(54, 63, 62);
-    margin-top: 24px;
-}
 
-h2, h3{
-   font-family: 'Planet Estyle', sans-serif;
-}
-
-.header{
-    margin-bottom: 40px;
 }
 
 .header h1{
     padding: 0 15px;
     text-transform: uppercase;
+    margin-top: 48px;
+    margin-bottom: 36px;
 }
 
 h1 small {
     white-space: pre;
-    text-shadow: none;
     font-family: Ubuntu, sans-serif;
     text-transform: none;
     color: #00B4CC;
 }
 
+h2, h3{
+    font-family: 'Planet Estyle', sans-serif;
+    color: #e7f3f4;
+}
 
 .stripegroup{
-    width: 100%;
-    /*border-bottom: solid 1px rgb(54, 63, 62);*/
     box-shadow: 2px 2px 8px rgb(54, 63, 62);
 }
 
 .twostripe{
     background-color:#00B4CC;
-    height: 13px;
+    height: 11px;
 }
 
 .threestripe{
     background-color: #008C9E;
-    height: 17px;
+    height: 13px;
 }
 
 .fourstripe{
     background-color: #005F6B;
-    height: 10px;
+    height: 9px;
 }
 
 
@@ -86,7 +84,7 @@ h1 small {
     text-align: center;
     border: solid 1px #00c0dd;
     border-radius: 4px;
-    background: rgba(54, 63, 62, 0.5);
+    background: rgba(0, 0, 0, 0.25);
     box-shadow: 2px 2px 4px rgba(54, 63, 62, 0.5);
 }
 
@@ -95,7 +93,6 @@ h1 small {
 .centerdiv:hover{
     background-color: #008C9E;
     background: rgba(0, 140, 158, 0.5);
-    text-shadow: 1px 1px 2px rgba(38, 47, 46, .9);
     border: solid 1px #00c0dd;
     -webkit-transition: all 0.3s ease;
     -moz-transition: all    0.3s linear;
@@ -121,14 +118,12 @@ h1 small {
 
 .panel{
     padding: 0 20px 20px 20px;
-    background-color: #008C9E;
-    text-shadow: 1px 1px 2px rgba(38, 47, 46, .9);
+    background: rgba(0, 0, 0, 0.25);
     border: solid 1px #00C0DD;
 }
 
 .strategyPanel{
-    //background-color: #424747;
-    background-color: rgba(54, 63, 62, 0.5);
+    background: rgba(0, 0, 0, 0.25);
     border-radius: 5px;
 }
 
