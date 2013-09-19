@@ -1,4 +1,4 @@
-div.header
+div.header(ng-controller="navigationCtrl")
     include 3dLogo
 
     .stripegroup
@@ -7,6 +7,13 @@ div.header
         .fourstripe
 
 
-    a(href="/")
-        h1 Matt Lovan
-            small  app development
+    div
+        a(href="/")
+            h1 Matt Lovan
+                small  web development
+        a.headerButton(href="/consulting", ng-class="{active: location.path() == '/consulting'}") consulting
+        a.headerButton(href="/blog", ng-class="{active: location.path() == '/blog'}") blog
+        a.headerButton(href="/demos", ng-class="{active: location.path() == '/demos'}") demos
+        a.headerButton(href="/contact", ng-class="{active: location.path() == '/contact'}") contact
+
+    .clearfix

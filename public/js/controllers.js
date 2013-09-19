@@ -5,6 +5,35 @@ function navigationCtrl($scope, $location) {
      //required to high light the active navigational point
     $scope.location = $location;
 
+    $scope.spinLogo = function(){
+
+        var path = $location.path();
+
+        var xTransform = 0;
+        var yTransform = 0;
+        var zTransform = 0;
+
+        if (path == '/consulting') {
+            yTransform = 60;
+        } else if (path == '/blog') {
+            yTransform = 30;
+            zTransform = -2;
+        } else if (path == '/demos') {
+            yTransform = -10;
+            zTransform = -4;
+        } else if (path == '/contact') {
+            yTransform = -140;
+            zTransform = -8;
+        }
+
+        return {'-webkit-transform': 'rotateX(' + xTransform + 'deg) rotateY(' + yTransform + 'deg) rotateZ(' + zTransform + 'deg)',
+            '-moz-transform:': 'rotateX(' + xTransform + 'deg) rotateY(' + yTransform + 'deg) rotateZ(' + zTransform + 'deg)',
+            '-ms-transform:': 'rotateX(' + xTransform + 'deg) rotateY(' + yTransform + 'deg) rotateZ(' + zTransform + 'deg)',
+            'transform': 'rotateX(' + xTransform + 'deg) rotateY(' + yTransform + 'deg) rotateZ(' + zTransform + 'deg)'
+        }
+
+    }
+
 }
 
 function GridCtrl($scope) {

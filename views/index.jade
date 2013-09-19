@@ -1,9 +1,10 @@
 !!!
 html(ng-app="myApp")
     head
-        meta(charset='utf8')
+        meta(charset='utf8', name="viewport", content="width=device-width, initial-scale=1.0")
         base(href='/')
         title Matt Lovan
+
         link(rel='stylesheet', href='/css/bootstrap.css')
         link(rel='stylesheet', href='/css/app2.css')
         link(rel='stylesheet', href='/css/3dLogo.css')
@@ -21,9 +22,9 @@ html(ng-app="myApp")
         include partials/page/Header
 
         .container.appContainer
-            div(ng-view, class="animate", ng-animate=" 'animate' ")
+            div(ng-view, class="animate")
 
-        script(src='https://ajax.googleapis.com/ajax/libs/angularjs/1.1.4/angular.min.js')
+        script(src='https://ajax.googleapis.com/ajax/libs/angularjs/1.1.5/angular.min.js')
         script(src='js/app.js')
         script(src='js/controllers.js')
         script(src='js/directives.js')
