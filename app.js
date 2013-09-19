@@ -5,7 +5,6 @@
 
 var express = require('express'),
   routes = require('./routes'),
-  api = require('./routes/api'),
     https = require('https');
 
 var app = module.exports = express();
@@ -33,10 +32,6 @@ app.configure('production', function(){
 // Routes
 app.get('/', routes.index);
 app.get('/partials/:name', routes.partials);
-
-// JSON API
-app.get('/api/commitLog', api.commitLog);
-app.get('/api/posts', api.posts);
 
 // redirect all others to the index (HTML5 history)
 app.get('*', routes.index);

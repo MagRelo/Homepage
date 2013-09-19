@@ -1,124 +1,75 @@
-@font-face {font-family: 'nevis'; src: URL('nevis.ttf');}
-@font-face {font-family: 'Planet Estyle'; src: URL('PLANE.TTF');}
 
 body{
     /*background-color: #424747;*/
-    background-color: rgba(0, 70, 80, 1);
+    background-color: rgb(0, 70, 80);
     color: #e7f3f4;
-    font-family: Ubuntu, sans-serif;
+    font-family: 'Source Sans Pro', sans-serif;
 }
 
 a {
-    color: #e7f3f4;
-    border-bottom: solid 1px #e7f3f4;
+    color: #00C0DD;
+    border-bottom: solid 1px  #00C0DD;
     padding-bottom: 1px;
 }
 
 a:hover,
 a:focus {
-    color: #00C0DD;
+    color: #008C9E;
+    border-bottom: solid 1px  #008C9E;
     text-decoration: none;
 }
 
 h1 {
-    font-family: 'nevis', sans-serif;
     color: #e7f3f4;
-    font-size: 70px;
-    text-shadow: 2px 2px 8px rgb(54, 63, 62);
-
-}
-
-.header h1{
-    padding: 0 15px;
+    font-family: 'Source Sans Pro', sans-serif;
+    font-weight: 700;
+    letter-spacing: .05em;
     text-transform: uppercase;
+    font-size: 72px;
+    text-shadow:  1px 1px 24px rgb(54, 63, 62);
+    margin-left: 18px;
     margin-top: 48px;
-    margin-bottom: 36px;
+    margin-bottom: 96px;
+
 }
 
 h1 small {
     white-space: pre;
-    font-family: Ubuntu, sans-serif;
+    font-family: 'Roboto', sans-serif;
     text-transform: none;
+    text-shadow: none;
+    letter-spacing: 0;
     color: #00B4CC;
 }
 
-h2, h3{
-    font-family: 'Planet Estyle', sans-serif;
+h2 {
+    font-family: 'Roboto', sans-serif;
+    font-weight: 300;
     color: #e7f3f4;
 }
 
-.stripegroup{
-    box-shadow: 2px 2px 8px rgb(54, 63, 62);
+h3 {
+    font-family: 'Source Sans Pro', sans-serif;
+    color: #e7f3f4;
 }
 
-.twostripe{
-    background-color:#00B4CC;
-    height: 11px;
-}
-
-.threestripe{
-    background-color: #008C9E;
-    height: 13px;
-}
-
-.fourstripe{
-    background-color: #005F6B;
-    height: 9px;
+p{
+    font-family: 'Source Sans Pro', sans-serif;
+    line-height: 1.3em;
 }
 
 
-.thumbbox{
-    height:120px;
-
-}
-
-.centerdiv{
-    position: absolute;
-    bottom: 0;
-    top: 0;
-    right: 0;
-    left: 0;
-    margin: auto;
-    height: 90px;
-    width: 270px;
-    text-align: center;
-    border: solid 1px #00c0dd;
-    background: rgba(0, 0, 0, 0.25);
-    box-shadow: 2px 2px 4px rgba(54, 63, 62, 0.5);
-}
-
-
-
-.centerdiv:hover{
-    background-color: #008C9E;
-    background: rgba(0, 140, 158, 0.5);
-    border: solid 1px #00c0dd;
-    -webkit-transition: all 0.3s ease;
-    -moz-transition: all    0.3s linear;
-    -o-transition: all      0.3s linear;
-    -ms-transition: all     0.3s linear;
-    transition: all         0.3s ease;
-}
-
-.centerdiv:active{
-    -webkit-transform: translate(2px, 2px);
-    -moz-transform: translate(2px, 2px);
-    -o-transform: translate(2px, 2px);
-    -ms-transform: translate(2px, 2px);
-    transform: translate(2px, 2px);
-    -webkit-transition: all 0.2s ease;
-    -moz-transition: all 0.2s ease;
-    -o-transition: all 0.2s ease;
-    -ms-transition: all 0.2s ease;
-    transition: all 0.2s ease;
-
-
-}
+/*Header stripes*/
+.stripegroup{box-shadow: 1px 1px 24px rgb(54, 63, 62);}
+.twostripe{background-color:#00B4CC;height: 11px;}
+.threestripe{background-color: #008C9E;height: 13px;}
+.fourstripe{background-color: #005F6B;height: 9px;}
 
 .panel{
     padding: 0 20px 20px 20px;
-    background: rgba(0, 0, 0, 0.25);
-    border: solid 1px #00C0DD;
+    background: rgba(0, 0, 0, 0.2);
+    border: solid 1px #00B4CC;
+    border-radius: 0;
 }
 
 .strategyPanel{

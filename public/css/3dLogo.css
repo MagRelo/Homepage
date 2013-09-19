@@ -10,7 +10,7 @@
     width:100%;
     height:100%;
     font-size: 175%;
-    opacity: .5;
+    opacity: .45;
     z-index: -1;
 }
 .scene, .shape, .face, .face-wrapper, .cr{
@@ -23,7 +23,7 @@
     transform-style:preserve-3d;
 }
 .scene{
-    margin:6.5em 0 0 9em;
+    margin:6.5em 0 0 11.4em;
 }
 .shape{
     top:50%;
