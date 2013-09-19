@@ -15,15 +15,18 @@ function navigationCtrl($scope, $location) {
 
         if (path == '/consulting') {
             yTransform = 60;
+            xTransform = -10;
         } else if (path == '/blog') {
-            yTransform = 30;
-            zTransform = -2;
+            yTransform = 20;
+            xTransform = -5;
         } else if (path == '/demos') {
-            yTransform = -10;
-            zTransform = -4;
+            yTransform = -20;
+            xTransform = 5;
+
         } else if (path == '/contact') {
-            yTransform = -140;
-            zTransform = -8;
+            yTransform = -60;
+            xTransform = 10;
+
         }
 
         return {'-webkit-transform': 'rotateX(' + xTransform + 'deg) rotateY(' + yTransform + 'deg) rotateZ(' + zTransform + 'deg)',
