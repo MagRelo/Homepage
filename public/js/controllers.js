@@ -19,7 +19,7 @@ function navigationCtrl($scope, $location) {
             fontSize = 100;
         } else if (path == '/blog') {
             xTransform = -25;
-            yTransform = 21;
+            yTransform = 27;
             fontSize = 145;
         } else if (path == '/demos') {
             xTransform = 20;

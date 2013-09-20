@@ -91,6 +91,20 @@ p{
     border: solid 1px #00B4CC;
     border-radius: 0;
 }
+
+.tableHeader{
+    /*white-space: pre;*/
+    font-family: 'Roboto', sans-serif;
+    /*text-transform: none;*/
+    /*text-shadow: none;*/
+    /*letter-spacing: 0;*/
+    color: #00B4CC;
+    font-size: 1.3em;
+}
+
+
+
+
 .strategyPanel{
     background: rgba(0, 0, 0, 0.25);
     border-radius: 5px;
