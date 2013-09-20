@@ -8,31 +8,36 @@ function navigationCtrl($scope, $location) {
     $scope.spinLogo = function(){
 
         var path = $location.path();
-
         var xTransform = 0;
         var yTransform = 0;
         var zTransform = 0;
+        var fontSize = 100;
 
         if (path == '/consulting') {
-            yTransform = 60;
-            xTransform = -10;
+            xTransform = -32;
+            yTransform = 35;
+            fontSize = 100;
         } else if (path == '/blog') {
-            yTransform = 20;
-            xTransform = -5;
+            xTransform = -25;
+            yTransform = 25;
+            fontSize = 145;
         } else if (path == '/demos') {
-            yTransform = -20;
-            xTransform = 5;
+            xTransform = 20;
+            yTransform = -30;
+            fontSize = 100;
 
         } else if (path == '/contact') {
-            yTransform = -60;
-            xTransform = 10;
-
+            xTransform = 24;
+            yTransform = -140;
+            fontSize = 66;
         }
 
         return {'-webkit-transform': 'rotateX(' + xTransform + 'deg) rotateY(' + yTransform + 'deg) rotateZ(' + zTransform + 'deg)',
             '-moz-transform:': 'rotateX(' + xTransform + 'deg) rotateY(' + yTransform + 'deg) rotateZ(' + zTransform + 'deg)',
             '-ms-transform:': 'rotateX(' + xTransform + 'deg) rotateY(' + yTransform + 'deg) rotateZ(' + zTransform + 'deg)',
-            'transform': 'rotateX(' + xTransform + 'deg) rotateY(' + yTransform + 'deg) rotateZ(' + zTransform + 'deg)'
+            'transform': 'rotateX(' + xTransform + 'deg) rotateY(' + yTransform + 'deg) rotateZ(' + zTransform + 'deg)',
+            'font-size': fontSize +'%'
+
         }
 
     }

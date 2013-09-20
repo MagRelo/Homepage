@@ -4,7 +4,7 @@
 // Declare app level module which depends on filters, and services
 angular.module('myApp', ['myApp.directives']).
   config(['$routeProvider', '$locationProvider', function($routeProvider, $locationProvider) {
-    $routeProvider.when('/consulting', {templateUrl: 'partials/Thumbs'});
+    $routeProvider.when('/consulting', {templateUrl: 'partials/Consulting'});
     $routeProvider.when('/blog', {templateUrl: 'partials/Blog'});
     $routeProvider.when('/demos', {templateUrl: 'partials/Demos'});
     $routeProvider.when('/contact', {templateUrl: 'partials/Contact'});

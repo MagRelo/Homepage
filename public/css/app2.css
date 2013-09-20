@@ -2,7 +2,7 @@
 body{
     /*background-color: #424747;*/
     background-color: rgb(0, 70, 80);
-    color: #e7f3f4;
+    color: #fff;
     font-family: 'Source Sans Pro', sans-serif;
 }
 
@@ -41,19 +41,12 @@ h1 small {
     color: #00B4CC;
 }
 
-h2 {
+h2, h3 {
     font-family: 'Roboto', sans-serif;
-    color: #e7f3f4;
-}
-
-h3 {
-    font-family: 'Roboto', sans-serif;
-    color: #e7f3f4;
 }
 
 p{
     font-family: 'Source Sans Pro', sans-serif;
-    line-height: 1.3em;
 }
 
 /***Header***/
@@ -94,7 +87,7 @@ p{
 /*Multiply Game*/
 .panel{
     padding: 0 20px 20px 20px;
-    background: rgba(0, 0, 0, 0.35);
+    background: rgba(31, 56, 63, 0.9);
     border: solid 1px #00B4CC;
     border-radius: 0;
 }
