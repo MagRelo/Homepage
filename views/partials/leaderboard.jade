@@ -1,0 +1,321 @@
+// Leaderboard
+   Created by MLovan
+   Date: 6/13/13
+   Time: 11:36 AM
+
+div.span12(ng-controller="leaderboardCtrl")
+    div.panel
+        h2 {{header.name}}
+        h3 Leaderboard
+            small   Round {{header.currentRound}} of {{header.totalRounds}}:  last updated {{header.date}}
+
+        div
+
+            form.form-inline
+                .form-group
+                    label Search
+                    input.form-control(type="text", placeholder="type to search", ng-model="playerFilter")
+
+
+            .btn-group.pull-right
+                button.btn.btn-success(ng-click="setScoringStyle('sc')", ng-class="{active: scoring == 'sc'}") Strokes
+                button.btn.btn-success(ng-click="setScoringStyle('par')", ng-class="{active: scoring == 'par'}") To par
+                button.btn.btn-success(ng-click="setScoringStyle('stable')", ng-class="{active: scoring == 'stable'}") Stableford
+                button.btn.btn-success(ng-click="setScoringStyle('modstable')", ng-class="{active: scoring == 'modstable'}") Modified Stableford
+
+            table.table.table-bordered
+                thead.shade
+                    th Hole
+                    th 1
+                    th 2
+                    th 3
+                    th 4
+                    th 5
+                    th 6
+                    th 7
+                    th 8
+                    th 9
+                    th 10
+                    th 11
+                    th 12
+                    th 13
+                    th 14
+                    th 15
+                    th 16
+                    th 17
+                    th 18
+                    th Total
+
+                tbody(ng-show="scoring == 'sc'")
+                    tr.shade
+                        td Par
+                        td {{courses[0].h[0].p}}
+                        td {{courses[0].h[1].p}}
+                        td {{courses[0].h[2].p}}
+                        td {{courses[0].h[3].p}}
+                        td {{courses[0].h[4].p}}
+                        td {{courses[0].h[5].p}}
+                        td {{courses[0].h[6].p}}
+                        td {{courses[0].h[7].p}}
+                        td {{courses[0].h[8].p}}
+                        td {{courses[0].h[9].p}}
+                        td {{courses[0].h[10].p}}
+                        td {{courses[0].h[11].p}}
+                        td {{courses[0].h[12].p}}
+                        td {{courses[0].h[13].p}}
+                        td {{courses[0].h[14].p}}
+                        td {{courses[0].h[15].p}}
+                        td {{courses[0].h[16].p}}
+                        td {{courses[0].h[17].p}}
+                        td {{courses[0].parTotal}}
+                    tr.shade
+                        td Yardage
+                        td {{courses[0].h[0].d}}
+                        td {{courses[0].h[1].d}}
+                        td {{courses[0].h[2].d}}
+                        td {{courses[0].h[3].d}}
+                        td {{courses[0].h[4].d}}
+                        td {{courses[0].h[5].d}}
+                        td {{courses[0].h[6].d}}
+                        td {{courses[0].h[7].d}}
+                        td {{courses[0].h[8].d}}
+                        td {{courses[0].h[9].d}}
+                        td {{courses[0].h[10].d}}
+                        td {{courses[0].h[11].d}}
+                        td {{courses[0].h[12].d}}
+                        td {{courses[0].h[13].d}}
+                        td {{courses[0].h[14].d}}
+                        td {{courses[0].h[15].d}}
+                        td {{courses[0].h[16].d}}
+                        td {{courses[0].h[17].d}}
+                        td {{courses[0].yardageTotal}}
+
+                    tr(ng-repeat="player in players | filter: playerFilter | limitTo: rowLimit")
+                        td {{player.ln}}, {{player.fn}}
+                        td {{player.h.h[0].sc}}
+                        td {{player.h.h[1].sc}}
+                        td {{player.h.h[2].sc}}
+                        td {{player.h.h[3].sc}}
+                        td {{player.h.h[4].sc}}
+                        td {{player.h.h[5].sc}}
+                        td {{player.h.h[6].sc}}
+                        td {{player.h.h[7].sc}}
+                        td {{player.h.h[8].sc}}
+                        td {{player.h.h[9].sc}}
+                        td {{player.h.h[10].sc}}
+                        td {{player.h.h[11].sc}}
+                        td {{player.h.h[12].sc}}
+                        td {{player.h.h[13].sc}}
+                        td {{player.h.h[14].sc}}
+                        td {{player.h.h[15].sc}}
+                        td {{player.h.h[16].sc}}
+                        td {{player.h.h[17].sc}}
+                        td {{player.standardTotal}}
+
+                tbody(ng-show="scoring == 'par'")
+                    tr.shade
+                        td Par
+                        td {{courses[0].h[0].p}}
+                        td {{courses[0].h[1].p}}
+                        td {{courses[0].h[2].p}}
+                        td {{courses[0].h[3].p}}
+                        td {{courses[0].h[4].p}}
+                        td {{courses[0].h[5].p}}
+                        td {{courses[0].h[6].p}}
+                        td {{courses[0].h[7].p}}
+                        td {{courses[0].h[8].p}}
+                        td {{courses[0].h[9].p}}
+                        td {{courses[0].h[10].p}}
+                        td {{courses[0].h[11].p}}
+                        td {{courses[0].h[12].p}}
+                        td {{courses[0].h[13].p}}
+                        td {{courses[0].h[14].p}}
+                        td {{courses[0].h[15].p}}
+                        td {{courses[0].h[16].p}}
+                        td {{courses[0].h[17].p}}
+                        td {{courses[0].parTotal}}
+                    tr.shade
+                        td Yardage
+                        td {{courses[0].h[0].d}}
+                        td {{courses[0].h[1].d}}
+                        td {{courses[0].h[2].d}}
+                        td {{courses[0].h[3].d}}
+                        td {{courses[0].h[4].d}}
+                        td {{courses[0].h[5].d}}
+                        td {{courses[0].h[6].d}}
+                        td {{courses[0].h[7].d}}
+                        td {{courses[0].h[8].d}}
+                        td {{courses[0].h[9].d}}
+                        td {{courses[0].h[10].d}}
+                        td {{courses[0].h[11].d}}
+                        td {{courses[0].h[12].d}}
+                        td {{courses[0].h[13].d}}
+                        td {{courses[0].h[14].d}}
+                        td {{courses[0].h[15].d}}
+                        td {{courses[0].h[16].d}}
+                        td {{courses[0].h[17].d}}
+                        td {{courses[0].yardageTotal}}
+
+                    tr(ng-repeat="player in players | filter: playerFilter | limitTo: rowLimit")
+                        td {{player.ln}}, {{player.fn}}
+                        td {{player.h.h[0].tp}}
+                        td {{player.h.h[1].tp}}
+                        td {{player.h.h[2].tp}}
+                        td {{player.h.h[3].tp}}
+                        td {{player.h.h[4].tp}}
+                        td {{player.h.h[5].tp}}
+                        td {{player.h.h[6].tp}}
+                        td {{player.h.h[7].tp}}
+                        td {{player.h.h[8].tp}}
+                        td {{player.h.h[9].tp}}
+                        td {{player.h.h[10].tp}}
+                        td {{player.h.h[11].tp}}
+                        td {{player.h.h[12].tp}}
+                        td {{player.h.h[13].tp}}
+                        td {{player.h.h[14].tp}}
+                        td {{player.h.h[15].tp}}
+                        td {{player.h.h[16].tp}}
+                        td {{player.h.h[17].tp}}
+                        td {{player.crs}}
+
+
+                tbody(ng-show="scoring == 'stable'")
+                    tr.shade
+                        td Par
+                        td {{courses[0].h[0].p}}
+                        td {{courses[0].h[1].p}}
+                        td {{courses[0].h[2].p}}
+                        td {{courses[0].h[3].p}}
+                        td {{courses[0].h[4].p}}
+                        td {{courses[0].h[5].p}}
+                        td {{courses[0].h[6].p}}
+                        td {{courses[0].h[7].p}}
+                        td {{courses[0].h[8].p}}
+                        td {{courses[0].h[9].p}}
+                        td {{courses[0].h[10].p}}
+                        td {{courses[0].h[11].p}}
+                        td {{courses[0].h[12].p}}
+                        td {{courses[0].h[13].p}}
+                        td {{courses[0].h[14].p}}
+                        td {{courses[0].h[15].p}}
+                        td {{courses[0].h[16].p}}
+                        td {{courses[0].h[17].p}}
+                        td {{courses[0].parTotal}}
+
+                    tr.shade
+                        td Yardage
+                        td {{courses[0].h[0].d}}
+                        td {{courses[0].h[1].d}}
+                        td {{courses[0].h[2].d}}
+                        td {{courses[0].h[3].d}}
+                        td {{courses[0].h[4].d}}
+                        td {{courses[0].h[5].d}}
+                        td {{courses[0].h[6].d}}
+                        td {{courses[0].h[7].d}}
+                        td {{courses[0].h[8].d}}
+                        td {{courses[0].h[9].d}}
+                        td {{courses[0].h[10].d}}
+                        td {{courses[0].h[11].d}}
+                        td {{courses[0].h[12].d}}
+                        td {{courses[0].h[13].d}}
+                        td {{courses[0].h[14].d}}
+                        td {{courses[0].h[15].d}}
+                        td {{courses[0].h[16].d}}
+                        td {{courses[0].h[17].d}}
+                        td {{courses[0].yardageTotal}}
+
+                    tr(ng-repeat="player in players | filter: playerFilter | limitTo: rowLimit")
+                        td {{player.ln}}, {{player.fn}}
+                        td {{player.h.h[0].stable}}
+                        td {{player.h.h[1].stable}}
+                        td {{player.h.h[2].stable}}
+                        td {{player.h.h[3].stable}}
+                        td {{player.h.h[4].stable}}
+                        td {{player.h.h[5].stable}}
+                        td {{player.h.h[6].stable}}
+                        td {{player.h.h[7].stable}}
+                        td {{player.h.h[8].stable}}
+                        td {{player.h.h[9].stable}}
+                        td {{player.h.h[10].stable}}
+                        td {{player.h.h[11].stable}}
+                        td {{player.h.h[12].stable}}
+                        td {{player.h.h[13].stable}}
+                        td {{player.h.h[14].stable}}
+                        td {{player.h.h[15].stable}}
+                        td {{player.h.h[16].stable}}
+                        td {{player.h.h[17].stable}}
+                        td {{player.stablefordTotal}}
+
+                tbody(ng-show="scoring == 'modstable'")
+                    tr.shade
+                        td Par
+                        td {{courses[0].h[0].p}}
+                        td {{courses[0].h[1].p}}
+                        td {{courses[0].h[2].p}}
+                        td {{courses[0].h[3].p}}
+                        td {{courses[0].h[4].p}}
+                        td {{courses[0].h[5].p}}
+                        td {{courses[0].h[6].p}}
+                        td {{courses[0].h[7].p}}
+                        td {{courses[0].h[8].p}}
+                        td {{courses[0].h[9].p}}
+                        td {{courses[0].h[10].p}}
+                        td {{courses[0].h[11].p}}
+                        td {{courses[0].h[12].p}}
+                        td {{courses[0].h[13].p}}
+                        td {{courses[0].h[14].p}}
+                        td {{courses[0].h[15].p}}
+                        td {{courses[0].h[16].p}}
+                        td {{courses[0].h[17].p}}
+                        td {{courses[0].parTotal}}
+
+                    tr.shade
+                        td Yardage
+                        td {{courses[0].h[0].d}}
+                        td {{courses[0].h[1].d}}
+                        td {{courses[0].h[2].d}}
+                        td {{courses[0].h[3].d}}
+                        td {{courses[0].h[4].d}}
+                        td {{courses[0].h[5].d}}
+                        td {{courses[0].h[6].d}}
+                        td {{courses[0].h[7].d}}
+                        td {{courses[0].h[8].d}}
+                        td {{courses[0].h[9].d}}
+                        td {{courses[0].h[10].d}}
+                        td {{courses[0].h[11].d}}
+                        td {{courses[0].h[12].d}}
+                        td {{courses[0].h[13].d}}
+                        td {{courses[0].h[14].d}}
+                        td {{courses[0].h[15].d}}
+                        td {{courses[0].h[16].d}}
+                        td {{courses[0].h[17].d}}
+                        td {{courses[0].yardageTotal}}
+
+                    tr(ng-repeat="player in players | filter: playerFilter | limitTo: rowLimit")
+                        td {{player.ln}}, {{player.fn}}
+                        td {{player.h.h[0].modstable}}
+                        td {{player.h.h[1].modstable}}
+                        td {{player.h.h[2].modstable}}
+                        td {{player.h.h[3].modstable}}
+                        td {{player.h.h[4].modstable}}
+                        td {{player.h.h[5].modstable}}
+                        td {{player.h.h[6].modstable}}
+                        td {{player.h.h[7].modstable}}
+                        td {{player.h.h[8].modstable}}
+                        td {{player.h.h[9].modstable}}
+                        td {{player.h.h[10].modstable}}
+                        td {{player.h.h[11].modstable}}
+                        td {{player.h.h[12].modstable}}
+                        td {{player.h.h[13].modstable}}
+                        td {{player.h.h[14].modstable}}
+                        td {{player.h.h[15].modstable}}
+                        td {{player.h.h[16].modstable}}
+                        td {{player.h.h[17].modstable}}
+                        td {{player.modStablefordTotal}}
+
+
+            ul.inline.unstyled
+                li
+                    |Use the search box to find a golfer, or
+                li
+                    button.btn.btn-success(ng-click="moreRows()") show more rows

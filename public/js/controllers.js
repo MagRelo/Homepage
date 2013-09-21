@@ -168,3 +168,31 @@ function GridCtrl($scope) {
     //$scope.buildGrid();
     $scope.clearForm();
 }
+
+function leaderboardCtrl($scope, LeaderboardService){
+
+    //Service
+    $scope.setup = [];
+    function setup(){
+        LeaderboardService.leaderboard().then(function(data){
+                $scope.setup = data;
+                $scope.players =  data.players;
+                $scope.courses =  data.courses;
+                $scope.header =  data.header;
+            },function(errorMessage){
+                $scope.errorMessage =  errorMessage;
+            }
+        )}
+
+    //Control logic
+    $scope.setScoringStyle = function(scoringstyle){$scope.scoring = scoringstyle;};
+    $scope.moreRows = function (){$scope.rowLimit += 7;};
+
+    function Init(){
+        setup()
+        $scope.scoring = 'modstable';
+        $scope.rowLimit = 15;
+    }
+
+    Init()
+}

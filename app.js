@@ -5,7 +5,8 @@
 
 var express = require('express'),
     routes = require('./routes'),
-    https = require('https');
+    PGA = require('./routes/PGA'),
+    request = require('request');
 
 var app = module.exports = express();
 
@@ -32,6 +33,11 @@ app.configure('production', function(){
 // Routes
 app.get('/', routes.index);
 app.get('/partials/:name', routes.partials);
+
+// PGA API
+app.get('/api/leaderboard', PGA.leaderboard);
+app.get('/api/setup', PGA.tournamentSetup)
+app.get('/api/scorecard/:playerID', PGA.getScorecard)
 
 // redirect all others to the index (HTML5 history)
 app.get('*', routes.index);
