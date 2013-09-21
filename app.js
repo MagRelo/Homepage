@@ -4,6 +4,7 @@
  */
 
 var express = require('express'),
+    gzippo = require('gzippo'),
     routes = require('./routes'),
     PGA = require('./routes/PGA'),
     request = require('request');
@@ -17,7 +18,8 @@ app.configure(function(){
   app.set('view engine', 'jade');
   app.use(express.bodyParser());
   app.use(express.methodOverride());
-  app.use(express.static(__dirname + '/public'));
+  //app.use(express.static(__dirname + '/public'));
+  app.use(gzippo.staticGzip(__dirname + '/public'));
   app.use(app.router);
 });
 
