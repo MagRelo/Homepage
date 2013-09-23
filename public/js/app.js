@@ -2,9 +2,9 @@
 
 
 // Declare app level module which depends on filters, and services
-angular.module('mattLovan', ['mattLovan.directives', 'mattLovan.services']).
+angular.module('mattLovan', ['mattLovan.directives', 'mattLovan.services', 'mattLovan.filters']).
   config(['$routeProvider', '$locationProvider', function($routeProvider, $locationProvider) {
-    $routeProvider.when('/consulting', {templateUrl: 'partials/Consulting'});
+    $routeProvider.when('/consulting', {templateUrl: 'partials/Consulting2'});
     $routeProvider.when('/blog', {templateUrl: 'partials/Blog'});
     $routeProvider.when('/demos', {templateUrl: 'partials/Demos'});
     $routeProvider.when('/contact', {templateUrl: 'partials/Contact'});

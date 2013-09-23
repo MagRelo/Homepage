@@ -1,19 +1,28 @@
 div.header(ng-controller="navigationCtrl")
-    include 3dLogo
+    div.visible-md.visible-sm.visible-lg
+
+        include 3dLogo
 
     .stripegroup
         .twostripe
         .threestripe
         .fourstripe
 
+    h1.visible-md.visible-sm.visible-lg Matt Lovan
+        small  web development
 
-    div
-        a(href="/")
-            h1 Matt Lovan
+    nav.navbar.navbar-default(role='navigation')
+
+        .navbar-header
+            h1.mobile.visible-xs Matt Lovan
                 small  web development
-        a.headerButton(href="/consulting", ng-class="{active: location.path() == '/consulting'}") consulting
-        a.headerButton(href="/blog", ng-class="{active: location.path() == '/blog'}") blog
-        a.headerButton(href="/demos", ng-class="{active: location.path() == '/demos'}") demos
-        a.headerButton(href="/contact", ng-class="{active: location.path() == '/contact'}") contact
 
-    .clearfix
+        ul.nav.navbar-nav
+            li
+                a.btn.headerButton(href="/consulting", ng-class="{active: location.path() == '/consulting'}") consulting
+            li
+                a.btn.headerButton(href="/blog", ng-class="{active: location.path() == '/blog'}") blog
+            li
+                a.btn.headerButton(href="/demos", ng-class="{active: location.path() == '/demos'}") demos
+            li
+                a.btn.headerButton(href="/contact", ng-class="{active: location.path() == '/contact'}") contact
