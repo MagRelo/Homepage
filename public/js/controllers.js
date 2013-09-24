@@ -16,20 +16,20 @@ function navigationCtrl($scope, $location) {
         if (path == '/consulting') {
             xTransform = -32;
             yTransform = 35;
-            fontSize = 100;
+            fontSize = 80;
         } else if (path == '/blog') {
             xTransform = -25;
             yTransform = 27;
-            fontSize = 145;
-        } else if (path == '/demos') {
-            xTransform = 20;
-            yTransform = -30;
-            fontSize = 100;
-
+            fontSize = 195;
         } else if (path == '/contact') {
             xTransform = 24;
             yTransform = -140;
             fontSize = 66;
+
+        } else {
+            xTransform = 20;
+            yTransform = -30;
+            fontSize = 100;
         }
 
         return {'-webkit-transform': 'rotateX(' + xTransform + 'deg) rotateY(' + yTransform + 'deg) rotateZ(' + zTransform + 'deg)',

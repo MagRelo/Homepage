@@ -846,7 +846,7 @@ function encodeUriQuery(val, pctEncodeSpaces) {
  * Use this directive to auto-bootstrap on application. Only
  * one directive can be used per HTML document. The directive
  * designates the root of the application and is typically placed
- * ot the root of the page.
+ * ot the root of the header.
  *
  * In the example below if the `ngApp` directive would not be placed
  * on the `html` element then the document would not be compiled
@@ -2870,7 +2870,7 @@ function $AnchorScrollProvider() {
     function scroll() {
       var hash = $location.hash(), elm;
 
-      // empty hash, scroll to the top of the page
+      // empty hash, scroll to the top of the header
       if (!hash) $window.scrollTo(0, 0);
 
       // element with given id
@@ -2879,7 +2879,7 @@ function $AnchorScrollProvider() {
       // first anchor with given name :-D
       else if ((elm = getFirstAnchor(document.getElementsByName(hash)))) elm.scrollIntoView();
 
-      // no element and hash == 'top', scroll to the top of the page
+      // no element and hash == 'top', scroll to the top of the header
       else if (hash === 'top') $window.scrollTo(0, 0);
     }
 
@@ -5500,7 +5500,7 @@ function $LocationProvider(){
      </file>
      <file name="index.html">
        <div ng-controller="LogCtrl">
-         <p>Reload this page with open console, enter text and hit the log button...</p>
+         <p>Reload this header with open console, enter text and hit the log button...</p>
          Message:
          <input type="text" ng-model="message"/>
          <button ng-click="$log.log(message)">log</button>
@@ -10212,7 +10212,7 @@ function ngDirective(directive) {
  * attribute is empty.
  *
  * The reasoning for this change is to allow easy creation of action links with `ngClick` directive
- * without changing the location or causing page reloads, e.g.:
+ * without changing the location or causing header reloads, e.g.:
  * <a href="" ng-click="model.$save()">Save</a>
  */
 var htmlAnchorDirective = valueFn({
@@ -10243,7 +10243,7 @@ var htmlAnchorDirective = valueFn({
  *
  * @description
  * Using Angular markup like {{hash}} in an href attribute makes
- * the page open to a wrong URL, if the user clicks that link before
+ * the header open to a wrong URL, if the user clicks that link before
  * angular has a chance to replace the {{hash}} with actual URL, the
  * link will be broken and will most likely return a 404 error.
  * The `ngHref` directive solves this problem.
@@ -10721,7 +10721,7 @@ function FormController(element, attrs) {
  *
  * Since the role of forms in client-side Angular applications is different than in classical
  * roundtrip apps, it is desirable for the browser not to translate the form submission into a full
- * page reload that sends the data to the server. Instead some javascript logic should be triggered
+ * header reload that sends the data to the server. Instead some javascript logic should be triggered
  * to handle the form submission in application specific way.
  *
  * For this reason, Angular prevents the default action (form submission to the server) unless the
@@ -10794,7 +10794,7 @@ var formDirectiveFactory = function(isNgForm) {
               // action is not prevented. see #1238
               //
               // IE 9 is not affected because it doesn't fire a submit event and try to do a full
-              // page reload if the form was destroyed by submission of the form via a click handler
+              // header reload if the form was destroyed by submission of the form via a click handler
               // on a button in the form. Looks like an IE9 specific bug.
               var preventDefaultListener = function(event) {
                 event.preventDefault
@@ -12125,7 +12125,7 @@ var ngValueDirective = function() {
  * Once scenario in which the use of `ngBind` is prefered over `{{ expression }}` binding is when
  * it's desirable to put bindings into template that is momentarily displayed by the browser in its
  * raw state before Angular compiles it. Since `ngBind` is an element attribute, it makes the
- * bindings invisible to the user while the page is loading.
+ * bindings invisible to the user while the header is loading.
  *
  * An alternative solution to this problem would be using the
  * {@link ng.directive:ngCloak ngCloak} directive.
@@ -12808,7 +12808,7 @@ forEach(
  * Enables binding angular expressions to onsubmit events.
  *
  * Additionally it prevents the default action (which for form means sending the request to the
- * server and reloading the current page).
+ * server and reloading the current header).
  *
  * @element form
  * @param {expression} ngSubmit {@link guide/expression Expression} to eval.

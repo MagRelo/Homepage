@@ -35,6 +35,7 @@ app.configure('production', function(){
 // Routes
 app.get('/', routes.index);
 app.get('/partials/:name', routes.partials);
+app.get('/demos/:name', routes.demos);
 
 // PGA API
 app.get('/api/leaderboard', PGA.leaderboard);
