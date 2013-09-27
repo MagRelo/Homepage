@@ -9,7 +9,7 @@
     , "gzippo": "x"
     },
     "engines": {
-        "node": "x",
+        "node": "0.10.17",
         "npm": "x"
     }
 }
