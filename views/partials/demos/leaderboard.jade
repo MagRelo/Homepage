@@ -1,5 +1,13 @@
-div.span12(ng-controller="leaderboardCtrl")
-    div.panel
+div.span12()
+
+    div(ng-show="!setup")
+
+        .wrapperloading
+           .loading_up
+           .loading_down
+
+    div.panel(ng-show="setup")
+
         h2 {{header.name}}
         h3 Leaderboard
             small   Round {{header.currentRound}} of {{header.totalRounds}}:  last updated {{header.date}}

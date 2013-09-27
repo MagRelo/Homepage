@@ -12,19 +12,23 @@ function navigationCtrl($scope, $location) {
         var yTransform = 0;
         var zTransform = 0;
         var fontSize = 100;
+        var opacity = .3;
 
         if (path == '/consulting') {
             xTransform = -32;
             yTransform = 35;
             fontSize = 80;
-        } else if (path == '/blog') {
+            opacity = 0;
+         } else if (path == '/blog') {
             xTransform = -25;
             yTransform = 27;
             fontSize = 195;
+            opacity = .125;
         } else if (path == '/contact') {
             xTransform = 24;
             yTransform = -140;
             fontSize = 66;
+            opacity = .25;
 
         } else {
             xTransform = 20;
@@ -36,7 +40,8 @@ function navigationCtrl($scope, $location) {
             '-moz-transform:': 'rotateX(' + xTransform + 'deg) rotateY(' + yTransform + 'deg) rotateZ(' + zTransform + 'deg)',
             '-ms-transform:': 'rotateX(' + xTransform + 'deg) rotateY(' + yTransform + 'deg) rotateZ(' + zTransform + 'deg)',
             'transform': 'rotateX(' + xTransform + 'deg) rotateY(' + yTransform + 'deg) rotateZ(' + zTransform + 'deg)',
-            'font-size': fontSize +'%'
+            'font-size': fontSize +'%',
+            'opacity': opacity
 
         }
 
@@ -172,7 +177,6 @@ function GridCtrl($scope) {
 function leaderboardCtrl($scope, LeaderboardService){
 
     //Service
-    $scope.setup = [];
     function setup(){
         LeaderboardService.leaderboard().then(function(data){
                 $scope.setup = data;

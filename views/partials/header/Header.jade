@@ -26,11 +26,23 @@ div.header(ng-controller="navigationCtrl")
                 a.btn.headerButton(href="/contact", ng-class="{active: location.path() == '/contact'}") contact
             li
                 a.btn.headerButton.dropdown-toggle demos
+
                 ul.dropdown-menu
                     li
-                        a.btn(href="/leaderboard") PGA leaderboard
+                        strong Interactive Forms
+                        ul.list-unstyled
+                            li
+                                a.btn(href="/grid") Multiply game
+
                     li
-                        a.btn(href="/grid") Multiply game
+                        strong Connect with other services
+                        ul.list-unstyled
+                            li
+                                a.btn(href="/leaderboard") PGA leaderboard
+
+
+
+
 
 
 
