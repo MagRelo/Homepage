@@ -9,7 +9,7 @@ angular.module('mattLovan', ['mattLovan.directives', 'mattLovan.services', 'matt
     $routeProvider.when('/contact', {templateUrl: 'partials/Contact'});
     $routeProvider.when('/grid', {templateUrl: 'demos/Grid', controller: GridCtrl});
     $routeProvider.when('/leaderboard', {templateUrl: 'demos/leaderboard', controller: leaderboardCtrl});
-    $routeProvider.otherwise({redirectTo: '/consulting'});
+    $routeProvider.otherwise({redirectTo: '/blog'});
     $locationProvider.html5Mode(true);
   }]);
 
