@@ -218,6 +218,7 @@ td > button {
     padding: 10px;
     font-size: 24px;
     height: inherit;
+    width: 60px;
 }
 .form-group {
     margin-right: 10px;
@@ -270,7 +271,9 @@ td > button {
 .group4{background-color: #F96852
 }
 
-
+.glyphicon{
+    margin-right: 5px;
+}
 .symbol{
     vertical-align: middle;
     text-align: center;

@@ -109,22 +109,19 @@ function GridCtrl($scope) {
         };
         var gridTransformEnd = gridTransformStart() + Number($scope.factorForm.productInput);
 
-
         //sloppy validation
+        $scope.tooMany = false;
         $scope.wrongAnswer = false;
          if($scope.factorForm.termOneInput * $scope.factorForm.termTwoInput !== $scope.factorForm.productInput ){
             $scope.wrongAnswer = true;
             $scope.factorForm.productInput = '';
             return false;
         }
-
-        $scope.tooMany = false;
         if($scope.factorForm.termOneInput * $scope.factorForm.termTwoInput > $scope.grid.length - gridTransformStart()){
             $scope.tooMany = true;
             $scope.clearForm();
             return false;
         }
-
 
         //Add factor
         $scope.strategy.factors.push(
@@ -143,7 +140,6 @@ function GridCtrl($scope) {
             $scope.grid[j].style = {'top':($scope.grid[j].xPosition - 15) + 'px',
                                     'left':($scope.grid[j].yPosition - 5) + 'px'}
         }
-
 
         //Check completion
         $scope.progress =  (gridTransformStart()/$scope.grid.length) * 100;
