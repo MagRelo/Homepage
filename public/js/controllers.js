@@ -50,115 +50,107 @@ function navigationCtrl($scope, $location) {
 }
 
 function GridCtrl($scope) {
-
-    //terms
-    $scope.rowcount = 12;
-    $scope.columncount = 12;
-
     //grid
-    $scope.gridIndex = 0;
+    $scope.progress = 0;
 
-    //Strategies
-    $scope.factorialString = '';
+    //strategy
+    $scope.strategy = {
+        problemTermOne: 0,
+        problemTermTwo: 0,
+        problemProduct: 0,
+        factors: []
+    };
+
+
 
     $scope.buildGrid = function() {
+
+        //called by ng-style
+        var gridHeightAdj = 30;
+        $scope.gridBoxSize = {'height': ($scope.y * 20 + gridHeightAdj) + 'px' };
+        $scope.gridPanelSize = {'height': ($scope.y * 20 + 1) + 'px', 'width': ($scope.x * 20 + 1) + 'px'};
+
+        //build initial shape
         $scope.grid = [];
-        for (var i = 0; i < $scope.rowcount; i++) {
-            for (var j = 0; j < $scope.columncount; j++) {
+        for (var i = 0; i < $scope.y; i++) {
+            for (var j = 0; j < $scope.x; j++) {
+
+                //grid squares are 20x20px
+                var xPosition = i * 20;
+                var yPosition = j * 20;
+
                 $scope.grid.push({
-                    row: i,
-                    column: j,
+                    xPosition: xPosition,
+                    yPosition: yPosition,
                     active: false,
-                    style: {'top': (i * 20) + 'px', 'left': (j * 20) + 'px'}
+                    group: 0,
+                    style: {'top': xPosition + 'px', 'left': yPosition + 'px'}
                 })
             }
         }
 
-        //clear strategies, gridIndex
-        $scope.strategies = [];
-        $scope.gridIndex = 0;
-        $scope.totalCells = $scope.rowcount * $scope.columncount;
-        $scope.remainingCells = $scope.totalCells;
-
+        //reset
+        $scope.strategy.factors = [];
+        $scope.complete = false;
+        $scope.progress = 0;
         $scope.clearForm();
-        $scope.factorialString = '';
-
-        //called by ng-style
-        $scope.gridBoxSize = {'height': ($scope.rowcount * 20 + 120) + 'px' };
-        $scope.gridPanelSize = {'height': ($scope.rowcount * 20 + 1) + 'px', 'width': ($scope.columncount * 20 +1) + 'px'};
     };
 
     $scope.addFactor = function(){
 
-        //Create Strategy factorial string
-        var runningTotal = 0;
-        var remainingCells = 0;
-        var factorialString = '';
+        //Set color, loop start, loop end
+        var colorGroup = $scope.strategy.factors.length % 5;
+        var gridTransformStart = function(){
+            for(var i = 0; i < $scope.grid.length; i++) {
+                if($scope.grid[i].active == false)
+                    return i
+            }
+            return $scope.grid.length
+        };
+        var gridTransformEnd = gridTransformStart() + Number($scope.factorForm.productInput);
 
-        //loop through factors
-         for(var i = 0; i < $scope.strategies.length; i++){
-            runningTotal += Number($scope.strategies[i].product);
-            factorialString += '(' + $scope.strategies[i].termOne + ' &times; ' + $scope.strategies[i].termTwo + ') + ';
+
+        //sloppy validation
+        $scope.wrongAnswer = false;
+         if($scope.factorForm.termOneInput * $scope.factorForm.termTwoInput !== $scope.factorForm.productInput ){
+            $scope.wrongAnswer = true;
+            $scope.factorForm.productInput = '';
+            return false;
         }
 
-        //Add the last factor and total
-        runningTotal += Number($scope.factorForm.productInput);
-        factorialString += '(' + $scope.factorForm.termOneInput + ' &times; ' + $scope.factorForm.termTwoInput + ') = ' + runningTotal;
-        remainingCells = remainingCells - Number($scope.factorForm.productInput);
+        $scope.tooMany = false;
+        if($scope.factorForm.termOneInput * $scope.factorForm.termTwoInput > $scope.grid.length - gridTransformStart()){
+            $scope.tooMany = true;
+            $scope.clearForm();
+            return false;
+        }
+
 
         //Add factor
-        $scope.strategies.push({
-            termOne: $scope.factorForm.termOneInput,
-            termTwo: $scope.factorForm.termTwoInput,
-            product: $scope.factorForm.productInput,
-            remainingCells: remainingCells,
-            factorialString: factorialString
-        });
+        $scope.strategy.factors.push(
+            {termOne: $scope.factorForm.termOneInput,
+             termTwo: $scope.factorForm.termTwoInput,
+             product: $scope.factorForm.productInput,
+             colorGroup: 'group' + colorGroup,
+             percentage: ($scope.factorForm.productInput/$scope.grid.length) * 100
+            }
+        );
 
-        //Setup cell transform params
-        var factorIndex = $scope.strategies.length;
-        var factorDirection = factorIndex%4;  //mod4 to throw the grid in four different directions
-        var rowTransform;
-        var columnTransform;
-        var backgroundColor;
-        switch (factorDirection){
-            case 0:
-                rowTransform = -10;
-                columnTransform = 40;
-                backgroundColor ='#60825c';
-                break;
-            case 1:
-                rowTransform = -40;
-                columnTransform = -40;
-                backgroundColor ='#dbd78e';
-                break;
-            case 2:
-                rowTransform = -30;
-                columnTransform = 40;
-                backgroundColor ='#43659e';
-                break;
-            case 3:
-                rowTransform = -20;
-                columnTransform = -40;
-                backgroundColor ='#825c61';
-                break;
+        //loop through grid squares and adjust position
+        for(var j = gridTransformStart(); j < gridTransformEnd; j++){
+            $scope.grid[j].active = true;
+            $scope.grid[j].group = 'group' + colorGroup + ' activeCell';
+            $scope.grid[j].style = {'top':($scope.grid[j].xPosition - 15) + 'px',
+                                    'left':($scope.grid[j].yPosition - 5) + 'px'}
         }
 
-        //Set loop start, end
-        var gridTransformStart = $scope.gridIndex;
-        var gridTransformEnd = $scope.gridIndex + Number($scope.factorForm.productInput);
 
-        //Loop through grid squares and adjust position
-        for(var j = gridTransformStart; j < gridTransformEnd; j++){
-            var rowPosition =  ($scope.grid[j].row) * 20;
-            var columnPosition =  ($scope.grid[j].column) * 20;
-            $scope.grid[j].style = {'top': (rowPosition + rowTransform) + 'px', 'left': (columnPosition + columnTransform) + 'px', 'background-color': backgroundColor }
-        }
+        //Check completion
+        $scope.progress =  (gridTransformStart()/$scope.grid.length) * 100;
+        $scope.complete = (gridTransformStart() == $scope.grid.length);
 
-        //clear item
-        $scope.clearForm()
-        $scope.gridIndex = gridTransformEnd;
-        $scope.factorialString = factorialString;
+        //clear form
+        $scope.clearForm();
     };
 
     $scope.clearForm = function (){
@@ -166,12 +158,9 @@ function GridCtrl($scope) {
         $scope.factorForm.termOneInput = 0;
         $scope.factorForm.termTwoInput = 0;
         $scope.factorForm.productInput = 0;
-    }
 
+    };
 
-    //Initialize
-    //$scope.buildGrid();
-    $scope.clearForm();
 }
 
 function leaderboardCtrl($scope, LeaderboardService){
