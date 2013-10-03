@@ -50,8 +50,20 @@ function navigationCtrl($scope, $location) {
 }
 
 function GridCtrl($scope) {
+
+    //term default
+    $scope.x = 14;
+    $scope.y = 9;
+
     //grid
-    $scope.progress = 0;
+    var gridXDimension = 20;
+    var gridYDimension = 20;
+    var gridHeightAdj = 120;
+    var dimBorder = function (dimension){
+        if(dimension > 10) return 'dotted';
+        if(dimension > 5) return 'dashed';
+        return 'solid';
+    };
 
     //strategy
     $scope.strategy = {
@@ -61,30 +73,31 @@ function GridCtrl($scope) {
         factors: []
     };
 
-
-
     $scope.buildGrid = function() {
 
         //called by ng-style
-        var gridHeightAdj = 30;
-        $scope.gridBoxSize = {'height': ($scope.y * 20 + gridHeightAdj) + 'px' };
-        $scope.gridPanelSize = {'height': ($scope.y * 20 + 1) + 'px', 'width': ($scope.x * 20 + 1) + 'px'};
+        $scope.gridBoxSize = {'height': ($scope.y * gridYDimension + gridHeightAdj) + 'px' };
+        $scope.gridPanelSize = {'height': ($scope.y * gridYDimension + 1) + 'px',
+                                'width': ($scope.x * gridXDimension + 1) + 'px'};
+
+        $scope.yDim = { 'top':  Math.round((($scope.y * gridYDimension)/ 2) - 24) + 'px',
+                        'left': Math.round(($scope.x * gridXDimension)/-5) - 24 + 'px',
+                        'border-style': dimBorder($scope.y)};
+
+        $scope.xDim = { 'top':  Math.round(($scope.y * gridYDimension) + 20) + 'px',
+                        'left': Math.round((($scope.x * gridXDimension)/ 2) - 32) + 'px',
+                        'border-style': dimBorder($scope.x)};
 
         //build initial shape
         $scope.grid = [];
         for (var i = 0; i < $scope.y; i++) {
             for (var j = 0; j < $scope.x; j++) {
-
-                //grid squares are 20x20px
-                var xPosition = i * 20;
-                var yPosition = j * 20;
-
                 $scope.grid.push({
-                    xPosition: xPosition,
-                    yPosition: yPosition,
+                    yPosition: i * gridYDimension,
+                    xPosition: j * gridXDimension,
                     active: false,
                     group: 0,
-                    style: {'top': xPosition + 'px', 'left': yPosition + 'px'}
+                    style: {'top': (i * gridYDimension) + 'px', 'left': (j * gridXDimension) + 'px'}
                 })
             }
         }
@@ -137,12 +150,12 @@ function GridCtrl($scope) {
         for(var j = gridTransformStart(); j < gridTransformEnd; j++){
             $scope.grid[j].active = true;
             $scope.grid[j].group = 'group' + colorGroup + ' activeCell';
-            $scope.grid[j].style = {'top':($scope.grid[j].xPosition - 15) + 'px',
-                                    'left':($scope.grid[j].yPosition - 5) + 'px'}
+            $scope.grid[j].style = {'top':  ($scope.grid[j].yPosition - 15) + 'px',
+                                    'left': ($scope.grid[j].xPosition - 5) + 'px'}
         }
 
         //Check completion
-        $scope.progress =  (gridTransformStart()/$scope.grid.length) * 100;
+        $scope.progress = (gridTransformStart()/$scope.grid.length) * 100;
         $scope.complete = (gridTransformStart() == $scope.grid.length);
 
         //clear form
