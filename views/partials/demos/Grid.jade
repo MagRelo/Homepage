@@ -1,7 +1,7 @@
 h2 Multiply game
-    small  break problems to pieces
 
-form(name="termForm", rc-submit="buildGrid()").form-inline
+form(name="termForm", ng-click="buildGrid()").form-inline
+
     .form-group(ng-class=" {'has-error': termForm.columnCount.$invalid} ")
         label.sr-only(for="x") 1st term
         input.form-control.term(name="x", type="number", placeholder="x", ng-model="x", required, min="1", max="20")
@@ -11,7 +11,7 @@ form(name="termForm", rc-submit="buildGrid()").form-inline
         label.sr-only(for="y") 2nd term
         input.form-control.term(name="y", type="number", placeholder="y", ng-model="y", required, min="1", max="20")
     .form-group
-        button.btn.btn-success(type="submit") start!
+        button.btn.btn-success() start!
 
 
 
@@ -20,26 +20,22 @@ form(name="termForm", rc-submit="buildGrid()").form-inline
     .row
         div.col-sm-6
             h3 grid
-
-            div.gridbox(ng-style="gridBoxSize")
-                .gridpanel(ng-style="gridPanelSize")
-                    div.gridDim(ng-style="yDim") {{y}}
-                    div.gridDim(ng-style="xDim") {{x}}
-                    .gridCell(ng-repeat="cell in grid", ng-style="cell.style", ng-class="cell.group")
-
-        div.col-sm-6
-            h3 factors
-
             div.progress.progress-striped(ng-show="grid")
                 div.progress-bar(ng-repeat="factor in strategy.factors", role='progressbar', aria-valuenow='{{factor.percentage}}', aria-valuemin='0', aria-valuemax='100', style='width: {{factor.percentage}}%;', ng-class="factor.colorGroup")
                     div.sr-only progress: {{factor.percentage}}%
 
+            div.gridbox(ng-style="gridBoxSize")
+                .gridpanel(ng-style="gridPanelSize")
+                    .gridCell(ng-repeat="cell in grid", ng-style="cell.style", ng-class="cell.group")
+
+        div.col-sm-6
+            h3 factors
             ol.list-unstyled
                 li.factorBlock(ng-repeat="factor in strategy.factors")
                     span.coin(ng-class="factor.colorGroup")
                     | {{factor.termOne}} &times; {{factor.termTwo}} = {{factor.product}}
 
-            form(name="factorForm", rc-submit="addFactor()", ng-hide="complete").form-inline.text-center
+            form(name="factorForm", ng-hide="complete", novalidate, ng-submit="addFactor()").form-inline.text-center
                 .form-group(ng-class=" {'has-error': factorForm.termOneInput.$invalid} ")
                     label.sr-only(for="termOneInput") first term
                     input.form-control.term(name="termOneInput", type="number", placeholder="0", ng-model="factorForm.termOneInput",required, min="1", max="400")
@@ -54,7 +50,7 @@ form(name="termForm", rc-submit="buildGrid()").form-inline
                     label.sr-only(for="productInput") product
                     input.form-control.term(name="productInput", type="number", placeholder="0", ng-model="factorForm.productInput", required, min="1", max="400")
                 .form-group
-                    button.btn.headerButton(type='submit', ng-disabled="factorForm.$invalid")
+                    button.btn.headerButton(ng-disabled="factorForm.$invalid")
                         .glyphicon.glyphicon-check
 
                 .alert(ng-show="wrongAnswer") Wrong Answer!

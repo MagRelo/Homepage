@@ -11,23 +11,47 @@ angular.module('mattLovan.directives', [])
             });
         }})
 
-    .directive('rcSubmit', function($parse){
+    .directive('grid', function($parse){
 
         return {
-            restrict: 'A',
-            require: 'form',
-            link: function (scope, formElement, attributes, formController) {
+            restrict: "E",
+            replace: true,
+            transclude: false,
+            compile: function (element, attrs) {
 
-                var fn = $parse(attributes.rcSubmit);
+                var modelAccessor = $parse(attrs.ngModel);
 
-                formElement.bind('submit', function (event) {
-                    // if form is not valid cancel it.
-                    if (!formController.$valid) return false;
+                var html = "<input type='text' id='" + attrs.id + "' >" +
+                    "</input>";
 
-                    scope.$apply(function() {
-                        fn(scope, {$event:event});
+                var newElem = $(html);
+                element.replaceWith(newElem);
+
+                // Linker function
+                return function (scope, element, attrs, controller) {
+
+                    var processChange = function () {
+                        var date = new Date(element.datepicker("getDate"));
+
+                        scope.$apply(function (scope) {
+                            // Change bound variable
+                            modelAccessor.assign(scope, date);
+                        });
+                    };
+
+                    element.datepicker({
+                        inline: true,
+                        onClose: processChange,
+                        onSelect: processChange
                     });
-                });
+
+                    scope.$watch(modelAccessor, function (val) {
+                        var date = new Date(val);
+                        element.datepicker("setDate", date);
+                    });
+
+                };
+
             }
         };
 
