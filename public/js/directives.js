@@ -11,48 +11,31 @@ angular.module('mattLovan.directives', [])
             });
         }})
 
-    .directive('grid', function($parse){
+    .directive('spinLogo', function($parse){
 
-        return {
-            restrict: "E",
-            replace: true,
-            transclude: false,
-            compile: function (element, attrs) {
+        // Linker function
+        return function (scope, element, attrs, controller) {
 
-                var modelAccessor = $parse(attrs.ngModel);
+            var processChange = function () {
+                var date = new Date(element.datepicker("getDate"));
 
-                var html = "<input type='text' id='" + attrs.id + "' >" +
-                    "</input>";
+                scope.$apply(function (scope) {
+                    // Change bound variable
+                    modelAccessor.assign(scope, date);
+                });
+            };
 
-                var newElem = $(html);
-                element.replaceWith(newElem);
+            element.datepicker({
+                inline: true,
+                onClose: processChange,
+                onSelect: processChange
+            });
 
-                // Linker function
-                return function (scope, element, attrs, controller) {
+            scope.$watch(modelAccessor, function (val) {
+                var date = new Date(val);
+                element.datepicker("setDate", date);
+            });
 
-                    var processChange = function () {
-                        var date = new Date(element.datepicker("getDate"));
-
-                        scope.$apply(function (scope) {
-                            // Change bound variable
-                            modelAccessor.assign(scope, date);
-                        });
-                    };
-
-                    element.datepicker({
-                        inline: true,
-                        onClose: processChange,
-                        onSelect: processChange
-                    });
-
-                    scope.$watch(modelAccessor, function (val) {
-                        var date = new Date(val);
-                        element.datepicker("setDate", date);
-                    });
-
-                };
-
-            }
         };
 
     });

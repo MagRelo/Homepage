@@ -4,43 +4,49 @@
 function navigationCtrl($scope, $location) {
      //required to high light the active navigational point
     $scope.location = $location;
+    var path = $location.path();
+
+    $scope.class = function(){
+        return [path.replace('/', '')];
+    };
+
 
     $scope.spinLogo = function(){
 
-        var path = $location.path();
         var xTransform = 0;
         var yTransform = 0;
         var zTransform = 0;
-        var fontSize = 100;
+        //var fontSize = 75;
         var opacity = .3;
+        var path = $location.path();
 
         if (path == '/consulting') {
             xTransform = -32;
             yTransform = 35;
-            fontSize = 80;
-            opacity = 0;
-         } else if (path == '/blog') {
-            xTransform = -25;
-            yTransform = 27;
-            fontSize = 195;
+            //fontSize = 80;
+            opacity = .125;
+        } else if (path == '/blog') {
+            xTransform = -10;
+            yTransform = 10;
+            //fontSize = 195;
             opacity = .125;
         } else if (path == '/contact') {
             xTransform = 24;
             yTransform = -140;
-            fontSize = 66;
+            //fontSize = 66;
             opacity = .25;
 
         } else {
             xTransform = 20;
             yTransform = -30;
-            fontSize = 100;
+            //fontSize = 100;
         }
 
         return {'-webkit-transform': 'rotateX(' + xTransform + 'deg) rotateY(' + yTransform + 'deg) rotateZ(' + zTransform + 'deg)',
             '-moz-transform:': 'rotateX(' + xTransform + 'deg) rotateY(' + yTransform + 'deg) rotateZ(' + zTransform + 'deg)',
             '-ms-transform:': 'rotateX(' + xTransform + 'deg) rotateY(' + yTransform + 'deg) rotateZ(' + zTransform + 'deg)',
             'transform': 'rotateX(' + xTransform + 'deg) rotateY(' + yTransform + 'deg) rotateZ(' + zTransform + 'deg)',
-            'font-size': fontSize +'%',
+             //'font-size': fontSize +'%',
             'opacity': opacity
 
         }
