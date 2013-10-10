@@ -28,10 +28,10 @@
     opacity: .2;
 
     -webkit-transition: all 1.4s ease;
-    -moz-transition: all 1.4s ease;
-    -o-transition: all 1.4s ease;
-    -ms-transition: all 1.4s ease;
-    transition: all 1.4s ease;
+    -moz-transition:    all 1.4s ease;
+    -o-transition:      all 1.4s ease;
+    -ms-transition:     all 1.4s ease;
+    transition:         all 1.4s ease;
 }
 
 .shape {

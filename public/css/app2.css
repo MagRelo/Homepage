@@ -445,13 +445,17 @@ td > button {
 
 
 /*Animate*/
-.animate-enter {
-    -webkit-transition: 1s linear all; /* Chrome */
-    transition: .36s linear all;
+.mainView.ng-enter {
     opacity: 0;
+    -webkit-transition-duration: 1s;
+    -webkit-transition-delay: 0.4s;
+    -webkit-transition-timing-function: ease;
+    transition-duration: 1s;
+    transition-delay: 0.4s;
+    transition-timing-function: ease;
 }
 
-.animate-enter.animate-enter-active {
+.mainView.ng-enter.ng-enter-active {
     opacity: 1;
 }
 /*Animate*/
