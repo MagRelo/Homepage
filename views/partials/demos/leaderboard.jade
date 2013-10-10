@@ -113,7 +113,12 @@ div.span12()
                         td {{$eval('player.h.h[15].' + $parent.scoring) }}
                         td {{$eval('player.h.h[16].' + $parent.scoring) }}
                         td {{$eval('player.h.h[17].' + $parent.scoring) }}
-                        td {{player.standardTotal}}
+                        td {{$eval('player.' + $parent.scoring)}}
+
+                    // player.standardTotal
+                    // stablefordTotal
+                    // modStablefordTotal
+                    //tp
 
             ul.inline.unstyled
                 li

@@ -46,7 +46,7 @@ angular.module('mattLovan.services', []).
                             var stablefordTotal = 0;
                             var standardTotal = 0;
 
-                            playerList.push(players[i].ln + ', ' + players[i].fn)
+                            playerList.push(players[i].ln + ', ' + players[i].fn);
 
                             //loop through holes
                             for(var j = 0 ; j < players[i].h.h.length; j++ ){
@@ -89,9 +89,9 @@ angular.module('mattLovan.services', []).
                                 players[i].h.h[j].modstable =  modstable;
                             }
 
-                            players[i].standardTotal =  standardTotal;
-                            players[i].stablefordTotal =  stablefordTotal;
-                            players[i].modStablefordTotal = modStablefordTotal;
+                            players[i].sc =  standardTotal;
+                            players[i].stable =  stablefordTotal;
+                            players[i].modstable = modStablefordTotal;
                         }
 
                         obj  = {
