@@ -197,8 +197,8 @@ function mapCtrl($scope){
     var styleArray = [
         {
             "stylers": [
-                { "lightness": -18 },
-                { "saturation": -8 },
+                { "lightness": -20 },
+                { "saturation": -5 },
                 { "hue": "#00474f" }
             ]
         },{
@@ -215,9 +215,8 @@ function mapCtrl($scope){
         },{
             "featureType": "water",
             "stylers": [
-                { "hue": "#fff007" },
-                { "lightness": 75},
-                { "saturation": -75},
+                { "lightness": -55},
+                { "saturation": -66},
                 { "visibility": "on"}
             ]
         },{
@@ -230,14 +229,22 @@ function mapCtrl($scope){
             "elementType": "geometry",
             "featureType": "road.highway",
             "stylers": [
-                { "lightness": -25 },
-                { "saturation": -35 }
+                { "lightness": -20 },
+                { "saturation": -40 }
             ]
         },{
             "elementType": "label",
             "featureType": "road.local",
             "stylers": [
                 { "visibility": "on" }
+            ]
+        },
+        {
+            "elementType": "label",
+            "featureType": "administrative.locality",
+            "stylers": [
+                { "visibility": "on" },
+
             ]
         },{
         }
