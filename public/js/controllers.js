@@ -168,7 +168,7 @@ function GridCtrl($scope) {
 function leaderboardCtrl($scope, LeaderboardService){
 
     //Service
-    function setup(){
+    var setup = function (){
         LeaderboardService.leaderboard().then(function(data){
                 $scope.setup = data;
                 $scope.players =  data.players;
@@ -183,11 +183,39 @@ function leaderboardCtrl($scope, LeaderboardService){
     $scope.setScoringStyle = function(scoringstyle){$scope.scoring = scoringstyle;};
     $scope.moreRows = function (){$scope.rowLimit += 7;};
 
-    function Init(){
-        setup()
+    var Init = function() {
+        setup();
         $scope.scoring = 'modstable';
         $scope.rowLimit = 15;
     }
 
     Init()
 }
+
+function mapCtrl($scope){
+
+    var styleArray = [
+        {
+            "stylers": [
+                { "lightness": -14 },
+                { "hue": "#00b2ff" }
+            ]
+        },{
+            "featureType": "water",
+            "stylers": [
+                { "hue": "#fff700" }
+            ]
+        },{
+        }
+    ];
+
+    $scope.options = {
+        map: {
+            center: new google.maps.LatLng('43.64296464187758', '-116.46989154815674'),
+            zoom: 10,
+            styles: styleArray,
+            mapTypeControl: false
+        }
+    };
+}
+
