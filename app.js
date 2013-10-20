@@ -7,6 +7,7 @@ var express = require('express'),
     gzippo = require('gzippo'),
     routes = require('./routes'),
     PGA = require('./routes/PGA'),
+    twitter = require('./routes/twitter'),
     request = require('request');
 
 var app = module.exports = express();
@@ -38,12 +39,16 @@ app.get('/demos/:name', routes.demos);
 
 // PGA API
 app.get('/api/leaderboard', PGA.leaderboard);
-app.get('/api/setup', PGA.tournamentSetup)
-app.get('/api/scorecard/:playerID', PGA.getScorecard)
+app.get('/api/setup', PGA.tournamentSetup);
+app.get('/api/scorecard/:playerID', PGA.getScorecard);
+
+// twitter API
+app.get('/api/twitter_mgl', twitter.mglTweets);
+app.get('/api/twitter_foodTruck', twitter.foodTruckTweets);
+app.get('/api/twitter_bsu', twitter.bsuTweets);
 
 // redirect all others to the index (HTML5 history)
 app.get('*', routes.index);
-
 
 // Start server
 var port = process.env.PORT || 3000;

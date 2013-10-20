@@ -299,10 +299,16 @@ td > button {
 
 .map{
     margin-top: 20px;
-    height: 500px;
+    height: 485px;
 }
 
-
+.tweetPic{
+    width: 32px;
+    height: 32px;
+    border: solid 1px white;
+    border-radius: 3px;
+    margin-right: 10px;
+}
 
 
 /*____Loading Spinner*/

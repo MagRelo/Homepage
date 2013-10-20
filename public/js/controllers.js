@@ -177,7 +177,7 @@ function leaderboardCtrl($scope, LeaderboardService){
             },function(errorMessage){
                 $scope.errorMessage =  errorMessage;
             }
-        )}
+        )};
 
     //Control logic
     $scope.setScoringStyle = function(scoringstyle){$scope.scoring = scoringstyle;};
@@ -192,13 +192,13 @@ function leaderboardCtrl($scope, LeaderboardService){
     Init()
 }
 
-function mapCtrl($scope){
+function mapCtrl($scope, $resource, TwitterService){
 
     var styleArray = [
         {
             "stylers": [
-                { "lightness": -20 },
-                { "saturation": -5 },
+                { "lightness": -15 },
+                { "saturation": -20 },
                 { "hue": "#00474f" }
             ]
         },{
@@ -215,8 +215,8 @@ function mapCtrl($scope){
         },{
             "featureType": "water",
             "stylers": [
-                { "lightness": -55},
-                { "saturation": -66},
+                { "lightness": -30},
+                { "saturation": -80},
                 { "visibility": "on"}
             ]
         },{
@@ -229,8 +229,8 @@ function mapCtrl($scope){
             "elementType": "geometry",
             "featureType": "road.highway",
             "stylers": [
-                { "lightness": -20 },
-                { "saturation": -40 }
+                { "lightness": -25 },
+                { "saturation": -10 }
             ]
         },{
             "elementType": "label",
@@ -243,13 +243,47 @@ function mapCtrl($scope){
             "elementType": "label",
             "featureType": "administrative.locality",
             "stylers": [
-                { "visibility": "on" },
+                { "visibility": "on" }
 
             ]
         },{
         }
     ];
 
+     //real tweets
+    $scope.setup = function (){
+
+        TwitterService.twitter_mgl().then(
+
+            function(data){
+                $scope.twitterData = data;
+            },
+
+            function(errorMessage){
+                $scope.errorMessage =  errorMessage;
+            }
+
+        )
+    };
+
+    $scope.getTweetOpts = function(tweet) {
+        return angular.extend(
+            { title: tweet.user.name },
+            $scope.options.tweets
+        );
+    };
+
+    $scope.selectTweet = function(tweet, marker) {
+        $scope.tweet = tweet;
+        if ($scope.prev) {
+            $scope.prev.setOptions($scope.options.tweets);
+        }
+        $scope.prev = marker;
+        marker.setOptions($scope.options.selected);
+    };
+
+
+    //map options setup
     $scope.options = {
         map: {
             center: new google.maps.LatLng('43.62298', '-116.2394'),
@@ -260,14 +294,26 @@ function mapCtrl($scope){
             streetViewControl: false,
             zoomControl: false,
             ControlPosition: "BOTTOM_LEFT"
+        },
+        tweets: {
+            icon: '../fonts/twitterlogo.svg'
+        },
+        selected: {
+            icon: '../fonts/twitterlogo_highlight.svg'
         }
     };
 
+    //display lat/long
     $scope.$watch('center', function(center) {
         if (center) {
-            $scope.centerLat = center.lat();
-            $scope.centerLng = center.lng();
+            $scope.centerLat = center.lat().toFixed(5);
+            $scope.centerLng = center.lng().toFixed(5);
         }
     });
+
+    //get Tweets
+    $scope.setup();
+
+
 }
 

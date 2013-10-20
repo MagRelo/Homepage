@@ -10,6 +10,8 @@ angular.module('mattLovan.services', []).
                 if(!promise){
                     // $http returns a promise, which has a then function, which also returns a promise
                     promise = $http.get('/api/leaderboard').then(function (response) {
+
+
                         // The then function here is an opportunity to modify the response
 
                         var tourSetupFile = response.data;
@@ -111,5 +113,40 @@ angular.module('mattLovan.services', []).
         }
         return LeaderboardService
     })
+
+    .factory('TwitterService', function($http) {
+        var promise;
+
+        var TwitterService = {
+            twitter_mgl: function() {
+
+                // $http returns a promise, which has a then function, which also returns a promise
+                promise = $http.get('/api/twitter_mgl').then(function (response) {
+
+                    // The then function here is an opportunity to modify the response
+                    var obj =  response.data;
+
+                    for(var i = obj.statuses.length - 1; i >= 0 ; i--){
+
+                        if(obj.statuses[i].geo == null){
+
+                            obj.statuses.splice(i, 1)
+
+                        }
+
+                    }
+
+
+                    return obj;
+
+                });
+
+                // Return the promise to the controller
+                return promise;
+            }
+        };
+        return TwitterService
+    })
+
 ;
 

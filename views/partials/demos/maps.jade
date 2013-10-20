@@ -1,14 +1,45 @@
 
-.panel.col-md-8
-  gm-map.map(gm-map-id='\'myMap\'', gm-center="center", gm-map-options="options.map")
+h2 boise tweets
+.row
+  .col-md-4
 
-.col-md-4
-  h2 Boise Food Truck Tweets
-  h4 Coming soon...
-  slider(floor="0", ceiling="30", step="1", precision="1")
+    ul.list-unstyled
+      li.well-sm(ng-repeat="tweet in twitterData.statuses")
+
+        h4
+          span
+            img.tweetPic(ng-src="{{tweet.user.profile_image_url}}")
+          | {{tweet.user.name}}:
+        p.shade {{tweet.text}}
 
 
-  .panel
-    h3 Current Map:
-    p Lat: {{centerLat}}
-    p Lng: {{centerLng}}
+    button.btn.btn-default.btn-sm.pull-right(ng-click="setup()") refresh
+    .clearfix
+
+  .col-md-8
+    .panel
+      gm-map.map(gm-map-id='\'myMap\'', gm-center="center", gm-map-options="options.map")
+        gm-markers(gm-objects='twitterData.statuses', gm-get-lat-lng='{ lat: object.geo.coordinates.0, lng: object.geo.coordinates.1 }', gm-get-marker-options='getTweetOpts(object)', gm-on-click='selectTweet(object, marker)')
+
+
+//
+//.row
+//  .col-md-4
+//      h3 map details
+//        small  data from Google Maps
+//      ul
+//        li center latitude: {{centerLat}}
+//        li center longitude : {{centerLng}}
+//        li zoom level: {{zoom}}
+//
+//  .col-md-4
+//      h3 page visitors
+//        small  data from Google Analytics
+//      ul
+//        li coming soon...
+//
+//  .col-md-4
+//    h3 tweet counts
+//      small  data from Twitter
+//    ul
+//      li coming soon...
