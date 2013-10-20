@@ -197,14 +197,28 @@ function mapCtrl($scope){
     var styleArray = [
         {
             "stylers": [
-                { "lightness": -11 },
-                { hue: "#00474f" }
+                { "lightness": -18 },
+                { "saturation": -8 },
+                { "hue": "#00474f" }
+            ]
+        },{
+            "elementType": "label",
+            "stylers": [
+                {"visibility": "off"}
+            ]
+        },
+        {
+            "featureType": "landscape",
+            "stylers": [
+                {"visibility": "on"}
             ]
         },{
             "featureType": "water",
             "stylers": [
-                { "lightness": -35 },
-                { "saturation": -70 }
+                { "hue": "#fff007" },
+                { "lightness": 75},
+                { "saturation": -75},
+                { "visibility": "on"}
             ]
         },{
             "elementType": "geometry",
@@ -213,29 +227,17 @@ function mapCtrl($scope){
                 { "visibility": "simplified" }
             ]
         },{
-            "elementType": "label",
-            "featureType": "road.arterial",
-            "stylers": [
-                {"visibility": "off"}
-            ]
-        },{
             "elementType": "geometry",
             "featureType": "road.highway",
             "stylers": [
-                { "lightness": -20 },
+                { "lightness": -25 },
                 { "saturation": -35 }
             ]
         },{
             "elementType": "label",
-            "featureType": "administrative.neighborhood",
+            "featureType": "road.local",
             "stylers": [
-                { "visibility": "off" }
-            ]
-        },{
-            "elementType": "label",
-            "featureType": "poi",
-            "stylers": [
-                { "visibility": "off" }
+                { "visibility": "on" }
             ]
         },{
         }
@@ -243,7 +245,7 @@ function mapCtrl($scope){
 
     $scope.options = {
         map: {
-            center: new google.maps.LatLng('43.64', '-116.39'),
+            center: new google.maps.LatLng('43.62298', '-116.2394'),
             zoom: 11,
             styles: styleArray,
             mapTypeControl: false,
@@ -253,5 +255,12 @@ function mapCtrl($scope){
             ControlPosition: "BOTTOM_LEFT"
         }
     };
+
+    $scope.$watch('center', function(center) {
+        if (center) {
+            $scope.centerLat = center.lat();
+            $scope.centerLng = center.lng();
+        }
+    });
 }
 
