@@ -197,13 +197,45 @@ function mapCtrl($scope){
     var styleArray = [
         {
             "stylers": [
-                { "lightness": -14 },
-                { "hue": "#00b2ff" }
+                { "lightness": -11 },
+                { hue: "#00474f" }
             ]
         },{
             "featureType": "water",
             "stylers": [
-                { "hue": "#fff700" }
+                { "lightness": -35 },
+                { "saturation": -70 }
+            ]
+        },{
+            "elementType": "geometry",
+            "featureType": "road",
+            "stylers": [
+                { "visibility": "simplified" }
+            ]
+        },{
+            "elementType": "label",
+            "featureType": "road.arterial",
+            "stylers": [
+                {"visibility": "off"}
+            ]
+        },{
+            "elementType": "geometry",
+            "featureType": "road.highway",
+            "stylers": [
+                { "lightness": -20 },
+                { "saturation": -35 }
+            ]
+        },{
+            "elementType": "label",
+            "featureType": "administrative.neighborhood",
+            "stylers": [
+                { "visibility": "off" }
+            ]
+        },{
+            "elementType": "label",
+            "featureType": "poi",
+            "stylers": [
+                { "visibility": "off" }
             ]
         },{
         }
@@ -211,10 +243,14 @@ function mapCtrl($scope){
 
     $scope.options = {
         map: {
-            center: new google.maps.LatLng('43.64296464187758', '-116.46989154815674'),
-            zoom: 10,
+            center: new google.maps.LatLng('43.64', '-116.39'),
+            zoom: 11,
             styles: styleArray,
-            mapTypeControl: false
+            mapTypeControl: false,
+            panControl: false,
+            streetViewControl: false,
+            zoomControl: false,
+            ControlPosition: "BOTTOM_LEFT"
         }
     };
 }
