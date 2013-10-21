@@ -43,9 +43,7 @@ app.get('/api/setup', PGA.tournamentSetup);
 app.get('/api/scorecard/:playerID', PGA.getScorecard);
 
 // twitter API
-app.get('/api/twitter_boise', twitter.boiseTweets);
-app.get('/api/twitter_foodTruck', twitter.foodTruckTweets);
-app.get('/api/twitter_bsu', twitter.bsuTweets);
+app.get('/api/twitter/:searchType', twitter.searchType);
 
 // redirect all others to the index (HTML5 history)
 app.get('*', routes.index);

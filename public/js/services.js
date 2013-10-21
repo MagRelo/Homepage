@@ -1,9 +1,9 @@
 'use strict';
 
 /* Services */
-angular.module('mattLovan.services', []).
+angular.module('mattLovan.services', [])
 
-    factory('LeaderboardService', function($http) {
+    .factory('LeaderboardService', function($http) {
         var promise;
         var LeaderboardService = {
             leaderboard: function() {
@@ -116,54 +116,20 @@ angular.module('mattLovan.services', []).
 
     .factory('TwitterService', function($http) {
         var promise;
-
-        var TwitterService = {
-
-            twitter_boise: function() {
-
-                // $http returns a promise, which has a then function, which also returns a promise
-                promise = $http.get('/api/twitter_boise').then(function (response) {
-
-                    // The then function here is an opportunity to modify the response
-                    return  response.data;
-
-                });
-
-                // Return the promise to the controller
-                return promise;
-            },
-
-            twitter_foodTruck: function() {
-
-                // $http returns a promise, which has a then function, which also returns a promise
-                promise = $http.get('/api/twitter_foodTruck').then(function (response) {
-
-                    // The then function here is an opportunity to modify the response
-                    return  response.data;
-
-                });
-
-                // Return the promise to the controller
-                return promise;
-            },
-
-            twitter_bsu: function() {
-
-                // $http returns a promise, which has a then function, which also returns a promise
-                promise = $http.get('/api/twitter_bsu').then(function (response) {
-
-                    // The then function here is an opportunity to modify the response
-                    return  response.data;
-
-                });
-
-                // Return the promise to the controller
-                return promise;
+        var baseURL = '/api/twitter/';
+        return {
+           searchTweets: function (type) {
+            // $http returns a promise, which has a then function, which also returns a promise
+            promise = $http.get(baseURL + type).then(function (response) {
+                // The then function here is an opportunity to modify the response
+                return  response.data;
+            });
+            // Return the promise to the controller
+            return promise;
             }
-
         };
-        return TwitterService
-    })
+
+     })
 
 ;
 
