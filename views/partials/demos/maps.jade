@@ -1,25 +1,33 @@
 
 h2 boise tweets
+  button.btn.btn-default.btn-sm.pull-right(ng-click="setup()") refresh
+  .clearfix
+
 .row
-  .col-md-4
-
-    ul.list-unstyled
-      li.well-sm(ng-repeat="tweet in twitterData.statuses")
-
-        h4
-          span
-            img.tweetPic(ng-src="{{tweet.user.profile_image_url}}")
-          | {{tweet.user.name}}:
-        p.shade {{tweet.text}}
-
-
-    button.btn.btn-default.btn-sm.pull-right(ng-click="setup()") refresh
-    .clearfix
-
   .col-md-8
     .panel
       gm-map.map(gm-map-id='\'myMap\'', gm-center="center", gm-map-options="options.map")
         gm-markers(gm-objects='twitterData.statuses', gm-get-lat-lng='{ lat: object.geo.coordinates.0, lng: object.geo.coordinates.1 }', gm-get-marker-options='getTweetOpts(object)', gm-on-click='selectTweet(object, marker)')
+
+  .col-md-4(ng-repeat="tweet in twitterData.statuses")
+    .panel.tweetWell
+      h3
+        span
+          img.tweetPic(ng-src="{{tweet.user.profile_image_url}}")
+        | {{tweet.user.name}}
+
+        span.pull-right.tweetInfo
+          .glyphicon.glyphicon-info-sign(ng-click="show = !show")
+
+      p(ng-show="show")
+        small  {{tweet.user.description}}
+
+      p.shade(ng-hide="show") {{tweet.text}}
+
+
+
+
+
 
 
 //

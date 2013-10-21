@@ -11,16 +11,16 @@ var oauth = new OAuth.OAuth(
     'HMAC-SHA1'
 );
 
+
 //Matt Lovan tweets
 exports.mglTweets = function(req, res) {
 
     oauth.get(
-        'https://api.twitter.com/1.1/search/tweets.json?q=near%3A"Boise%2C%20ID"%20within%3A4mi&result_type=popular',
-        '826364246-Bfs5UNCXEwcN38iROaqV3O3OQoThAbExHVzI4gKM',  //access token(?)
-        'dkHxaCZhpb93kjVf6rNSIKNd7Q9tQxTW2lZD1oz4', //access token secret(?)
+        'https://api.twitter.com/1.1/search/tweets.json?q=&geocode=43.62298,-116.2394,6km&result_type=recent',
+        '826364246-Bfs5UNCXEwcN38iROaqV3O3OQoThAbExHVzI4gKM',  //access token
+        'dkHxaCZhpb93kjVf6rNSIKNd7Q9tQxTW2lZD1oz4', //access token secret
         function (e, data){
             if (e) console.error(e);
-
             console.log(require('util').inspect(data));
 
             res.send(data);

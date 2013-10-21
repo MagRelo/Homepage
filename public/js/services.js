@@ -124,20 +124,7 @@ angular.module('mattLovan.services', []).
                 promise = $http.get('/api/twitter_mgl').then(function (response) {
 
                     // The then function here is an opportunity to modify the response
-                    var obj =  response.data;
-
-                    for(var i = obj.statuses.length - 1; i >= 0 ; i--){
-
-                        if(obj.statuses[i].geo == null){
-
-                            obj.statuses.splice(i, 1)
-
-                        }
-
-                    }
-
-
-                    return obj;
+                    return  response.data;
 
                 });
 
