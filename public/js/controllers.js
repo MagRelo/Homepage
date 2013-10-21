@@ -250,29 +250,50 @@ function mapCtrl($scope, $resource, TwitterService){
         }
     ];
 
-     //real tweets
-    $scope.setup = function (){
-
-        TwitterService.twitter_mgl().then(
-
+     //boiseTweets
+    $scope.boiseTweets = function (){
+        TwitterService.twitter_boise().then(
             function(data){
                 $scope.twitterData = data;
             },
-
             function(errorMessage){
                 $scope.errorMessage =  errorMessage;
             }
+        )
+    };
 
+    //foodTruck
+    $scope.foodTruckTweets = function (){
+        TwitterService.twitter_foodTruck().then(
+            function(data){
+                $scope.twitterData = data;
+            },
+            function(errorMessage){
+                $scope.errorMessage =  errorMessage;
+            }
+        )
+    };
+
+    //bsu
+    $scope.bsuTweets = function (){
+        TwitterService.twitter_bsu().then(
+            function(data){
+                $scope.twitterData = data;
+            },
+            function(errorMessage){
+                $scope.errorMessage =  errorMessage;
+            }
         )
     };
 
     $scope.getTweetOpts = function(tweet) {
+
         return angular.extend(
             { title: tweet.user.name },
             $scope.options.tweets
         );
-    };
 
+    };
     $scope.selectTweet = function(tweet, marker) {
         $scope.tweet = tweet;
         if ($scope.prev) {
@@ -281,7 +302,6 @@ function mapCtrl($scope, $resource, TwitterService){
         $scope.prev = marker;
         marker.setOptions($scope.options.selected);
     };
-
 
     //map options setup
     $scope.options = {
@@ -296,10 +316,10 @@ function mapCtrl($scope, $resource, TwitterService){
             ControlPosition: "BOTTOM_LEFT"
         },
         tweets: {
-            icon: '../fonts/twitterlogo.svg'
+            icon: '../fonts/twitter_dark.png'
         },
         selected: {
-            icon: '../fonts/twitterlogo_highlight.svg'
+            icon: '../fonts/twitter.png'
         }
     };
 
@@ -312,7 +332,7 @@ function mapCtrl($scope, $resource, TwitterService){
     });
 
     //get Tweets
-    $scope.setup();
+    $scope.boiseTweets();
 
 
 }

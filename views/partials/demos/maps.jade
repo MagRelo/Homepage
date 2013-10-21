@@ -1,21 +1,38 @@
 
 h2 boise tweets (in progress)
   small  within 6KM of 43.62298° N 116.2394° W
-  button.btn.btn-default.btn-sm.pull-right(ng-click="setup()") refresh
-  .clearfix
+
+.btn-group
+  button.btn.btn-primary.btn-sm(ng-click="boiseTweets()") recent
+  button.btn.btn-primary.btn-sm(ng-click="bsuTweets()") bsu
+  button.btn.btn-primary.btn-sm(ng-click="sportsTweets()") sports
+  button.btn.btn-primary.btn-sm(ng-click="newsTweets()") news
+  button.btn.btn-primary.btn-sm(ng-click="foodTruckTweets()") food trucks
+.clearfix
 
 .row
   .col-md-8
     .panel
+
+      div.tweetWindow(gm-info-window='infoWindow')
+        a(href="{{tweet.user.url}}", target="_blank")
+          img.tweetPic(ng-src="{{tweet.user.profile_image_url}}")
+        span.tweetTitle {{tweet.user.name}}
+
+        p.well-sm(ng-bind="tweet.text")
+        .clearfix
+
+
       gm-map.map(gm-map-id='\'myMap\'', gm-center="center", gm-map-options="options.map")
-        gm-markers(gm-objects='twitterData.statuses', gm-get-lat-lng='{ lat: object.geo.coordinates.0, lng: object.geo.coordinates.1 }', gm-get-marker-options='getTweetOpts(object)', gm-on-click='selectTweet(object, marker)')
+        gm-markers(gm-objects='twitterData.statuses', gm-get-lat-lng='{ lat: object.geo.coordinates.0, lng: object.geo.coordinates.1 }', gm-get-marker-options='getTweetOpts(object)', gm-on-click="tweet = object; infoWindow.open(marker.getMap(), marker);")
+
 
   .col-md-4(class="animate-repeat", ng-repeat="tweet in twitterData.statuses")
     .panel.tweetWell
       h3
-        span
+        a(href="{{tweet.user.url}}", target="_blank")
           img.tweetPic(ng-src="{{tweet.user.profile_image_url}}")
-        | {{tweet.user.name}}
+        span.tweetTitle {{tweet.user.name}}
 
         span.pull-right.tweetInfo
           .glyphicon.glyphicon-info-sign(ng-click="show = !show")
@@ -23,7 +40,7 @@ h2 boise tweets (in progress)
       p(ng-show="show")
         small  {{tweet.user.description}}
 
-      p.shade(ng-hide="show") {{tweet.text}}
+      p.shade.pull-up(ng-hide="show", ng-bind="tweet.text")
 
 
 

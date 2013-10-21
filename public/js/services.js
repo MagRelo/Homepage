@@ -118,10 +118,39 @@ angular.module('mattLovan.services', []).
         var promise;
 
         var TwitterService = {
-            twitter_mgl: function() {
+
+            twitter_boise: function() {
 
                 // $http returns a promise, which has a then function, which also returns a promise
-                promise = $http.get('/api/twitter_mgl').then(function (response) {
+                promise = $http.get('/api/twitter_boise').then(function (response) {
+
+                    // The then function here is an opportunity to modify the response
+                    return  response.data;
+
+                });
+
+                // Return the promise to the controller
+                return promise;
+            },
+
+            twitter_foodTruck: function() {
+
+                // $http returns a promise, which has a then function, which also returns a promise
+                promise = $http.get('/api/twitter_foodTruck').then(function (response) {
+
+                    // The then function here is an opportunity to modify the response
+                    return  response.data;
+
+                });
+
+                // Return the promise to the controller
+                return promise;
+            },
+
+            twitter_bsu: function() {
+
+                // $http returns a promise, which has a then function, which also returns a promise
+                promise = $http.get('/api/twitter_bsu').then(function (response) {
 
                     // The then function here is an opportunity to modify the response
                     return  response.data;
@@ -131,6 +160,7 @@ angular.module('mattLovan.services', []).
                 // Return the promise to the controller
                 return promise;
             }
+
         };
         return TwitterService
     })

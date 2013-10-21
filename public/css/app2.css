@@ -300,27 +300,39 @@ td > button {
 
 .map{
     margin-top: 20px;
-    height: 448px;
+    height: 462px;
 }
 
 .tweetPic{
-    width: 40px;
-    height: 40px;
-    border-top: solid 1px white;
-    border-right: solid 1px white;
-    border-left: solid 1px white;
-    border-radius: 4px 4px 0 0;
-    margin-right: 15px;
+    width: 44px;
+    height: 44px;
+    border-radius: 5px 5px 0 0;
+    margin-left: -1px;
+}
+
+.tweetTitle{
+    margin-left: 15px;
 }
 
 .tweetWell{
-    height:150px;
+    height:155px;
     overflow: hidden;
+}
+
+.pull-up{
+    margin-top: -9px;
 }
 
 .tweetInfo{
     font-size: 70%;
 }
+
+.tweetWindow{
+    max-width: 320px;
+    color: #008C9E;
+}
+
+
 
 /*____Loading Spinner*/
 .wrapperloading {

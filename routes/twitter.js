@@ -14,7 +14,7 @@ var oauth = new OAuth.OAuth(
 
 
 //Matt Lovan tweets
-exports.mglTweets = function(req, res) {
+exports.boiseTweets = function(req, res) {
 
     oauth.get(
         'https://api.twitter.com/1.1/search/tweets.json?q=&geocode=43.62298,-116.2394,6km&result_type=recent',
@@ -31,18 +31,38 @@ exports.mglTweets = function(req, res) {
 
 //food truck tweets
 exports.foodTruckTweets = function(req, res) {
-    request('http://www.pgatour.com/data/r/current/leaderboard.json', function(error, response, body) {
-        console.log('request leaderboard.json')
-        res.send(body);
-    });
+
+    //q=from%3Avittletruck%20OR%20from%3APoBoisBoise%20OR%20from%3ASLGridiron%20OR%20from%3ATheShackBoise%20OR%20from%3ABoiseFoodTruck
+    oauth.get(
+        'https://api.twitter.com/1.1/search/tweets.json?q=from%3Avittletruck%20OR%20from%3APoBoisBoise%20OR%20from%3ASLGridiron%20OR%20from%3ATheShackBoise%20OR%20from%3ABoiseFoodTruck',
+        '826364246-Bfs5UNCXEwcN38iROaqV3O3OQoThAbExHVzI4gKM',  //access token
+        'dkHxaCZhpb93kjVf6rNSIKNd7Q9tQxTW2lZD1oz4', //access token secret
+        function (e, data){
+            if (e) console.error(e);
+            console.log(require('util').inspect(data));
+
+            res.send(data);
+
+        });
+
 };
 
 //#bsu tweets
 exports.bsuTweets = function(req, res) {
-    request('http://www.pgatour.com/data/r/current/leaderboard.json', function(error, response, body) {
-        console.log('request leaderboard.json')
-        res.send(body);
-    });
+
+    //q=%23bsu&geocode=43.62298,-116.2394,6km
+    oauth.get(
+        'https://api.twitter.com/1.1/search/tweets.json?q=%23bsu&geocode=43.62298,-116.2394,6km',
+        '826364246-Bfs5UNCXEwcN38iROaqV3O3OQoThAbExHVzI4gKM',  //access token
+        'dkHxaCZhpb93kjVf6rNSIKNd7Q9tQxTW2lZD1oz4', //access token secret
+        function (e, data){
+            if (e) console.error(e);
+            console.log(require('util').inspect(data));
+
+            res.send(data);
+
+        });
+
 };
 
 //music tweets

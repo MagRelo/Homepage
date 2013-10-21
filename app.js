@@ -43,7 +43,7 @@ app.get('/api/setup', PGA.tournamentSetup);
 app.get('/api/scorecard/:playerID', PGA.getScorecard);
 
 // twitter API
-app.get('/api/twitter_mgl', twitter.mglTweets);
+app.get('/api/twitter_boise', twitter.boiseTweets);
 app.get('/api/twitter_foodTruck', twitter.foodTruckTweets);
 app.get('/api/twitter_bsu', twitter.bsuTweets);
 
