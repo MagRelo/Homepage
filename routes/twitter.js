@@ -16,7 +16,7 @@ var oauth = new OAuth.OAuth(
 exports.mglTweets = function(req, res) {
 
     oauth.get(
-        'https://api.twitter.com/1.1/search/tweets.json?q=&geocode=43.62298,-116.2394,6km&result_type=recent',
+        'https://api.twitter.com/1.1/search/tweets.json?q=&geocode=43.62298,-116.2394,6km&result_type=popular',
         '826364246-Bfs5UNCXEwcN38iROaqV3O3OQoThAbExHVzI4gKM',  //access token
         'dkHxaCZhpb93kjVf6rNSIKNd7Q9tQxTW2lZD1oz4', //access token secret
         function (e, data){

@@ -1,5 +1,6 @@
 
-h2 boise tweets
+h2 boise tweets (in progress)
+  small  within 6KM of 43.62298° N 116.2394° W
   button.btn.btn-default.btn-sm.pull-right(ng-click="setup()") refresh
   .clearfix
 
@@ -9,7 +10,7 @@ h2 boise tweets
       gm-map.map(gm-map-id='\'myMap\'', gm-center="center", gm-map-options="options.map")
         gm-markers(gm-objects='twitterData.statuses', gm-get-lat-lng='{ lat: object.geo.coordinates.0, lng: object.geo.coordinates.1 }', gm-get-marker-options='getTweetOpts(object)', gm-on-click='selectTweet(object, marker)')
 
-  .col-md-4(ng-repeat="tweet in twitterData.statuses")
+  .col-md-4(class="animate-repeat", ng-repeat="tweet in twitterData.statuses")
     .panel.tweetWell
       h3
         span

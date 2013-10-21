@@ -300,7 +300,7 @@ td > button {
 
 .map{
     margin-top: 20px;
-    height: 447px;
+    height: 448px;
 }
 
 .tweetPic{
@@ -309,7 +309,7 @@ td > button {
     border-top: solid 1px white;
     border-right: solid 1px white;
     border-left: solid 1px white;
-    border-radius: 3px 3px 0 0;
+    border-radius: 4px 4px 0 0;
     margin-right: 15px;
 }
 
@@ -479,4 +479,48 @@ td > button {
 .mainView.ng-enter.ng-enter-active {
     opacity: 1;
 }
+
+/*//_____________*/
+
+.animate-repeat.ng-enter,
+.animate-repeat.ng-leave,
+.animate-repeat.ng-move {
+    -webkit-transition:all linear 0.5s;
+    -moz-transition:all linear 0.5s;
+    -o-transition:all linear 0.5s;
+    transition:all linear 0.5s;
+}
+
+.animate-repeat.ng-enter {
+    line-height:0;
+    opacity:0;
+    padding-top:0;
+    padding-bottom:0;
+}
+.animate-repeat.ng-enter.ng-enter-active {
+    line-height:20px;
+    opacity:1;
+    padding:10px;
+}
+
+.animate-repeat.ng-leave {
+    opacity:1;
+    line-height:20px;
+    padding:10px;
+}
+.animate-repeat.ng-leave.ng-leave-active {
+    opacity:0;
+    line-height:0;
+    padding-top:0;
+    padding-bottom:0;
+}
+
+.animate-repeat.ng-move { }
+.animate-repeat.ng-move.ng-move-active { }
+
+
+
+
+
+
 /*Animate*/
