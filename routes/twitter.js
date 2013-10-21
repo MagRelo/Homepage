@@ -1,6 +1,7 @@
 var request = require('request');
 
-var OAuth = require('OAuth');
+var OAuth = require('oauth');
+
 var oauth = new OAuth.OAuth(
     'https://api.twitter.com/oauth/request_token',
     'https://api.twitter.com/oauth/access_token',

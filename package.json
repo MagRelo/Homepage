@@ -7,7 +7,7 @@
     , "jade": ">= 0.0.1"
     , "request": "x"
     , "gzippo": "x"
-    , "OAuth": "x"
+    , "oauth": "x"
     },
     "engines": {
         "node": "0.10.17",
