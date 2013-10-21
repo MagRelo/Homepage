@@ -1,5 +1,5 @@
 
-h2 tweets (in progress)
+h2 twitter map (under construction)
   small  within 15mi of {{centerLat}}°N {{centerLng * -1}}°W
 
 
@@ -19,10 +19,12 @@ ul.list-inline
     .panel
 
       div.tweetWindow(gm-info-window='infoWindow')
-        a(href="{{tweet.user.url}}", target="_blank")
+        a(ng-href="http://www.twitter.com/{{tweet.user.screen_name}}", target="_blank")
           img.tweetPic(ng-src="{{tweet.user.profile_image_url}}")
         span.tweetTitle {{tweet.user.name}}
 
+        small.pull-right(ng-bind="tweet.created_at | truncate:16")
+        .clearfix
         p.well-sm(ng-bind="tweet.text")
         .clearfix
 
@@ -33,8 +35,9 @@ ul.list-inline
 
   .col-md-4(ng-repeat="tweet in twitterData.statuses")
     .panel.tweetWell
+
       h3
-        a(href="{{tweet.user.url}}", target="_blank")
+        a(ng-href="http://www.twitter.com/{{tweet.user.screen_name}}", target="_blank")
           img.tweetPic(ng-src="{{tweet.user.profile_image_url}}")
         span.tweetTitle {{tweet.user.name}}
 
@@ -44,7 +47,11 @@ ul.list-inline
       p(ng-show="show")
         small  {{tweet.user.description}}
 
-      p.shade.pull-up(ng-hide="show", ng-bind="tweet.text")
+      div.pull-up(ng-hide="show")
+        small.pull-right(ng-bind="tweet.created_at | truncate:16")
+        .clearfix
+        p.tweetText.shade(ng-bind="tweet.text")
+
 
 
 

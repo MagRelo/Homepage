@@ -319,8 +319,14 @@ td > button {
     overflow: hidden;
 }
 
+.tweetText{
+    max-height: 4.1em;
+    overflow: hidden;
+}
+
+
 .pull-up{
-    margin-top: -9px;
+    margin-top: -16px;
 }
 
 .tweetInfo{

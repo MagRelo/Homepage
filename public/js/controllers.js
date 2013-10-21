@@ -305,7 +305,7 @@ function mapCtrl($scope, $resource, TwitterService){
     });
 
     //get Tweets, set active button
-    $scope.getTweets('boise');
+    $scope.getTweets('all');
 
 
 }
