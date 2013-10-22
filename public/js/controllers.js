@@ -263,7 +263,7 @@ function mapCtrl($scope, $resource, TwitterService){
     //map options setup
     $scope.options = {
         map: {
-            center: new google.maps.LatLng('43.63093', '-116.39287'),
+            center: new google.maps.LatLng('43.60110', '-116.44094'),
             zoom: 10,
             styles: mapStyleArray,
             mapTypeControl: false,
