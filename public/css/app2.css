@@ -298,46 +298,64 @@ td > button {
     padding-right: 5px;
 }
 
+
+/*Google Map styles*/
 .map{
     margin-top: 20px;
-    height: 462px;
+    height: 499px;
+}
+
+.tweetWindow{
+    width: 250px;
+    color: #333435;
+    padding: 8px 0 7px 5px;
+}
+/*Google Map styles*/
+
+/*Twitter Styles*/
+.tweetPanel{
+    height:167px;
+    overflow: hidden;
+    padding: 14px;
+    background: rgba(31, 56, 63, 0.8);
+    border: solid 1px #00B4CC;
+    border-radius: 0;
+    margin-bottom: 20px;
+}
+
+.tweetHeader{
+    margin-bottom: 5px;
+    border-bottom: solid 1px white;
 }
 
 .tweetPic{
     width: 44px;
     height: 44px;
-    border-radius: 5px 5px 0 0;
-    margin-left: -1px;
+    border: solid 1px #222222;
 }
 
-.tweetTitle{
+.tweetUser{
     margin-left: 15px;
+    font-size: 19px;
+    display: inline-block;
 }
 
-.tweetWell{
-    height:155px;
-    overflow: hidden;
+.tweetDate{
+    padding: 1px 3px;
+    margin: 2px 0 0 0;
 }
 
 .tweetText{
-    max-height: 4.1em;
-    overflow: hidden;
+    font-family: "Source Sans Pro", serif;
+    font-size: 15px;
 }
 
+.tweetBack{
 
-.pull-up{
-    margin-top: -16px;
+    padding: 7px 7px 1px 7px;
+    background: #0095ab;
+    color: white;
 }
-
-.tweetInfo{
-    font-size: 70%;
-}
-
-.tweetWindow{
-    max-width: 320px;
-    color: #008C9E;
-}
-
 
 
 /*____Loading Spinner*/

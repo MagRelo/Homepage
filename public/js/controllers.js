@@ -215,8 +215,8 @@ function mapCtrl($scope, $resource, TwitterService){
         },{
             "featureType": "water",
             "stylers": [
-                { "lightness": -30},
-                { "saturation": -80},
+                { "lightness": -55},
+                { "saturation": -75},
                 { "visibility": "on"}
             ]
         },{
@@ -263,14 +263,14 @@ function mapCtrl($scope, $resource, TwitterService){
     //map options setup
     $scope.options = {
         map: {
-            center: new google.maps.LatLng('43.60110', '-116.44094'),
-            zoom: 10,
+            center: new google.maps.LatLng('40.48231', '-98.90607'),
+            zoom: 4,
             styles: mapStyleArray,
+            rotateControl: true,
             mapTypeControl: false,
             panControl: false,
             streetViewControl: false,
-            zoomControl: false,
-            ControlPosition: "BOTTOM_LEFT"
+            zoomControl: false
         },
         tweets: {
             icon: '../fonts/twitter_dark.png'
@@ -279,6 +279,7 @@ function mapCtrl($scope, $resource, TwitterService){
             icon: '../fonts/twitter.png'
         }
     };
+
     $scope.getTweetOpts = function(tweet) {
 
         return angular.extend(

@@ -1,6 +1,6 @@
 
 h2 twitter map (under construction)
-  small  within 15mi of {{centerLat}}°N {{centerLng * -1}}°W
+  small  within 2000mi of {{centerLat}}°N {{centerLng * -1}}°W
 
 
 ul.list-inline
@@ -8,51 +8,63 @@ ul.list-inline
     h4 Search:
   li
     .btn-group
-      button.btn.btn-primary.btn-sm(ng-click="getTweets('all')", ng-class="{active: tweetSearchType == 'all'}") recent local
-      button.btn.btn-primary.btn-sm(ng-click="getTweets('boise')", ng-class="{active: tweetSearchType == 'boise'}") boise
-      button.btn.btn-primary.btn-sm(ng-click="getTweets('news')", ng-class="{active: tweetSearchType == 'news'}") boise news
-      button.btn.btn-primary.btn-sm(ng-click="getTweets('foodTruck')", ng-class="{active: tweetSearchType == 'foodTruck'}") boise food trucks
+      //button.btn.btn-primary.btn-sm(ng-click="getTweets('boise')", ng-class="{active: tweetSearchType == 'boise'}") boise
+      button.btn.btn-primary.btn-sm(ng-click="getTweets('all')", ng-class="{active: tweetSearchType == 'all'}") all
+      //button.btn.btn-primary.btn-sm(ng-click="getTweets('news')", ng-class="{active: tweetSearchType == 'news'}") #news
+      //button.btn.btn-primary.btn-sm(ng-click="getTweets('foodTruck')", ng-class="{active: tweetSearchType == 'foodTruck'}") boise food trucks
       button.btn.btn-primary.btn-sm(ng-click="getTweets('blessed')", ng-class="{active: tweetSearchType == 'blessed'}") #blessed
 
-h4 * Most tweets to do not have location data - click search buttons to refresh *
 
 .row
-  .col-md-8
+  .col-md-9
     .panel
 
-      div.tweetWindow(gm-info-window='infoWindow')
+      .tweetWindow(gm-info-window='infoWindow')
+
         a(ng-href="http://www.twitter.com/{{tweet.user.screen_name}}", target="_blank")
           img.tweetPic(ng-src="{{tweet.user.profile_image_url}}")
-        span.tweetTitle {{tweet.user.name}}
 
-        small.pull-right(ng-bind="tweet.created_at | truncate:16")
-        .clearfix
-        p.well-sm(ng-bind="tweet.text")
+        p.tweetUser {{tweet.user.name | truncate: 20}}
         .clearfix
 
+        //time
+        p.tweetDate {{tweet.created_at | truncate:16}}
+
+        .tweetBack
+            p.tweetText {{tweet.text}}
 
       gm-map.map(gm-map-id='\'myMap\'', gm-center="center", gm-map-options="options.map")
         gm-markers(gm-objects='twitterData.statuses', gm-get-lat-lng='{ lat: object.geo.coordinates.0, lng: object.geo.coordinates.1 }', gm-get-marker-options='getTweetOpts(object)', gm-on-click="tweet = object; infoWindow.open(marker.getMap(), marker); selectTweet(object, marker);")
 
 
-  .col-md-4(ng-repeat="tweet in twitterData.statuses")
-    .panel.tweetWell
+  .col-md-3(ng-repeat="tweet in twitterData.statuses")
 
-      h3
-        a(ng-href="http://www.twitter.com/{{tweet.user.screen_name}}", target="_blank")
+    .tweetPanel
+
+      .tweetHeader
+
+        //pic
+        a(ng-click="show = !show", href="")
           img.tweetPic(ng-src="{{tweet.user.profile_image_url}}")
-        span.tweetTitle {{tweet.user.name}}
 
-        span.pull-right.tweetInfo
-          .glyphicon.glyphicon-info-sign(ng-click="show = !show")
+        //name
+        span.tweetUser
+          | {{tweet.user.name | truncate: 16}}
 
-      p(ng-show="show")
-        small  {{tweet.user.description}}
+      //user info
+      div(ng-show="show")
+        small  {{tweet.user.description | truncate:80}}
+        div
+          a.pull-right(ng-href="http://www.twitter.com/{{tweet.user.screen_name}}", target="_blank")
+            small profile >
 
-      div.pull-up(ng-hide="show")
-        small.pull-right(ng-bind="tweet.created_at | truncate:16")
+
+      div(ng-hide="show")
+        //time
+        small.shade {{tweet.created_at | truncate:16}}:
         .clearfix
-        p.tweetText.shade(ng-bind="tweet.text")
+        //tweet
+        p {{tweet.text}}
 
 
 
