@@ -1,22 +1,37 @@
 
-h2 twitter map (under construction)
-  small  within 2000mi of {{centerLat}}°N {{centerLng * -1}}°W
-
-
-ul.list-inline
-  li
-    h4 Search:
-  li
-    .btn-group
-      //button.btn.btn-primary.btn-sm(ng-click="getTweets('boise')", ng-class="{active: tweetSearchType == 'boise'}") boise
-      button.btn.btn-primary.btn-sm(ng-click="getTweets('all')", ng-class="{active: tweetSearchType == 'all'}") all
-      //button.btn.btn-primary.btn-sm(ng-click="getTweets('news')", ng-class="{active: tweetSearchType == 'news'}") #news
-      //button.btn.btn-primary.btn-sm(ng-click="getTweets('foodTruck')", ng-class="{active: tweetSearchType == 'foodTruck'}") boise food trucks
-      button.btn.btn-primary.btn-sm(ng-click="getTweets('blessed')", ng-class="{active: tweetSearchType == 'blessed'}") #blessed
-
+h2 twitter map
+  small  coordinates: {{centerLat}}°N - {{centerLng * -1}}°W
 
 .row
-  .col-md-9
+
+  .col-md-5
+    ul.list-inline
+      li
+        h4 popular searches:
+      li
+        .btn-group
+          button.btn.btn-primary(ng-click="searchTwitter('grilledcheese')", ng-class="{active: tweetSearchType == 'grilledcheese'}") grilled cheese
+          button.btn.btn-primary(ng-click="searchTwitter('bowling')", ng-class="{active: tweetSearchType == 'bowling'}") bowling
+          button.btn.btn-primary(ng-click="searchTwitter('gulfcoast')", ng-class="{active: tweetSearchType == 'gulfcoast'}") gulf coast
+
+
+  .col-md-3
+    .input-group.pull-right
+      label.input-group-addon.label-primary #
+
+
+      input.form-control(type='text', placeholder="search term", ng-model="tagSearchInput")
+      span.input-group-btn
+        button.btn.btn-primary(type='button', ng-click="searchTwitter(tagSearchInput)") search
+
+    .clearfix
+
+  .col-md-4
+    h4(ng-bind="tweetSearchResults + ' results for: \"#' + tweetSearchType + '\"' ", ng-show="twitterData && !twitterData.error")
+    h4(ng-bind="twitterData.error", ng-show="twitterData.error")
+
+.row
+  .col-md-8
     .panel
 
       .tweetWindow(gm-info-window='infoWindow')
@@ -24,73 +39,49 @@ ul.list-inline
         a(ng-href="http://www.twitter.com/{{tweet.user.screen_name}}", target="_blank")
           img.tweetPic(ng-src="{{tweet.user.profile_image_url}}")
 
-        p.tweetUser {{tweet.user.name | truncate: 20}}
+        p.tweetUser {{tweet.user.name}}
         .clearfix
 
         //time
-        p.tweetDate {{tweet.created_at | truncate:16}}
+        p(ng-bind="tweet.time").tweetDate
 
         .tweetBack
-            p.tweetText {{tweet.text}}
+            p.tweetText {{tweet.text | tweetText}}
 
       gm-map.map(gm-map-id='\'myMap\'', gm-center="center", gm-map-options="options.map")
-        gm-markers(gm-objects='twitterData.statuses', gm-get-lat-lng='{ lat: object.geo.coordinates.0, lng: object.geo.coordinates.1 }', gm-get-marker-options='getTweetOpts(object)', gm-on-click="tweet = object; infoWindow.open(marker.getMap(), marker); selectTweet(object, marker);")
+        gm-markers(gm-objects='twitterData', gm-get-lat-lng='{ lat: object.geo.coordinates.0, lng: object.geo.coordinates.1 }', gm-get-marker-options='getMarkerOptions(object)', gm-on-click="tweet = object; infoWindow.open(marker.getMap(), marker); selectMarker(object, marker);")
 
 
-  .col-md-3(ng-repeat="tweet in twitterData.statuses")
+  .col-md-4
 
     .tweetPanel
 
-      .tweetHeader
+      .wrapperloading(ng-hide="twitterData")
+        .loading_up
+        .loading_down
 
-        //pic
-        a(ng-click="show = !show", href="")
-          img.tweetPic(ng-src="{{tweet.user.profile_image_url}}")
+      .tweetBox(ng-show="!twitterData.error", ng-repeat="tweet in twitterData")
 
-        //name
-        span.tweetUser
-          | {{tweet.user.name | truncate: 16}}
+        .tweetHeader
+          //pic
+          a(ng-click="show = !show", href="")
+            img.tweetPic(ng-src="{{tweet.user.profile_image_url}}")
+          //name
+          span.tweetUser
+            | {{tweet.user.name}}
 
-      //user info
-      div(ng-show="show")
-        small  {{tweet.user.description | truncate:80}}
-        div
-          a.pull-right(ng-href="http://www.twitter.com/{{tweet.user.screen_name}}", target="_blank")
-            small profile >
+        //user info
+        div(ng-show="show")
+          small  {{tweet.user.description}}
+          div
+            a.pull-right(ng-href="http://www.twitter.com/{{tweet.user.screen_name}}", target="_blank")
+              mdall profile >
 
-
-      div(ng-hide="show")
-        //time
-        small.shade {{tweet.created_at | truncate:16}}:
-        .clearfix
         //tweet
-        p {{tweet.text}}
+        div(ng-hide="show")
+          //time
+          mdall.shade {{tweet.time}}
+          .clearfix
+          //tweet
+          p {{tweet.text | tweetText}}
 
-
-
-
-
-
-
-
-//
-//.row
-//  .col-md-4
-//      h3 map details
-//        small  data from Google Maps
-//      ul
-//        li center latitude: {{centerLat}}
-//        li center longitude : {{centerLng}}
-//        li zoom level: {{zoom}}
-//
-//  .col-md-4
-//      h3 page visitors
-//        small  data from Google Analytics
-//      ul
-//        li coming soon...
-//
-//  .col-md-4
-//    h3 tweet counts
-//      small  data from Twitter
-//    ul
-//      li coming soon...

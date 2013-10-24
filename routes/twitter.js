@@ -46,20 +46,29 @@ var createTweetList = function (type, responseData){
 
 
 //general search
-exports.searchType = function(req, res) {
+exports.searchTerm = function(req, res) {
 
-    var searchType = req.params.searchType;
-    console.log("Requested searchType: " + searchType);
+    var searchTerm = req.params.searchTerm;
+    console.log("Requested searchTerm: " + searchTerm);
 
-    //Do 10 searches
+    //add hash tag
+    if (searchTerm.length > 0){
+        searchTerm = '%23' + searchTerm;
+    }
+
+    //build query
+    var twitterQuery = baseURL + 'q=' + searchTerm + '&geocode=43.62298,-116.2394,2000mi&count=100';
+    console.log("Query string: " + twitterQuery);
+
+    //hit twitter API
     oauth.get(
-        buildTwitterQueryString(searchType),
+        twitterQuery,
         accessToken,  //accessToken
         accessTokenSecret, //access token secret
         function (e, data){
             if (e) console.error(e);
-            console.log('Returned searchType: ' + searchType + '.'); //console.log(require('util').inspect(data));
 
-            res.send(data);
+            console.log('Returned searchTerm: ' + searchTerm + '.'); //console.log(require('util').inspect(data));
+             res.send(data);
         });
 };

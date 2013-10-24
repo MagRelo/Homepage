@@ -194,6 +194,7 @@ function leaderboardCtrl($scope, LeaderboardService){
 
 function mapCtrl($scope, $resource, TwitterService){
 
+    //map options setup
     var mapStyleArray = [
         {
             "stylers": [
@@ -249,21 +250,9 @@ function mapCtrl($scope, $resource, TwitterService){
         },{
         }
     ];
-
-    $scope.getTweets = function(type){
-        TwitterService.searchTweets(type).then(
-            function(data){
-                $scope.twitterData = data;
-                $scope.tweetSearchType = type;
-            },
-            function(errorMessage){$scope.errorMessage =  errorMessage;}
-        )
-    };
-
-    //map options setup
     $scope.options = {
         map: {
-            center: new google.maps.LatLng('40.48231', '-98.90607'),
+            center: new google.maps.LatLng('39.56355', '-97.14826'),
             zoom: 4,
             styles: mapStyleArray,
             rotateControl: true,
@@ -273,14 +262,14 @@ function mapCtrl($scope, $resource, TwitterService){
             zoomControl: false
         },
         tweets: {
-            icon: '../fonts/twitter_dark.png'
+            icon: '../fonts/twitter_mapMarker_yellow.svg'
         },
         selected: {
-            icon: '../fonts/twitter.png'
+            icon: '../fonts/twitter_mapMarker_lightblue.svg'
         }
     };
 
-    $scope.getTweetOpts = function(tweet) {
+    $scope.getMarkerOptions = function(tweet) {
 
         return angular.extend(
             { title: tweet.user.name },
@@ -288,7 +277,7 @@ function mapCtrl($scope, $resource, TwitterService){
         );
 
     };
-    $scope.selectTweet = function(tweet, marker) {
+    $scope.selectMarker = function(tweet, marker) {
         $scope.tweet = tweet;
         if ($scope.prev) {
             $scope.prev.setOptions($scope.options.tweets);
@@ -305,9 +294,73 @@ function mapCtrl($scope, $resource, TwitterService){
         }
     });
 
+    $scope.searchTwitter = function(searchTerm){
+
+        //clear data
+        $scope.twitterData = null;
+        $scope.tweetSearchType = '';
+        $scope.tagSearchInput = '';
+        $scope.noSearchResults = false;
+
+        //strip search term
+        searchTerm = searchTerm.replace(/[^a-zA-Z ]/g, "");
+
+        //call twitter api
+        TwitterService.searchTweets(searchTerm).then(
+
+            function(data){
+
+                //process data
+                var processedData = [];
+                angular.forEach(data.statuses, function(tweet){
+
+                    var am = function(hour){
+                        if(hour < 12){return "AM"}
+                        return "PM"
+                    };
+
+                    var adjustHour = function(hour){
+                        if(hour < 12){return hour}
+                        return hour - 12;
+                    };
+
+                    var whole = tweet.created_at;
+
+                    var day =  tweet.created_at.substring(0,3);
+                    var month = tweet.created_at.substring(4,7);
+                    var date = tweet.created_at.substring(8,10);
+                    var hour = tweet.created_at.substring(11,13);
+                    var minute = tweet.created_at.substring(14,16);
+                    var time = day + ', ' + month + ' ' + date + ' - ' + adjustHour(hour) + ':' + minute + ' ' + am(hour);
+
+                    this.push({
+                        text: tweet.text,
+                        time: time,
+                        user: {
+                            name: tweet.user.name,
+                            screen_name:  tweet.user.screen_name,
+                            profile_image_url: tweet.user.profile_image_url,
+                            description: tweet.user.description
+                        },
+                        geo: tweet.geo
+
+                    });
+
+                }, processedData);
+
+                if(processedData.length < 1){
+                    processedData = {error: 'no results found'}
+                }
+
+                $scope.twitterData = processedData;
+                $scope.tweetSearchType = searchTerm;
+                $scope.tweetSearchResults = $scope.twitterData.length;
+            },
+            function(errorMessage){$scope.errorMessage =  errorMessage;}
+        )
+    };
+
     //get Tweets, set active button
-    $scope.getTweets('all');
-
-
+    $scope.searchTwitter('grilledcheese');
 }
 

@@ -43,7 +43,7 @@ app.get('/api/setup', PGA.tournamentSetup);
 app.get('/api/scorecard/:playerID', PGA.getScorecard);
 
 // twitter API
-app.get('/api/twitter/:searchType', twitter.searchType);
+app.get('/api/twitter/:searchTerm', twitter.searchTerm);
 
 // redirect all others to the index (HTML5 history)
 app.get('*', routes.index);

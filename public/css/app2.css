@@ -314,8 +314,8 @@ td > button {
 
 /*Twitter Styles*/
 .tweetPanel{
-    height:167px;
-    overflow: hidden;
+    height:541px;
+    overflow-x: hidden;
     padding: 14px;
     background: rgba(31, 56, 63, 0.8);
     border: solid 1px #00B4CC;
@@ -326,6 +326,10 @@ td > button {
 .tweetHeader{
     margin-bottom: 5px;
     border-bottom: solid 1px white;
+}
+
+.tweetBox{
+    margin-bottom: 36px;
 }
 
 .tweetPic{
@@ -347,7 +351,7 @@ td > button {
 
 .tweetText{
     font-family: "Source Sans Pro", serif;
-    font-size: 15px;
+    font-size: 16px;
 }
 
 .tweetBack{

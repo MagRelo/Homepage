@@ -21,5 +21,18 @@ angular.module('mattLovan.filters', [])
             }
          };
     })
+
+    .filter('tweetText', function () {
+
+        return function (text) {
+
+            //remove weird characters
+            return String(text).replace('&amp;', '&');
+
+            //extract url(s)
+
+        };
+
+    })
 ;
 
