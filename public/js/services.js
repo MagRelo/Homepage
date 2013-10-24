@@ -177,8 +177,9 @@ angular.module('mattLovan.services', [])
             },
 
             examples: {
-                regions: ['westcoast', 'idaho', 'mississippi','gulfcoast', 'eastcoast'],
-                food: ['burgers', 'grilledcheese', 'oysters','IPA', 'carrotcake']
+                regions: ['westcoast','gulfcoast', 'eastcoast'],
+                food: ['grilledcheese', 'oysters','IPA', 'waffles'],
+                people: ['wizard', 'jerk', 'boss']
             }
 
         };

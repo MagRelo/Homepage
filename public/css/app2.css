@@ -299,6 +299,10 @@ td > button {
 }
 
 
+.twitterTitleIcon{
+    margin-right: 7px;
+}
+
 /*Google Map styles*/
 .map{
     margin-top: 20px;
@@ -363,18 +367,30 @@ td > button {
 
 
 /*____Loading Spinner*/
+
 .loadingtext{
+
+    width: 400px;
     position: absolute;
-    height: 200px;
-    width:  300px;
-    top: 43%;
+    top: 40%;
     margin-top: -100px;
     left: 50%;
-    margin-left: -150px;
+    margin-left: -200px;
+
     text-align: center;
     color: #00B4CC;
     font-family: monospace;
+    font-size: 19px;
+    background: rgba(31, 56, 63, 0.85);
+    padding: 10px;
 
+}
+
+.loadingPanel{
+    z-index: 1000;
+    position: absolute;
+    height: 90%;
+    width: 90%;
 }
 
 .wrapperloading {

@@ -1,24 +1,39 @@
 
-h2 twitter map
-  small  coordinates: {{centerLat}}°N - {{centerLng * -1}}°W
+
+.row
+  .col-md-1
+  .col-md-10
+    h2
+      img.twitterTitleIcon(ng-src="fonts/twitter_mapMarker_yellow.svg")
+      | search twitter
+      small  coordinates: {{centerLat}}°N - {{centerLng * -1}}°W
+
+
 
 
 //example buttons & search form
 .row
   .col-md-1
+  .col-md-1
     h4 regions:
-  .col-md-7
+  .col-md-4
       .btn-group.btn-group-justified
         a.btn.btn-primary(ng-repeat="search in searches.regions", ng-click="searchTwitter(search)", ng-class="{active: tweetSearchType == search}") {{search}}
 
+  .col-md-1
+    h4 people:
+  .col-md-4
+    .btn-group.btn-group-justified
+      a.btn.btn-primary(ng-repeat="search in searches.people", ng-click="searchTwitter(search)", ng-class="{active: tweetSearchType == search}") {{search}}
+
 .row
   .col-md-1
+  .col-md-1
     h4 food:
-  .col-md-7
+  .col-md-5
     .btn-group.btn-group-justified
       a.btn.btn-primary(ng-repeat="search in searches.food", ng-click="searchTwitter(search)", ng-class="{active: tweetSearchType == search}") {{search}}
 
-.row
   .col-md-1
     h4 search:
   .col-md-3
@@ -31,8 +46,19 @@ h2 twitter map
 
 //info window, map & tweet list
 .row
-  .col-md-8
+
+
+
+  .col-md-1
+  .col-md-10
     .panel
+
+      .loadingPanel(ng-hide="twitterData")
+
+        .loadingtext(ng-bind="'searching for #' + tweetSearchType+ '...  '")
+        .wrapperloading
+          .loading_up
+          .loading_down
 
       .tweetWindow(gm-info-window='infoWindow')
 
@@ -48,41 +74,7 @@ h2 twitter map
         .tweetBack
             p.tweetText {{tweet.text | tweetText}}
 
-      gm-map.map(gm-map-id='\'myMap\'', gm-center="center", gm-map-options="options.map")
-        gm-markers(gm-objects='twitterData', gm-get-lat-lng='{ lat: object.geo.coordinates.0, lng: object.geo.coordinates.1 }', gm-get-marker-options='getMarkerOptions(object)', gm-on-click="tweet = object; infoWindow.open(marker.getMap(), marker); selectMarker(object, marker);")
-
-
-  .col-md-4
-    .tweetPanel
-      h4(ng-bind="twitterData.error", ng-show="twitterData.error")
-
-      div(ng-hide="twitterData")
-        .loadingtext(ng-bind="'searching for #' + tweetSearchType+ '...  '")
-        .wrapperloading
-          .loading_up
-          .loading_down
-
-      .tweetBox(ng-show="!twitterData.error", ng-repeat="tweet in twitterData")
-        .tweetHeader
-          //pic
-          a(ng-click="show = !show", href="")
-            img.tweetPic(ng-src="{{tweet.user.profile_image_url}}")
-          //name
-          span.tweetUser
-            | {{tweet.user.name}}
-
-        //user info
-        div(ng-show="show")
-          small  {{tweet.user.description}}
-          div
-            a.pull-right(ng-href="http://www.twitter.com/{{tweet.user.screen_name}}", target="_blank")
-              mdall profile >
-
-        //tweet
-        div(ng-hide="show")
-          //time
-          mdall.shade {{tweet.time}}
-          .clearfix
-          //tweet
-          p {{tweet.text | tweetText}}
+      div
+        gm-map.map(gm-map-id='\'myMap\'', gm-center="center", gm-map-options="options.map")
+          gm-markers(gm-objects='twitterData', gm-get-lat-lng='{ lat: object.geo.coordinates.0, lng: object.geo.coordinates.1 }', gm-get-marker-options='getMarkerOptions(object)', gm-on-click="tweet = object; infoWindow.open(marker.getMap(), marker); selectMarker(object, marker);")
 
