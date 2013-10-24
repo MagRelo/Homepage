@@ -1,5 +1,7 @@
 'use strict';
 
+
+
 /* Services */
 angular.module('mattLovan.services', [])
 
@@ -118,15 +120,67 @@ angular.module('mattLovan.services', [])
         var promise;
         var baseURL = '/api/twitter/';
         return {
+
            searchTweets: function (type) {
-            // $http returns a promise, which has a then function, which also returns a promise
+             // $http returns a promise, which has a then function, which also returns a promise
             promise = $http.get(baseURL + type).then(function (response) {
                 // The then function here is an opportunity to modify the response
-                return  response.data;
+                var am = function(hour){
+                    if(hour < 12){return "AM"}
+                    return "PM"
+                };
+                var adjustHour = function(hour){
+                    if(hour < 12){return hour.substring(1,2)}
+                    return hour - 12;
+                };
+                var time = function(createdString){
+                    return  createdString.substring(0,3) +
+                        ', ' + createdString.substring(4,7) +
+                        ' ' + createdString.substring(8,10) +
+                        ' - ' + adjustHour(createdString.substring(11,13)) +
+                        ':' + createdString.substring(14,16) +
+                        ' ' + am(createdString.substring(11,13))
+                };
+                var processTwitterResponse = function(responseData){
+
+                    var processedData = [];
+
+                    angular.forEach(responseData.statuses, function(tweet){
+
+                        this.push({
+                            text: tweet.text,
+                            time: time(tweet.created_at),
+                            user: {
+                                name: tweet.user.name,
+                                screen_name:  tweet.user.screen_name,
+                                profile_image_url: tweet.user.profile_image_url,
+                                description: tweet.user.description
+                            },
+                            geo: tweet.geo
+
+                        });
+
+                    }, processedData);
+
+                    if(processedData.length < 1){
+                        processedData = {error: 'no results found'}
+                    }
+
+                    return processedData;
+
+                };
+
+                return  processTwitterResponse(response.data);
             });
             // Return the promise to the controller
             return promise;
+            },
+
+            examples: {
+                regions: ['westcoast', 'idaho', 'mississippi','gulfcoast', 'eastcoast'],
+                food: ['burgers', 'grilledcheese', 'oysters','IPA', 'carrotcake']
             }
+
         };
 
      })

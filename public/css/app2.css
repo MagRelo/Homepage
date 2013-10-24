@@ -363,6 +363,20 @@ td > button {
 
 
 /*____Loading Spinner*/
+.loadingtext{
+    position: absolute;
+    height: 200px;
+    width:  300px;
+    top: 43%;
+    margin-top: -100px;
+    left: 50%;
+    margin-left: -150px;
+    text-align: center;
+    color: #00B4CC;
+    font-family: monospace;
+
+}
+
 .wrapperloading {
     position: absolute;
     height: 200px;

@@ -269,6 +269,15 @@ function mapCtrl($scope, $resource, TwitterService){
         }
     };
 
+    //display lat/long
+    $scope.$watch('center', function(center) {
+        if (center) {
+            $scope.centerLat = center.lat().toFixed(5);
+            $scope.centerLng = center.lng().toFixed(5);
+        }
+    });
+
+    //map marker stuff
     $scope.getMarkerOptions = function(tweet) {
 
         return angular.extend(
@@ -286,80 +295,33 @@ function mapCtrl($scope, $resource, TwitterService){
         marker.setOptions($scope.options.selected);
     };
 
-    //display lat/long
-    $scope.$watch('center', function(center) {
-        if (center) {
-            $scope.centerLat = center.lat().toFixed(5);
-            $scope.centerLng = center.lng().toFixed(5);
-        }
-    });
+    //set example searches
+    $scope.searches = TwitterService.examples;
 
+    //twitter search function
     $scope.searchTwitter = function(searchTerm){
+
+        //strip search term, set input box
+        searchTerm = searchTerm.replace(/[^a-zA-Z ]/g, "");
+        $scope.tagSearchInput = searchTerm;
+        $scope.tweetSearchType = searchTerm;
 
         //clear data
         $scope.twitterData = null;
-        $scope.tweetSearchType = searchTerm;
-        $scope.tagSearchInput = searchTerm;
         $scope.noSearchResults = false;
-
-        //strip search term
-        searchTerm = searchTerm.replace(/[^a-zA-Z ]/g, "");
 
         //call twitter api
         TwitterService.searchTweets(searchTerm).then(
-
             function(data){
+                $scope.twitterData = data;
+                $scope.tweetSearchResults = $scope.twitterData.length;
 
-                //process data
-                var processedData = [];
-                angular.forEach(data.statuses, function(tweet){
-
-                    var am = function(hour){
-                        if(hour < 12){return "AM"}
-                        return "PM"
-                    };
-
-                    var adjustHour = function(hour){
-                        if(hour < 12){return hour}
-                        return hour - 12;
-                    };
-
-                    var whole = tweet.created_at;
-
-                    var day =  tweet.created_at.substring(0,3);
-                    var month = tweet.created_at.substring(4,7);
-                    var date = tweet.created_at.substring(8,10);
-                    var hour = tweet.created_at.substring(11,13);
-                    var minute = tweet.created_at.substring(14,16);
-                    var time = day + ', ' + month + ' ' + date + ' - ' + adjustHour(hour) + ':' + minute + ' ' + am(hour);
-
-                    this.push({
-                        text: tweet.text,
-                        time: time,
-                        user: {
-                            name: tweet.user.name,
-                            screen_name:  tweet.user.screen_name,
-                            profile_image_url: tweet.user.profile_image_url,
-                            description: tweet.user.description
-                        },
-                        geo: tweet.geo
-
-                    });
-
-                }, processedData);
-
-                if(processedData.length < 1){
-                    processedData = {error: 'no results found'}
-                }
-
-                $scope.twitterData = processedData;
-                 $scope.tweetSearchResults = $scope.twitterData.length;
             },
             function(errorMessage){$scope.errorMessage =  errorMessage;}
         )
     };
 
-    //get Tweets, set active button
-    $scope.searchTwitter('grilledcheese');
+    //load first example with controller
+    $scope.searchTwitter($scope.searches.regions[0]);
 }
 

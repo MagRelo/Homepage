@@ -2,33 +2,34 @@
 h2 twitter map
   small  coordinates: {{centerLat}}°N - {{centerLng * -1}}°W
 
+
+//example buttons & search form
 .row
-
-  .col-md-2
-    h4 example searches:
-
-  .col-md-6
-      .btn-group.btn-group-justified
-        a.btn.btn-primary(ng-click="searchTwitter('grilledcheese')", ng-class="{active: tweetSearchType == 'grilledcheese'}") #grilledcheese
-        a.btn.btn-primary(ng-click="searchTwitter('wizard')", ng-class="{active: tweetSearchType == 'wizard'}") #wizard
-        a.btn.btn-primary(ng-click="searchTwitter('bowling')", ng-class="{active: tweetSearchType == 'bowling'}") #bowling
-        a.btn.btn-primary(ng-click="searchTwitter('thanks')", ng-class="{active: tweetSearchType == 'thanks'}") #thanks
-
   .col-md-1
+    h4 regions:
+  .col-md-7
+      .btn-group.btn-group-justified
+        a.btn.btn-primary(ng-repeat="search in searches.regions", ng-click="searchTwitter(search)", ng-class="{active: tweetSearchType == search}") {{search}}
 
+.row
+  .col-md-1
+    h4 food:
+  .col-md-7
+    .btn-group.btn-group-justified
+      a.btn.btn-primary(ng-repeat="search in searches.food", ng-click="searchTwitter(search)", ng-class="{active: tweetSearchType == search}") {{search}}
+
+.row
+  .col-md-1
     h4 search:
-
   .col-md-3
-    .input-group.pull-right
+    .input-group
       label.input-group-addon.label-primary #
-
-
       input.form-control(type='text', placeholder="search term", ng-model="tagSearchInput")
       span.input-group-btn
         button.btn.btn-primary(type='button', ng-click="searchTwitter(tagSearchInput)") search
 
 
-
+//info window, map & tweet list
 .row
   .col-md-8
     .panel
@@ -52,13 +53,14 @@ h2 twitter map
 
 
   .col-md-4
-
     .tweetPanel
       h4(ng-bind="twitterData.error", ng-show="twitterData.error")
 
-      .wrapperloading(ng-hide="twitterData")
-        .loading_up
-        .loading_down
+      div(ng-hide="twitterData")
+        .loadingtext(ng-bind="'searching for #' + tweetSearchType+ '...  '")
+        .wrapperloading
+          .loading_up
+          .loading_down
 
       .tweetBox(ng-show="!twitterData.error", ng-repeat="tweet in twitterData")
         .tweetHeader
