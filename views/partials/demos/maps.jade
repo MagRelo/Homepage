@@ -4,16 +4,19 @@ h2 twitter map
 
 .row
 
-  .col-md-5
-    ul.list-inline
-      li
-        h4 popular searches:
-      li
-        .btn-group
-          button.btn.btn-primary(ng-click="searchTwitter('grilledcheese')", ng-class="{active: tweetSearchType == 'grilledcheese'}") grilled cheese
-          button.btn.btn-primary(ng-click="searchTwitter('bowling')", ng-class="{active: tweetSearchType == 'bowling'}") bowling
-          button.btn.btn-primary(ng-click="searchTwitter('gulfcoast')", ng-class="{active: tweetSearchType == 'gulfcoast'}") gulf coast
+  .col-md-2
+    h4 example searches:
 
+  .col-md-6
+      .btn-group.btn-group-justified
+        a.btn.btn-primary(ng-click="searchTwitter('grilledcheese')", ng-class="{active: tweetSearchType == 'grilledcheese'}") #grilledcheese
+        a.btn.btn-primary(ng-click="searchTwitter('wizard')", ng-class="{active: tweetSearchType == 'wizard'}") #wizard
+        a.btn.btn-primary(ng-click="searchTwitter('bowling')", ng-class="{active: tweetSearchType == 'bowling'}") #bowling
+        a.btn.btn-primary(ng-click="searchTwitter('thanks')", ng-class="{active: tweetSearchType == 'thanks'}") #thanks
+
+  .col-md-1
+
+    h4 search:
 
   .col-md-3
     .input-group.pull-right
@@ -24,11 +27,7 @@ h2 twitter map
       span.input-group-btn
         button.btn.btn-primary(type='button', ng-click="searchTwitter(tagSearchInput)") search
 
-    .clearfix
 
-  .col-md-4
-    h4(ng-bind="tweetSearchResults + ' results for: \"#' + tweetSearchType + '\"' ", ng-show="twitterData && !twitterData.error")
-    h4(ng-bind="twitterData.error", ng-show="twitterData.error")
 
 .row
   .col-md-8
@@ -55,13 +54,13 @@ h2 twitter map
   .col-md-4
 
     .tweetPanel
+      h4(ng-bind="twitterData.error", ng-show="twitterData.error")
 
       .wrapperloading(ng-hide="twitterData")
         .loading_up
         .loading_down
 
       .tweetBox(ng-show="!twitterData.error", ng-repeat="tweet in twitterData")
-
         .tweetHeader
           //pic
           a(ng-click="show = !show", href="")

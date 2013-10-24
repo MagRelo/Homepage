@@ -298,8 +298,8 @@ function mapCtrl($scope, $resource, TwitterService){
 
         //clear data
         $scope.twitterData = null;
-        $scope.tweetSearchType = '';
-        $scope.tagSearchInput = '';
+        $scope.tweetSearchType = searchTerm;
+        $scope.tagSearchInput = searchTerm;
         $scope.noSearchResults = false;
 
         //strip search term
@@ -353,8 +353,7 @@ function mapCtrl($scope, $resource, TwitterService){
                 }
 
                 $scope.twitterData = processedData;
-                $scope.tweetSearchType = searchTerm;
-                $scope.tweetSearchResults = $scope.twitterData.length;
+                 $scope.tweetSearchResults = $scope.twitterData.length;
             },
             function(errorMessage){$scope.errorMessage =  errorMessage;}
         )
