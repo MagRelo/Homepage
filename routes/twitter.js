@@ -7,42 +7,8 @@ var consumerSecret = 'GTAxzMmy3gXnSG9wibTwB1E9lQbZe2F1DPttoG0hCE';
 var accessToken = '826364246-Bfs5UNCXEwcN38iROaqV3O3OQoThAbExHVzI4gKM';
 var accessTokenSecret = 'dkHxaCZhpb93kjVf6rNSIKNd7Q9tQxTW2lZD1oz4';
 
-//var request = require('request');
-
 var OAuth = require('oauth');
 var oauth = new OAuth.OAuth(requestTokenURL, accessTokenURL, consumerKey, consumerSecret, '1.0A', null, 'HMAC-SHA1');
-
-var buildTwitterQueryString = function(type){
-
-    var resultType
-
-
-
-    switch (type){
-//        case 'boise':
-//            return baseURL + 'q=&geocode=43.62298,-116.2394,20mi&count=100'; break;
-        case 'all':
-            return baseURL + 'q=&geocode=43.62298,-116.2394,2000mi&count=100'; break;
-//        case 'news':
-//            return baseURL + 'q=%23news&geocode=43.62298,-116.2394,2000mi&count=100'; break;
-//        case 'foodTruck':
-//            return baseURL + 'q=from%3Avittletruck%20OR%20from%3APoBoisBoise%20OR%20from%3ASLGridiron%20OR%20from%3ATheShackBoise%20OR%20from%3ABoiseFoodTruck'; break;
-        case 'blessed':
-            return baseURL + 'q=%23blessed&count=100'; break;
-        default:
-            return baseURL + 'q=&geocode=43.62298,-116.2394,2000mi&count=100'; break;
-    }
-};
-
-var createTweetList = function (type, responseData){
-
-    // - if (geo count in type list) && (geo count in responseData) = 0 then return response data
-    // - if geo count in responseData) = 0 then return  data
-
-    // - strip from response
-    // - if length of list < 6 then add newest non-geo
-
-};
 
 
 //general search
@@ -51,13 +17,8 @@ exports.searchTerm = function(req, res) {
     var searchTerm = req.params.searchTerm;
     console.log("Requested searchTerm: " + searchTerm);
 
-    //add hash tag
-    if (searchTerm.length > 0){
-        searchTerm = '%23' + searchTerm;
-    }
-
     //build query
-    var twitterQuery = baseURL + 'q=' + searchTerm + '&geocode=43.62298,-116.2394,2000mi&count=100';
+    var twitterQuery = baseURL + 'q=' + searchTerm + '&count=100';
     console.log("Query string: " + twitterQuery);
 
     //hit twitter API

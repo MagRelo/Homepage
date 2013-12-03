@@ -25,22 +25,7 @@ div.header(ng-controller="navigationCtrl")
             li
                 a.btn.headerButton(href="/contact", ng-class="{active: location.path() == '/contact'}") contact
             li
-                a.btn.headerButton.dropdown-toggle demos
-
-                ul.dropdown-menu
-                    li
-                        strong Interactive Forms
-                        ul.list-unstyled
-                            li
-                                a.btn(href="/grid") Multiply game
-
-                    li
-                        strong Connect with other services
-                        ul.list-unstyled
-                            li
-                                a.btn(href="/leaderboard") PGA leaderboard
-                            li
-                                a.btn(href="/maps") Twitter map
+                a.btn.headerButton(href="/demos", ng-class="{active: location.path() == '/demos'}") contact
 
 
 

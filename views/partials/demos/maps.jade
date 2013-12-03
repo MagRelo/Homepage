@@ -1,57 +1,27 @@
-
-
 .row
-  .col-md-1
-  .col-md-10
+
+  .col-md-5
     h2 click on the
       label.sr-only map icon
       img.twitterTitleIcon(ng-src="fonts/twitter_mapMarker_yellow.svg")
       | to view the tweet
-      small  coordinates: {{centerLat}}°N - {{centerLng * -1}}°W
 
-
-
-
-//example buttons & search form
-.row
-  .col-md-1
-  .col-md-1
-    h4 regions:
-  .col-md-4
-      .btn-group.btn-group-justified
-        a.btn.btn-primary(ng-repeat="search in searches.regions", ng-click="searchTwitter(search)", ng-class="{active: tweetSearchType == search}") {{search}}
-
-  .col-md-1
-    h4 people:
-  .col-md-4
-    .btn-group.btn-group-justified
-      a.btn.btn-primary(ng-repeat="search in searches.people", ng-click="searchTwitter(search)", ng-class="{active: tweetSearchType == search}") {{search}}
-
-.row
-  .col-md-1
-  .col-md-1
-    h4 food:
+  //search form
   .col-md-5
-    .btn-group.btn-group-justified
-      a.btn.btn-primary(ng-repeat="search in searches.food", ng-click="searchTwitter(search)", ng-class="{active: tweetSearchType == search}") {{search}}
-
-  .col-md-1
-    h4 search:
-  .col-md-3
     .input-group
-      label.input-group-addon.label-primary #
       input.form-control(type='text', placeholder="search term", ng-model="tagSearchInput")
       span.input-group-btn
         button.btn.btn-primary(type='button', ng-click="searchTwitter(tagSearchInput)") search
 
 
+  .col-md-2
+    h2 help
+      span.glyphicon.glyphicon-question-sign
+
+
 //info window, map & tweet list
 .row
-
-
-
-  .col-md-1
-  .col-md-10
+  .col-md-12
     .panel
 
       .loadingPanel(ng-hide="twitterData")
@@ -79,3 +49,7 @@
         gm-map.map(gm-map-id='\'myMap\'', gm-center="center", gm-map-options="options.map")
           gm-markers(gm-objects='twitterData', gm-get-lat-lng='{ lat: object.geo.coordinates.0, lng: object.geo.coordinates.1 }', gm-get-marker-options='getMarkerOptions(object)', gm-on-click="tweet = object; infoWindow.open(marker.getMap(), marker); selectMarker(object, marker);")
 
+.row
+    .col-md-12
+        h2
+            small  coordinates: {{centerLat}}°N - {{centerLng * -1}}°W

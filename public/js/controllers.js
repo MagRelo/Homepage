@@ -250,10 +250,11 @@ function mapCtrl($scope, $resource, TwitterService){
         },{
         }
     ];
+
     $scope.options = {
         map: {
-            center: new google.maps.LatLng('39.56355', '-97.14826'),
-            zoom: 4,
+            center: new google.maps.LatLng('27.10797', '-99.91681'),
+            zoom: 2,
             styles: mapStyleArray,
             rotateControl: true,
             mapTypeControl: false,
@@ -261,12 +262,8 @@ function mapCtrl($scope, $resource, TwitterService){
             streetViewControl: false,
             zoomControl: false
         },
-        tweets: {
-            icon: '../fonts/twitter_mapMarker_yellow.svg'
-        },
-        selected: {
-            icon: '../fonts/twitter_mapMarker_lightblue.svg'
-        }
+        tweets: {icon: '../fonts/twitter_mapMarker_yellow.svg'},
+        selected: {icon: '../fonts/twitter_mapMarker_lightblue.svg'}
     };
 
     //display lat/long
